@@ -3,6 +3,6 @@
 class User extends Eloquent
 {
 
-  protected $fillable = array('name', 'email', 'category');
+  protected $fillable = array('email', 'password', 'effective_from', 'effective_to', 'created_by', 'updated_by');
 
 }

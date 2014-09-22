@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserPrivilegeXrefsTable extends Migration {
+class CreateCompaniesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,13 @@ class CreateUserPrivilegeXrefsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('user_privilege_xrefs', function(Blueprint $table)
+		Schema::create('companies', function(Blueprint $table)
 		{
       $table->increments('id');
-      $table->integer('userId');
-      $table->integer('privilegeId');
+      $table->string('name');
+      $table->integer('code');
+      $table->integer('created_by');
+      $table->integer('updated_by');
       $table->timestamps();
 		});
 	}
@@ -28,7 +30,7 @@ class CreateUserPrivilegeXrefsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('user_privilege_xrefs');
+		Schema::drop('companies');
 	}
 
 }

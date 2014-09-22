@@ -6,65 +6,341 @@ class PrivilegeTableSeeder extends Seeder
     DB::table('privileges')->delete();
 
     Privilege::create(array(
-      'id' => '1',
-      'name' => 'Privilege Module',
-      'group' => 'Privilege Management'
+      'user_id' => 1,
+      'module_id' => 1,
+      'privilege_type_id' => 1,
+      'created_by' => 1,
+      'updated_by' => 1
     ));
 
     Privilege::create(array(
-      'id' => '2',
-      'name' => 'Create Privilege',
-      'group' => 'Privilege Management'
+      'user_id' => 1,
+      'module_id' => 1,
+      'privilege_type_id' => 2,
+      'created_by' => 1,
+      'updated_by' => 1
     ));
 
     Privilege::create(array(
-      'id' => '3',
-      'name' => 'Edit Privilege',
-      'group' => 'Privilege Management'
+      'user_id' => 1,
+      'module_id' => 1,
+      'privilege_type_id' => 3,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    Privilege::create(array(
+      'user_id' => 1,
+      'module_id' => 1,
+      'privilege_type_id' => 4,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    Privilege::create(array(
+      'user_id' => 1,
+      'module_id' => 1,
+      'privilege_type_id' => 5,
+      'created_by' => 1,
+      'updated_by' => 1
     ));
 
 
 
     Privilege::create(array(
-      'id' => '20',
-      'name' => 'User Module',
-      'group' => 'User Management'
+      'user_id' => 1,
+      'module_id' => 2,
+      'privilege_type_id' => 1,
+      'created_by' => 1,
+      'updated_by' => 1
     ));
 
     Privilege::create(array(
-      'id' => '21',
-      'name' => 'Create User',
-      'group' => 'User Management'
+      'user_id' => 1,
+      'module_id' => 2,
+      'privilege_type_id' => 2,
+      'created_by' => 1,
+      'updated_by' => 1
     ));
 
     Privilege::create(array(
-      'id' => '22',
-      'name' => 'Edit User',
-      'group' => 'User Management'
+      'user_id' => 1,
+      'module_id' => 2,
+      'privilege_type_id' => 3,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    Privilege::create(array(
+      'user_id' => 1,
+      'module_id' => 2,
+      'privilege_type_id' => 4,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    Privilege::create(array(
+      'user_id' => 1,
+      'module_id' => 2,
+      'privilege_type_id' => 5,
+      'created_by' => 1,
+      'updated_by' => 1
     ));
 
 
 
     Privilege::create(array(
-      'id' => '100',
-      'name' => 'Package Module',
-      'group' => 'Package Management'
+      'user_id' => 1,
+      'module_id' => 3,
+      'privilege_type_id' => 1,
+      'created_by' => 1,
+      'updated_by' => 1
     ));
 
     Privilege::create(array(
-      'id' => '101',
-      'name' => 'Edit Package',
-      'group' => 'Package Management'
+      'user_id' => 1,
+      'module_id' => 3,
+      'privilege_type_id' => 2,
+      'created_by' => 1,
+      'updated_by' => 1
     ));
 
     Privilege::create(array(
-      'id' => '102',
-      'name' => 'Add Package',
-      'group' => 'Package Management'
+      'user_id' => 1,
+      'module_id' => 3,
+      'privilege_type_id' => 3,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    Privilege::create(array(
+      'user_id' => 1,
+      'module_id' => 3,
+      'privilege_type_id' => 4,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    Privilege::create(array(
+      'user_id' => 1,
+      'module_id' => 3,
+      'privilege_type_id' => 5,
+      'created_by' => 1,
+      'updated_by' => 1
     ));
 
 
 
+
+    Privilege::create(array(
+      'user_id' => 2,
+      'module_id' => 1,
+      'privilege_type_id' => 1,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    Privilege::create(array(
+      'user_id' => 2,
+      'module_id' => 1,
+      'privilege_type_id' => 2,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    Privilege::create(array(
+      'user_id' => 2,
+      'module_id' => 1,
+      'privilege_type_id' => 3,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    Privilege::create(array(
+      'user_id' => 2,
+      'module_id' => 1,
+      'privilege_type_id' => 4,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    Privilege::create(array(
+      'user_id' => 2,
+      'module_id' => 1,
+      'privilege_type_id' => 5,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+
+
+    Privilege::create(array(
+      'user_id' => 2,
+      'module_id' => 2,
+      'privilege_type_id' => 1,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    Privilege::create(array(
+      'user_id' => 2,
+      'module_id' => 2,
+      'privilege_type_id' => 2,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    Privilege::create(array(
+      'user_id' => 2,
+      'module_id' => 2,
+      'privilege_type_id' => 3,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    Privilege::create(array(
+      'user_id' => 2,
+      'module_id' => 2,
+      'privilege_type_id' => 4,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    Privilege::create(array(
+      'user_id' => 2,
+      'module_id' => 2,
+      'privilege_type_id' => 5,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+
+
+    Privilege::create(array(
+      'user_id' => 2,
+      'module_id' => 3,
+      'privilege_type_id' => 1,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    Privilege::create(array(
+      'user_id' => 2,
+      'module_id' => 3,
+      'privilege_type_id' => 2,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    Privilege::create(array(
+      'user_id' => 2,
+      'module_id' => 3,
+      'privilege_type_id' => 3,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    Privilege::create(array(
+      'user_id' => 2,
+      'module_id' => 3,
+      'privilege_type_id' => 4,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    Privilege::create(array(
+      'user_id' => 2,
+      'module_id' => 3,
+      'privilege_type_id' => 5,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+
+
+
+    Privilege::create(array(
+      'user_id' => 3,
+      'module_id' => 3,
+      'privilege_type_id' => 1,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    Privilege::create(array(
+      'user_id' => 3,
+      'module_id' => 3,
+      'privilege_type_id' => 2,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    Privilege::create(array(
+      'user_id' => 3,
+      'module_id' => 3,
+      'privilege_type_id' => 3,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    Privilege::create(array(
+      'user_id' => 3,
+      'module_id' => 3,
+      'privilege_type_id' => 4,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    Privilege::create(array(
+      'user_id' => 3,
+      'module_id' => 3,
+      'privilege_type_id' => 5,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+
+
+
+    Privilege::create(array(
+      'user_id' => 4,
+      'module_id' => 3,
+      'privilege_type_id' => 1,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    Privilege::create(array(
+      'user_id' => 4,
+      'module_id' => 3,
+      'privilege_type_id' => 2,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    Privilege::create(array(
+      'user_id' => 4,
+      'module_id' => 3,
+      'privilege_type_id' => 3,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    Privilege::create(array(
+      'user_id' => 4,
+      'module_id' => 3,
+      'privilege_type_id' => 4,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    Privilege::create(array(
+      'user_id' => 4,
+      'module_id' => 3,
+      'privilege_type_id' => 5,
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
 
   }
 

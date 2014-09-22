@@ -6,27 +6,39 @@ class UserTableSeeder extends Seeder
     DB::table('users')->delete();
 
     User::create(array(
-      'name' => 'ADMIN_SEED',
       'email' => 'IX@gmail.com',
-      'category' => 'admin'
+      'password' => 'ADMIN_SEED',
+      'effective_from' => date('Y-m-d H:i:s'),
+      'effective_to' => '',
+      'created_by' => 1,
+      'updated_by' => 1
     ));
 
     User::create(array(
-      'name' => 'Frank117',
-      'email' => 'frankjtorresjr@gmail.com',
-      'category' => 'admin'
+      'email' => 'IX.com@gmail.com',
+      'password' => 'MANAGER_SEED',
+      'effective_from' => date('Y-m-d H:i:s'),
+      'effective_to' => '',
+      'created_by' => 1,
+      'updated_by' => 1
     ));
 
     User::create(array(
-      'name' => 'PROVIDER_SEED',
       'email' => 'IX@gmail.com',
-      'category' => 'provider'
+      'password' => 'PROVIDER_SEED',
+      'effective_from' => date('Y-m-d H:i:s'),
+      'effective_to' => '',
+      'created_by' => 1,
+      'updated_by' => 1
     ));
 
     User::create(array(
-      'name' => 'CUSTOMER_SEED',
       'email' => 'IX@gmail.com',
-      'category' => 'customer'
+      'password' => 'PROVIDER_SEED',
+      'effective_from' => date('Y-m-d H:i:s'),
+      'effective_to' => '',
+      'created_by' => 1,
+      'updated_by' => 1
     ));
 
 

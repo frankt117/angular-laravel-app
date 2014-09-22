@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePrivilegesTable extends Migration {
+class CreateModulesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,14 +12,13 @@ class CreatePrivilegesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('privileges', function(Blueprint $table)
+		Schema::create('modules', function(Blueprint $table)
 		{
-      $table->integer('user_id');
-      $table->integer('module_id');
-      $table->integer('privilege_type_id');
+			$table->increments('id');
+      $table->string('name');
       $table->integer('created_by');
       $table->integer('updated_by');
-      $table->timestamps();
+			$table->timestamps();
 		});
 	}
 
@@ -30,7 +29,7 @@ class CreatePrivilegesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('privileges');
+		Schema::drop('modules');
 	}
 
 }
