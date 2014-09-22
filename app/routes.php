@@ -20,6 +20,15 @@ Route::group(array('prefix' => 'api/v1'), function() {
   Route::resource('users', 'UserController',
     array('only' => array('index', 'show', 'store', 'destroy'))
   );
+  Route::resource('users-company', 'UserCompanyController',
+    array('only' => array('index', 'show', 'store', 'destroy'))
+  );
+  Route::resource('users-sp', 'UserServiceProviderController',
+    array('only' => array('index', 'show', 'store', 'destroy'))
+  );
+  Route::resource('users-customer', 'UserCustomerController',
+    array('only' => array('index', 'show', 'store', 'destroy'))
+  );
   Route::resource('privileges', 'PrivilegeController',
     array('only' => array('index', 'store', 'destroy'))
   );
