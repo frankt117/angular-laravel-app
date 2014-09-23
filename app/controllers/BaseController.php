@@ -15,4 +15,8 @@ class BaseController extends Controller {
 		}
 	}
 
+  public function print_pre($string) {
+    echo ("<pre>".print_r($string,1)."</pre>");
+  }
+
 }

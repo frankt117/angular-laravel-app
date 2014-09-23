@@ -9,6 +9,8 @@ class UserPrivilegesController extends \BaseController {
    */
   public function index($userId)
   {
+    $input = Input::all();
+    //$this->print_pre($input);
     $privileges = Privilege::where('user_id', $userId)
       ->get();
 
@@ -24,13 +26,11 @@ class UserPrivilegesController extends \BaseController {
    */
   public function show($userId, $privilegeTypeId)
   {
-    $response = FALSE;
-
-    $privilege = Privilege::where('user_id', $userId)
+    $privileges = Privilege::where('user_id', $userId)
       ->where('privilege_type_id', $privilegeTypeId)
-      ->first();
+      ->get();
 
-    return Response::json($privilege);
+    return Response::json($privileges);
   }
 
 

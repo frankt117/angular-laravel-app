@@ -20,7 +20,7 @@ class UserCompanyTableSeeder extends Seeder
     ));
 
     UserCompany::create(array(
-      'user_id' => 1,
+      'user_id' => 2,
       'name' => 'MANAGER_SEED',
       'work_address' => '1928 Drake Corner',
       'work_city' => 'Frisco',

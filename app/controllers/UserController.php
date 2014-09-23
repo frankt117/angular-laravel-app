@@ -9,7 +9,13 @@ class UserController extends \BaseController {
    */
   public function index()
   {
-    return Response::json(User::get());
+    $userCompany = UserCompany::get()->toArray();
+    $userCustomer = UserCustomer::get()->toArray();
+    $userServiceProvider = UserServiceProvider::get()->toArray();
+
+    $return = array_merge($userCompany, $userCustomer, $userServiceProvider);
+
+    return Response::json($return);
   }
 
   /**
