@@ -32,7 +32,10 @@ Route::group(array('prefix' => 'api/v1'), function() {
   Route::resource('privileges', 'PrivilegeController',
     array('only' => array('index', 'store', 'destroy'))
   );
-  Route::resource('users.privileges', 'UserPrivilegeController',
+  Route::resource('user.privileges', 'UserPrivilegesController',
+    array('only' => array('index', 'show'))
+  );
+  Route::resource('user.module.privilege', 'UserModulePrivilegeController',
     array('only' => array('index', 'show'))
   );
 });
