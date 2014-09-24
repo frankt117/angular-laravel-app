@@ -11,6 +11,7 @@
 
         main.privileges = {};
         main.checkedPrivileges = {};
+        main.availablePrivileges = [];
         main.userId = 0;
 
         Restangular.setBaseUrl('index.php/api/v1');
@@ -29,36 +30,29 @@
           var UserPrivileges = Restangular.one('users', userId).all('privileges');
 
           UserPrivileges.getList().then(function(userPrivilegesJson) {
-            main.checkedPrivileges = Restangular.stripRestangular(userPrivilegesJson);
-          });
-        };
+            var strippedJson = Restangular.stripRestangular(userPrivilegesJson);
+            console.log(strippedJson);
 
-        this.checkboxClick = function($moduleId, $typeId) {
-//          var clicked = false;
-//
-//          for ( var i = 0; i < main.checkedPrivileges.length; i++) {
-//            console.log(main.checkedPrivileges[i].types.length);
-//            for ( var x = 1; x <= 5; x++) {
-//              if ( main.checkedPrivileges[i].id == moduleId && main.checkedPrivileges[i].types[x].id == typeId) {
-//                return true;
-//              }
-//            }
-//
-//          }
-        };
+            for ( var i = 0; i < strippedJson.length; i++) {
+              if ( strippedJson[i].id ) {
+                for ( var x = 0; x < strippedJson[i].types.length; x++) {
+                  if ( strippedJson[i].id && strippedJson[i].types[x].id ) {
+                    var arr = {
+                      "module" : strippedJson[i].id,
+                      "privilegeType" : strippedJson[i].types[x].id
+                    }
 
-        this.checkPrivilege = function(moduleId, typeId) {
-
-          for ( var i = 0; i < main.checkedPrivileges.length; i++) {
-              for ( var x = 1; x <= 5; x++) {
-                if ( main.checkedPrivileges[i].id == moduleId && main.checkedPrivileges[i].types[x].id == typeId) {
-                  return true;
+                    main.availablePrivileges.push(arr);
+                  }
                 }
               }
 
-          }
 
-          return false;
+            }
+
+            console.log(main.availablePrivileges);
+
+          });
         };
 
         this.addPrivilege = function(moduleId, typeId) {
@@ -91,20 +85,17 @@
 
           var found = false;
 
-          for ( var i = 0; i < main.checkedPrivileges.length; i++) {
-            for ( var x = 2; x <= 5; x++) {
-              if ( main.checkedPrivileges[i].id == moduleId && main.checkedPrivileges[i].types[x].id == typeId) {
-                found = true;
-              }
+          for ( var i = 0; i < main.availablePrivileges.length; i++) {
+            if ( main.availablePrivileges[i].module == moduleId && main.availablePrivileges[i].privilegeType == typeId) {
+              found = true;
             }
-
           }
 
           if (!found) {
             return {'background-color':'#E8E8E8'};
           }
 
-        }
+        };
       },
       controllerAs: 'main'
     }

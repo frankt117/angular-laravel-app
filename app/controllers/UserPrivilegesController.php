@@ -26,10 +26,11 @@ class UserPrivilegesController extends \BaseController {
 //                                               "type" => array("name" => $privilege->name, "id" => $privilege->id)));
 
       if (!in_array($module->id, $visitedModules)) {
-        $privArr[$module->id] = array("name" => $module->name, "id" => $module->id, "types" => array($privilege->id => array("name" => $privilege->name, "id" => $privilege->id)));
+        $privArr[$module->id] = array("name" => $module->name, "id" => $module->id, "types" => array());
+        $privArr[$module->id]["types"][] = array("name" => $privilege->name, "id" => $privilege->id);
         $visitedModules[] = $module->id;
       } else {
-        $privArr[$module->id]["types"][$privilege->id] = array("name" => $privilege->name, "id" => $privilege->id);
+        $privArr[$module->id]["types"][] = array("name" => $privilege->name, "id" => $privilege->id);
       }
     }
 
