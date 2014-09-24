@@ -21,7 +21,7 @@ class UserCustomerTableSeeder extends Seeder
     ));
 
     UserCustomer::create(array(
-      'user_id' => 4,
+      'user_id' => 5,
       'name' => 'Thor Hammer',
       'primary_address' => '10118 Spartan Spear',
       'primary_city' => 'Frisco',

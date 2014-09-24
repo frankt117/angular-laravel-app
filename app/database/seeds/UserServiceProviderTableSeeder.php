@@ -25,7 +25,7 @@ class UserServiceProviderTableSeeder extends Seeder
     ));
 
     UserServiceProvider::create(array(
-      'user_id' => 3,
+      'user_id' => 4,
       'name' => 'Lincoln Bose',
       'work_address' => '1839 Chief Parkway',
       'work_city' => 'Frisco',

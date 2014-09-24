@@ -34,11 +34,11 @@ class UserModulePrivilegeController extends \BaseController {
       ->first();
 
 
-    if ( $privilege ) {
-      $response = TRUE;
-    }
+//    if ( $privilege ) {
+//      $response = TRUE;
+//    }
 
-    return Response::json(array('success' => $response));
+    return Response::json($privilege);
   }
 
 
@@ -56,12 +56,23 @@ class UserModulePrivilegeController extends \BaseController {
   /**
    * Remove the specified resource from storage.
    *
-   * @param  int  $id
+   * @param  int  $userId
+   *  @param  int  $moduleId
+   *  @param  int  $privType
    * @return Response
    */
-  public function destroy($id)
+  public function destroy($userId, $moduleId, $privilegeTypeId)
   {
+    $privilege = Privilege::where('user_id', $userId)
+      ->where('module_id', $moduleId)
+      ->where('privilege_type_id', $privilegeTypeId)
+      ->delete();
 
+//    $response = $privilege->destroy();
+
+    //$response = Privilege::destroy(1);
+
+    return Response::json($privilege);
   }
 
 

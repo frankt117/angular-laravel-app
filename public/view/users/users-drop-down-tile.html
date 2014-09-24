@@ -1,6 +1,6 @@
 <div class="btn-group">
   <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Users <span class="caret"></span></button>
   <ul class="dropdown-menu">
-    <li  ng-repeat="user in userDD.data"><a href="#">{{user.name}}</a></li>
+    <li  ng-repeat="user in userDD.data"><a href ng-click="userDD.click(user.user_id)">{{user.name}}</a></li>
   </ul>
 </div>

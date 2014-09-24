@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration {
 			$table->increments('id');
       $table->string('email');
       $table->string('password');
+      $table->string('category');
       $table->date('effective_from');
       $table->date('effective_to');
       $table->integer('created_by');

@@ -1,5 +1,5 @@
 (function() {
-  var app = angular.module('myApp', ['restangular', 'users']);
+  var app = angular.module('myApp', ['restangular', 'users', 'privileges']);
 
   // configure our routes
 //  app.config(function($routeProvider) {

@@ -1,0 +1,15 @@
+<user-drop-down-2></user-drop-down-2>
+
+<div class="list-group" ng-repeat="data in main.privileges">
+  <a href="#" class="list-group-item active">
+    {{data.name}}
+  </a>
+  <a href="#" class="list-group-item" ng-repeat="type in data.types" ng-style="main.checkPrivilege2(data.id, type.id)">{{type.name}}
+    <button type="button" class="btn btn-default btn-xs pull-right" ng-click="main.removePrivilege(data.id, type.id)">
+      <span class="glyphicon glyphicon-remove"></span> Remove
+    </button>
+    <button type="button" class="btn btn-default btn-xs pull-right" ng-click="main.addPrivilege(data.id, type.id)">
+      <span class="glyphicon glyphicon-ok"></span> Add
+    </button>
+  </a>
+</div>
