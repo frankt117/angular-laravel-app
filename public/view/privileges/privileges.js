@@ -133,8 +133,9 @@
 
         });
 
-        this.click = function(userId) {
+        this.click = function(userId, userName) {
           $scope.main.updatePrivileges(userId);
+          users.user_name = userName;
         };
       },
       controllerAs: 'userDD'
