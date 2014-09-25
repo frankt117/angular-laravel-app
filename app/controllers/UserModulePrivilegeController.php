@@ -52,6 +52,24 @@ class UserModulePrivilegeController extends \BaseController {
 
   }
 
+  /**
+   * Store a newly created resource in storage.
+   *
+   * @return Response
+   */
+  public function update($userId, $moduleId, $privilegeTypeId)
+  {
+    Privilege::create(array(
+      'user_id' => $userId,
+      'module_id' => $moduleId,
+      'privilege_type_id' => $privilegeTypeId,
+      'created_by' => $userId,
+      'updated_by' => $userId
+    ));
+
+    return Response::json(array('success' => true));
+  }
+
 
   /**
    * Remove the specified resource from storage.

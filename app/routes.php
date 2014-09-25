@@ -36,7 +36,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
     array('only' => array('index', 'show'))
   );
   Route::resource('users.modules.privileges', 'UserModulePrivilegeController',
-    array('only' => array('index', 'show', 'store', 'destroy'))
+    array('only' => array('index', 'show', 'store', 'destroy', 'update'))
   );
 });
 

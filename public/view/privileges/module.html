@@ -1,14 +1,22 @@
+<style>
+    button.check {
+        background-color: #96ff7c;
+    }
+    button.remove {
+        background-color: #ff7b68;
+    }
+</style>
 <user-drop-down-2></user-drop-down-2>
-
+{{main.userId}}
 <div class="list-group" ng-repeat="data in main.privileges">
   <a href="#" class="list-group-item active">
     {{data.name}}
   </a>
-  <a href="#" class="list-group-item" ng-repeat="type in data.types" ng-style="main.checkPrivilege2(data.id, type.id)">{{type.name}}
-    <button type="button" class="btn btn-default btn-xs pull-right" ng-click="main.removePrivilege(data.id, type.id)">
+  <a href="#" class="list-group-item" ng-repeat="type in data.types" ng-style="main.checkPrivilege2(data.id, type.id)" ng-show="main.showPrivileges()">{{type.name}}
+    <button type="button" class="btn btn-default btn-xs pull-right remove" ng-click="main.removePrivilege(data.id, type.id)">
       <span class="glyphicon glyphicon-remove"></span> Remove
     </button>
-    <button type="button" class="btn btn-default btn-xs pull-right" ng-click="main.addPrivilege(data.id, type.id)">
+    <button type="button" class="btn btn-default btn-xs pull-right check" ng-click="main.addPrivilege(data.id, type.id)">
       <span class="glyphicon glyphicon-ok"></span> Add
     </button>
   </a>

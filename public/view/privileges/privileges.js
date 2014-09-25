@@ -33,6 +33,8 @@
             var strippedJson = Restangular.stripRestangular(userPrivilegesJson);
             console.log(strippedJson);
 
+            main.availablePrivileges = [];
+
             for ( var i = 0; i < strippedJson.length; i++) {
               if ( strippedJson[i].id ) {
                 for ( var x = 0; x < strippedJson[i].types.length; x++) {
@@ -56,29 +58,30 @@
         };
 
         this.addPrivilege = function(moduleId, typeId) {
-//          Restangular.setBaseUrl('index.php/api/v1');
-//
-//          var UserPrivileges = Restangular.one('users', userId).all('privileges');
-//
-//          UserPrivileges.getList().then(function(userPrivilegesJson) {
-//            console.log(userPrivilegesJson);
-//            main.checkedPrivileges = Restangular.stripRestangular(userPrivilegesJson);
-//          });
+          $http({
+                method: "PUT",
+                url: "index.php/api/v1/users/"+main.userId+"/modules/"+moduleId+"/privileges/"+typeId,
+                headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
+                data: { }
+          }).then(function($response) {
+            console.log($response);
+            main.updatePrivileges(main.userId);
+          });
         };
 
         this.removePrivilege = function(moduleId, typeId) {
 
-          var request = $http({
+          $http({
             method: "delete",
             url: "index.php/api/v1/users/"+main.userId+"/modules/"+moduleId+"/privileges/"+typeId,
             params: {
               action: "delete"
             },
-            data: {
-            }
+            data: { }
+          }).then(function($response) {
+            console.log($response);
+            main.updatePrivileges(main.userId);
           });
-
-          return( request.then( handleSuccess, handleError ) );
         };
 
         this.checkPrivilege2 = function(moduleId, typeId) {
@@ -92,9 +95,17 @@
           }
 
           if (!found) {
-            return {'background-color':'#E8E8E8'};
+            return {'background-color':'#CACCCC'};
           }
 
+        };
+
+        this.showPrivileges = function() {
+          if(main.availablePrivileges.length) {
+            return true;
+          } else {
+            return false;
+          }
         };
       },
       controllerAs: 'main'

@@ -24,7 +24,7 @@ class PrivilegeTypeTableSeeder extends Seeder
     ));
 
     PrivilegeType::create(array(
-      'name' => 'Save',
+      'name' => 'Select',
       'created_by' => 1,
       'updated_by' => 1
     ));
