@@ -23,7 +23,6 @@
 
         $scope.privileges = {};
         $scope.selectedIndex = 0;
-        $scope.types = [];
         main.checkedPrivileges = {};
         $scope.availablePrivileges = [];
         main.userId = 0;
@@ -35,11 +34,23 @@
         $scope.switchFive = false;
 
         $scope.switches = {
-          name: function (newName) {
-            if (angular.isDefined(newName)) {
-              _name = newName;
+          name: function (type) {
+            console.log(type);
+            if(type.id == 1) {
+              return $scope.switchOne;
             }
-            return _name;
+            if(type.id == 2) {
+              return $scope.switchTwo;
+            }
+            if(type.id == 3) {
+              return $scope.switchThree;
+            }
+            if(type.id == 4) {
+              return $scope.switchFour;
+            }
+            if(type.id == 5) {
+              return $scope.switchFive;
+            }
           }
         };
 
@@ -54,13 +65,17 @@
           for ( var i = 0; i < $scope.privileges.length; i++) {
             if(i==0) {
               $scope.privileges[i]['active'] = 'true';
-              $scope.types = $scope.privileges[i].types;
+              main.types = $scope.privileges[i].types;
             } else {
               $scope.privileges[i]['active'] = 'false';
             }
 
           }
+          console.log(main.types);
+          console.log($scope);
         });
+
+
 
         $scope.switchBinding = function(type){
           console.log(type);
@@ -106,8 +121,7 @@
             }
           }
 
-          $scope.types = tab.types;
-          console.log($scope.types);
+          main.types = tab.types;
         };
 
         this.updatePrivileges = function(userId) {
