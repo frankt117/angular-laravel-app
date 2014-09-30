@@ -27,30 +27,50 @@
         $scope.availablePrivileges = [];
         main.userId = 0;
 
-        $scope.switchOne = false;
-        $scope.switchTwo = false;
-        $scope.switchThree = false;
-        $scope.switchFour = false;
-        $scope.switchFive = false;
+        main.switchOne = true;
+        main.switchTwo = false;
+        main.switchThree = true;
+        main.switchFour = false;
+        main.switchFive = true;
 
-        $scope.switches = {
+        main.switches = {
           name: function (type) {
             console.log(type);
             if(type.id == 1) {
-              return $scope.switchOne;
+              console.log("RETURNING SWITCH ONE");
+              return main.switchOne;
             }
             if(type.id == 2) {
-              return $scope.switchTwo;
+              console.log("RETURNING SWITCH TWO");
+              return main.switchTwo;
             }
             if(type.id == 3) {
-              return $scope.switchThree;
+              console.log("RETURNING SWITCH THREE");
+              return main.switchThree;
             }
             if(type.id == 4) {
-              return $scope.switchFour;
+              console.log("RETURNING SWITCH FOUR");
+              return main.switchFour;
             }
             if(type.id == 5) {
-              return $scope.switchFive;
+              console.log("RETURNING SWITCH FIVE");
+              return main.switchFive;
             }
+          }
+        };
+
+
+        main.switches2 = {
+          name: function (type, tab) {
+
+            console.log(type);
+            console.log(tab);
+//            if (angular.isDefined(newName)) {
+//              _name = newName;
+//            } else {
+//
+//            }
+//            return _name;
           }
         };
 
