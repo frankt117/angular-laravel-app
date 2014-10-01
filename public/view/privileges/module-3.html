@@ -1,7 +1,10 @@
 <div layout="vertical" >
 
-
   <user-drop-down-2></user-drop-down-2>
+
+  <material-tabs selected="selectedIndex">
+      <material-tab ng-repeat="module in privilegesController.privilegeModules" label="{{module.name}}" on-select="privilegesController.onTabSelected(module)"></material-tab>
+  </material-tabs>
 
 
 </div>

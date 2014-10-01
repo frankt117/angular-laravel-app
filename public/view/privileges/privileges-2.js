@@ -9,19 +9,25 @@
         var privilegesController = this;
 
         privilegesController.privileges = {};
+        privilegesController.privilegeModules = {};
         privilegesController.types = {};
 
         $http({
           method: "GET",
-          url: "index.php/api/v1/privileges/",
+          url: "index.php/api/v1/modules/",
           headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
           data: { }
         }).then(function($response) {
-            console.log($response);
+          privilegesController.privilegeModules = $response.data;
+          console.log($scope);
         });
 
+        privilegesController.onTabSelected = function(module) {
+          console.log('SELECTED');
+        };
+
       },
-      controllerAs: 'main'
+      controllerAs: 'privilegesController'
     }
   });
 
