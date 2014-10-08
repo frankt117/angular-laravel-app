@@ -1,10 +1,11 @@
 angular.module( 'app', [
-    'app.admin',
+    'app.manage-admin',
+    'app.manage-service-provider',
     'ui.router'
   ])
 
   .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
-    $urlRouterProvider.otherwise( '/admin' );
+    $urlRouterProvider.otherwise( '/manage/admin' );
 
   })
 

@@ -1,14 +1,14 @@
-angular.module( 'app.admin', [
+angular.module( 'app.manage-admin', [
     'ui.router'
   ])
 
   .config(function config( $stateProvider ) {
     $stateProvider.state( 'admin', {
-      url: '/admin',
+      url: '/manage/admin',
       views: {
         "main": {
           controller: 'AdminCtrl',
-          templateUrl: 'view/admin/admin.html'
+          templateUrl: 'view/manage/admin/admin.html'
         }
       }
     });
