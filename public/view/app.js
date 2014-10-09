@@ -1,7 +1,10 @@
 angular.module( 'app', [
     'app.manage-admin',
     'app.manage-service-provider',
-    'ui.router'
+    'app.manage-customer',
+    'ui.router',
+    'ngAnimate',
+    'ngMaterial'
   ])
 
   .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
@@ -13,6 +16,9 @@ angular.module( 'app', [
   })
 
   .controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
+    $scope.userId = '';
+    console.log($scope);
+
   })
 
 ;

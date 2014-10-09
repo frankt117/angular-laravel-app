@@ -1,5 +1,6 @@
 angular.module( 'app.manage-admin', [
-    'ui.router'
+    'ui.router',
+    'app.login'
   ])
 
   .config(function config( $stateProvider ) {
@@ -8,7 +9,11 @@ angular.module( 'app.manage-admin', [
       views: {
         "main": {
           controller: 'AdminCtrl',
-          templateUrl: 'view/manage/admin/admin.html'
+          templateUrl: 'view/manage/admin/main.html'
+        },
+        "login": {
+          controller: 'LoginCtrl',
+          templateUrl: 'view/manage/login/main.html'
         }
       }
     });

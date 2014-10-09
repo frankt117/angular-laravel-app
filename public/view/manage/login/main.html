@@ -1,0 +1,41 @@
+<style>
+  material-whiteframe {
+    background: #fff;
+    margin-top: 300px;
+    padding: 20px;
+    padding-bottom: 80px;
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+
+  #submitBtn {
+    margin-top: 40px;
+  }
+</style>
+
+<div layout="vertical"  layout-align="end center" layout-fill>
+  <material-whiteframe class="material-whiteframe-z2" layout layout-align="center center">
+    <div layout="vertical" style="height: 200px;" layout-align="end center">
+      <div >
+
+        <material-toolbar class="material-theme-light">
+          <h2 class="material-toolbar-tools">
+            <span>Login</span>
+          </h2>
+        </material-toolbar>
+
+        <material-input-group>
+          <label for="i1">Email</label>
+          <material-input id="i1" ng-model="email"></material-input>
+        </material-input-group>
+        <material-input-group>
+          <label for="i2">Password</label>
+          <material-input id="i2" ng-model="password"></material-input>
+        </material-input-group>
+
+        <material-button id="submitBtn" class="material-button-raised">Submit</material-button>
+
+      </div>
+    </div>
+  </material-whiteframe>
+</div>

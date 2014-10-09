@@ -1,15 +1,15 @@
-angular.module( 'app.manage-service-provider', [
+angular.module( 'app.manage-customer', [
     'ui.router',
     'app.login'
   ])
 
   .config(function config( $stateProvider ) {
-    $stateProvider.state( 'service-provider', {
-      url: '/manage/service-provider',
+    $stateProvider.state( 'customer', {
+      url: '/manage/customer',
       views: {
         "main": {
           controller: 'MainCtrl',
-          templateUrl: 'view/manage/service-provider/main.html'
+          templateUrl: 'view/manage/customer/main.html'
         },
         "login": {
           controller: 'LoginCtrl',
