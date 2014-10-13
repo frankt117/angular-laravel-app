@@ -1,7 +1,7 @@
 angular.module( 'app.login', ['app.new-user'])
 
 
-  .controller( 'LoginCtrl', function LoginCtrl( $scope ) {
+  .controller( 'LoginCtrl', function LoginCtrl( $scope, $http ) {
     $scope.email = '';
     $scope.password = '';
     $scope.panelSelected = 1;
@@ -15,7 +15,20 @@ angular.module( 'app.login', ['app.new-user'])
       $scope.email = form.target[0].value;
       $scope.password = form.target[1].value;
 
-      console.log($scope);
+      console.log($scope.email);
+
+      var userEmail = $scope.email;
+
+      $http({
+        method: "GET",
+        url: "index.php/api/v1/users/"+$scope.email,
+        headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
+        data: { }
+      }).then(function($response) {
+        console.log($response);
+        $scope.$parent.user.userId = $response.data[0].id;
+        console.log($scope);
+      });
     }
 
     $scope.isSelected = function isSelected(checkPanel) {
