@@ -9,29 +9,35 @@ class PrivilegeController extends \BaseController {
    */
   public function index()
   {
+//    $privileges = Privilege::get();
+//
+//    $privArr = [];
+//
+//    $visitedModules = [];
+//
+//    foreach($privileges as $privilege) {
+//      $module = Module::where('id', $privilege->module_id)->first();
+//      $privilege = PrivilegeType::where('id', $privilege->privilege_type_id)->first();
+//
+//      if (!in_array($module->id, $visitedModules)) {
+//        $privArr[$module->id] = array("name" => $module->name, "id" => $module->id, "types" => array($privilege->id => array("name" => $privilege->name, "id" => $privilege->id)));
+//        $visitedModules[] = $module->id;
+//      } else {
+//        $privArr[$module->id]["types"][$privilege->id] = array("name" => $privilege->name, "id" => $privilege->id);
+//      }
+//    }
+//
+//    $response = [];
+//
+//    foreach ($privArr as $arr) {
+//      $response[] = $arr;
+//    }
+
+    //*************END OF FIRST IMPLEMENATION****************************
+
     $privileges = Privilege::get();
 
-    $privArr = [];
-
-    $visitedModules = [];
-
-    foreach($privileges as $privilege) {
-      $module = Module::where('id', $privilege->module_id)->first();
-      $privilege = PrivilegeType::where('id', $privilege->privilege_type_id)->first();
-
-      if (!in_array($module->id, $visitedModules)) {
-        $privArr[$module->id] = array("name" => $module->name, "id" => $module->id, "types" => array($privilege->id => array("name" => $privilege->name, "id" => $privilege->id)));
-        $visitedModules[] = $module->id;
-      } else {
-        $privArr[$module->id]["types"][$privilege->id] = array("name" => $privilege->name, "id" => $privilege->id);
-      }
-    }
-
-    $response = [];
-
-    foreach ($privArr as $arr) {
-      $response[] = $arr;
-    }
+    $response = $privileges;
 
     return Response::json($response);
   }

@@ -1,0 +1,47 @@
+<div class="col-md-9" role="main"></div>
+
+<br><br><br><br><br><br><br><br><br><br><br>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <ul class="nav nav-tabs nav-justified">
+      <li ng-class="{ active:isSelected(1) }"><a href ng-click="selectPanel(1)">Login</a></li>
+      <li ng-class="{ active:isSelected(2) }" ng-show="showNewUserPanel"><a href ng-click="selectPanel(2)">New User</a></li>
+    </ul>
+    <div class="panel panel-default" ng-show="isSelected(1)">
+      <div class="panel-body">
+        <form class="form-horizontal" role="form" ng-submit="submit($event)">
+          <div class="form-group">
+            <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-8">
+              <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-8">
+              <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-8">
+              <button type="submit" class="btn btn-success">Sign in</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="panel-footer" ng-show="showNewUserPanel">
+        <div class="row">
+          <div class="col-sm-offset-3 col-sm-6">
+            Don't have a profile? Click 'New User' above.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <new-user-form ng-show="isSelected(2)"></new-user-form>
+
+  </div>
+</div>
+
+

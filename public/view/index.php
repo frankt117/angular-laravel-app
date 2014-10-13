@@ -1,17 +1,43 @@
 <!DOCTYPE html>
-<html ng-app="myApp">
+<html ng-app="app">
 <head>
-  <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="packages/bower_components/angular/angular.js"></script>
+  <script src="packages/bower_components/angular-animate/angular-animate.js"></script>
+  <script src="packages/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+
+
   <script type="text/javascript" src="http://cdn.jsdelivr.net/restangular/latest/restangular.js"></script>
   <script type="text/javascript" src="//cdn.jsdelivr.net/lodash/2.1.0/lodash.compat.min.js"></script>
   <script type="text/javascript" src="view/app.js"></script>
-  <script type="text/javascript" src="view/users/users.js"></script>
-  <script type="text/javascript" src="view/privileges/privileges.js"></script>
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="view/manage/admin/main.js"></script>
+  <script type="text/javascript" src="view/manage/service-provider/main.js"></script>
+  <script type="text/javascript" src="view/manage/customer/main.js"></script>
+  <script type="text/javascript" src="view/manage/login/main.js"></script>
+  <script type="text/javascript" src="view/manage/new-user/main.js"></script>
+  <script type="text/javascript" src="view/manage/new-user/service-provider.js"></script>
+  <script type="text/javascript" src="view/manage/new-user/customer.js"></script>
+
+
+  <!--Bootstrap-->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="packages/bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+  <script src="packages/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
 </head>
 
+<style>
+  body{
+    background-color: #f7f7f7;
+  }
+</style>
+
 <body>
-  <privilege-module></privilege-module>
+<div ng-controller="AppCtrl">
+  <div ui-view="main" ng-show="user.userId"></div>
+  <div ui-view="login" ng-hide="user.userId"></div>
+</div>
 </body>
+</html>
