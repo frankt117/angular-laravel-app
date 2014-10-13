@@ -8,7 +8,7 @@ angular.module( 'app.manage-service-provider', [
       url: '/manage/service-provider',
       views: {
         "main": {
-          controller: 'MainCtrl',
+          controller: 'MainSPCtrl',
           templateUrl: 'view/manage/service-provider/main.html'
         },
         "login": {
@@ -19,7 +19,8 @@ angular.module( 'app.manage-service-provider', [
     });
   })
 
-  .controller( 'MainCtrl', function MainCtrl( $scope ) {
+  .controller( 'MainSPCtrl', function MainSPCtrl( $scope ) {
+    $scope.user.userCategory = 'SERVICE';
   })
 
 ;

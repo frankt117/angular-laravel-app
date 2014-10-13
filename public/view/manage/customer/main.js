@@ -8,7 +8,7 @@ angular.module( 'app.manage-customer', [
       url: '/manage/customer',
       views: {
         "main": {
-          controller: 'MainCtrl',
+          controller: 'MainCustomerCtrl',
           templateUrl: 'view/manage/customer/main.html'
         },
         "login": {
@@ -19,7 +19,8 @@ angular.module( 'app.manage-customer', [
     });
   })
 
-  .controller( 'MainCtrl', function MainCtrl( $scope ) {
+  .controller( 'MainCustomerCtrl', function MainCustomerCtrl( $scope ) {
+    $scope.user.userCategory = 'CUSTOMER';
   })
 
 ;

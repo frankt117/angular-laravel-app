@@ -2,13 +2,13 @@ angular.module( 'app', [
     'app.manage-admin',
     'app.manage-service-provider',
     'app.manage-customer',
+    'app.new-user',
     'ui.router',
-    'ngAnimate',
-    'ngMaterial'
+    'ui.bootstrap'
   ])
 
   .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
-    $urlRouterProvider.otherwise( '/manage/admin' );
+    $urlRouterProvider.otherwise( '/manage/customer' );
 
   })
 
@@ -16,8 +16,11 @@ angular.module( 'app', [
   })
 
   .controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
-    $scope.userId = '';
-    console.log($scope);
+    $scope.user = {
+      userId : '',
+      userName : '',
+      userCategory : ''
+    };
 
   })
 

@@ -8,7 +8,7 @@ angular.module( 'app.manage-admin', [
       url: '/manage/admin',
       views: {
         "main": {
-          controller: 'AdminCtrl',
+          controller: 'MainAdminCtrl',
           templateUrl: 'view/manage/admin/main.html'
         },
         "login": {
@@ -19,7 +19,8 @@ angular.module( 'app.manage-admin', [
     });
   })
 
-  .controller( 'AdminCtrl', function AdminCtrl( $scope ) {
+  .controller( 'MainAdminCtrl', function MainAdminCtrl( $scope ) {
+    $scope.user.userCategory = 'ADMIN';
   })
 
 ;
