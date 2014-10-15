@@ -4,7 +4,8 @@ angular.module( 'app', [
     'app.manage-customer',
     'app.new-user',
     'ui.router',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'AuthSrvc'
   ])
 
   .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {

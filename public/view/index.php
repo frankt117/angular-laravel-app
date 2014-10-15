@@ -15,6 +15,7 @@
   <script type="text/javascript" src="view/manage/service-provider/main.js"></script>
   <script type="text/javascript" src="view/manage/customer/main.js"></script>
   <script type="text/javascript" src="view/manage/login/main.js"></script>
+  <script type="text/javascript" src="view/manage/login/authService.js"></script>
   <script type="text/javascript" src="view/manage/new-user/main.js"></script>
   <script type="text/javascript" src="view/manage/new-user/service-provider.js"></script>
   <script type="text/javascript" src="view/manage/new-user/customer.js"></script>

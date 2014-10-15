@@ -44,6 +44,8 @@ Route::group(array('prefix' => 'api/v1'), function() {
   Route::resource('users.modules.privileges', 'UserModulePrivilegeController',
     array('only' => array('index', 'show', 'store', 'destroy', 'update'))
   );
+  Route::post('login/auth','AuthController@login');
+  Route::get('login/destroy','AuthController@logout');
 });
 
 App::missing(function($exception) {
