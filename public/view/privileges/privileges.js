@@ -1,10 +1,10 @@
 (function() {
-  var PrivilegeModule = angular.module('privileges', ['restangular', 'ngMaterial']);
+  var PrivilegeModule = angular.module('privileges', ['restangular']);
 
   PrivilegeModule.directive('privilegeModule', function() {
     return {
       restrict: 'E',
-      templateUrl: 'view/privileges/module-2.html',
+      templateUrl: 'view/privileges/module.html',
       controller: function($scope, Restangular, $http) {
 
         var main = this;

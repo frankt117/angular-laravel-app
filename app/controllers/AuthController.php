@@ -7,12 +7,15 @@ class AuthController extends BaseController
     $email = Input::get('email');
     $password = Input::get('password');
 
-    $response = Auth::attempt(array('email' => 'sp2@gmail.com', 'password' => 'SP2'));
+    //$response = Auth::attempt(array('email' => 'sp2@gmail.com', 'password' => 'SP2'));
 
-    return Response::json($response);
-//    } else {
-//      return 'invalid username/pass combo';
-//    }
+    $user = User::where('email', $email, 'AND')->where('password', $password)->get()->first();
+
+    if ( $user ) {
+      return Response::json($user->category);
+    } else {
+      return "FALSE";
+    }
   }
 
   public function logout ()

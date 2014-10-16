@@ -6,12 +6,13 @@ angular.module( 'app.login', ['app.new-user'])
     $scope.password = '';
     $scope.panelSelected = 1;
     $scope.showNewUserPanel = true;
+    $scope.alert = false;
 
     $scope.clickTest = function () {
       console.log("CLICKED");
     };
 
-    $scope.submit = function (form) {
+    $scope.submit = function (form, $window) {
       $scope.email = form.target[0].value;
       $scope.password = form.target[1].value;
 
@@ -31,7 +32,23 @@ angular.module( 'app.login', ['app.new-user'])
 //      });
       var loginCreds = {'email' : $scope.email, 'password' : $scope.password};
       Login.auth(loginCreds).then(function($response) {
-        console.log($response);
+        console.log($response.data);
+
+        if ($response.data !== "FALSE") {
+          sessionStorage.userId=$scope.email;
+          sessionStorage.userCategory=$response.data;
+          sessionStorage.loggedIn=true;
+          $scope.$parent.$parent.loggedIn = true;
+//          $scope.$parent.$parent.$apply(function () {
+//            $scope.$parent.$parent.loggedIn = true;
+//          });
+          console.log($scope.$parent.$parent.loggedIn);
+          //$http({method:'GET',url:'/'});
+          location.reload();
+          //$scope.changeRoute('#/');
+        } else {
+          $scope.alert = true;
+        }
       });
     }
 
@@ -44,7 +61,7 @@ angular.module( 'app.login', ['app.new-user'])
      console.log($scope.panelSelected);
     }
 
-    if ( $scope.$parent.user.userCategory === 'ADMIN') {
+    if ( sessionStorage.userCategory === 'ADMIN') {
       $scope.showNewUserPanel = false;
     }
 

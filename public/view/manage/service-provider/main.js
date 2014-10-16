@@ -20,7 +20,14 @@ angular.module( 'app.manage-service-provider', [
   })
 
   .controller( 'MainSPCtrl', function MainSPCtrl( $scope ) {
-    $scope.user.userCategory = 'SERVICE';
+//    if(sessionStorage.userCategory) {
+//      $scope.userCategory = sessionStorage.userCategory;
+//    } else {
+//      sessionStorage.userCategory = 'SERVICE';
+//      $scope.userCategory = 'SERVICE';
+//    }
+
+    sessionStorage.userCategory = 'SERVICE';
   })
 
 ;

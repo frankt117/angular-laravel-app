@@ -1,5 +1,5 @@
 (function() {
-  var PrivilegeModule = angular.module('privileges', ['restangular', 'ngMaterial']);
+  var PrivilegeModule = angular.module('privileges', ['restangular']);
 
   PrivilegeModule.directive('privilegeModule', function() {
     return {
@@ -26,6 +26,11 @@
           console.log('SELECTED');
         };
 
+        privilegesController.updatePrivileges = function(userId) {
+          console.log("HERE");
+          console.log(userId);
+        };
+
       },
       controllerAs: 'privilegesController'
     }
@@ -46,13 +51,13 @@
         var Users = Restangular.all('users');
 
         Users.getList().then(function(userJson) {
-
+          console.log(userJson);
           users.data = userJson;
 
         });
 
         this.click = function(userId, userName) {
-          $scope.main.updatePrivileges(userId);
+          $scope.privilegesController.updatePrivileges(userId);
           users.user_name = userName;
         };
       },

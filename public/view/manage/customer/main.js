@@ -20,7 +20,14 @@ angular.module( 'app.manage-customer', [
   })
 
   .controller( 'MainCustomerCtrl', function MainCustomerCtrl( $scope ) {
-    $scope.user.userCategory = 'CUSTOMER';
+//    if (sessionStorage.userCategory) {
+//      $scope.userCategory = sessionStorage.userCategory;
+//    } else {
+//      sessionStorage.userCategory = 'CUSTOMER';
+//      $scope.userCategory = 'CUSTOMER';
+//    }
+
+    sessionStorage.userCategory = 'CUSTOMER';
   })
 
 ;

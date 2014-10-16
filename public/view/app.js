@@ -5,7 +5,9 @@ angular.module( 'app', [
     'app.new-user',
     'ui.router',
     'ui.bootstrap',
-    'AuthSrvc'
+    'AuthSrvc',
+    'app.nav-bar',
+    'privileges'
   ])
 
   .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
@@ -17,11 +19,7 @@ angular.module( 'app', [
   })
 
   .controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
-    $scope.user = {
-      userId : '',
-      userName : '',
-      userCategory : ''
-    };
+    $scope.loggedIn = sessionStorage.loggedIn;
 
   })
 

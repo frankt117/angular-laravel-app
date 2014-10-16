@@ -5,6 +5,7 @@ angular.module( 'app.new-user-customer', [])
       restrict: 'E',
       templateUrl: 'view/manage/new-user/customer.html',
       controller: function($scope) {
+        $scope.alert2 = false;
 
       },
       controllerAs: 'newUserCustomerCtrl'

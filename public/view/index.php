@@ -11,6 +11,7 @@
   <script type="text/javascript" src="http://cdn.jsdelivr.net/restangular/latest/restangular.js"></script>
   <script type="text/javascript" src="//cdn.jsdelivr.net/lodash/2.1.0/lodash.compat.min.js"></script>
   <script type="text/javascript" src="view/app.js"></script>
+  <script type="text/javascript" src="view/privileges/privileges-2.js"></script>
   <script type="text/javascript" src="view/manage/admin/main.js"></script>
   <script type="text/javascript" src="view/manage/service-provider/main.js"></script>
   <script type="text/javascript" src="view/manage/customer/main.js"></script>
@@ -19,6 +20,7 @@
   <script type="text/javascript" src="view/manage/new-user/main.js"></script>
   <script type="text/javascript" src="view/manage/new-user/service-provider.js"></script>
   <script type="text/javascript" src="view/manage/new-user/customer.js"></script>
+  <script type="text/javascript" src="view/manage/navigation/nav-bar.js"></script>
 
 
   <!--Bootstrap-->
@@ -37,8 +39,8 @@
 
 <body>
 <div ng-controller="AppCtrl">
-  <div ui-view="main" ng-show="user.userId"></div>
-  <div ui-view="login" ng-hide="user.userId"></div>
+  <div ui-view="main" ng-show="loggedIn"></div>
+  <div ui-view="login" ng-hide="loggedIn"></div>
 </div>
 </body>
 </html>
