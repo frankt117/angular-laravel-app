@@ -7,11 +7,11 @@ angular.module( 'app.manage-admin', [
     $stateProvider.state( 'admin', {
       url: '/manage/admin',
       views: {
-        "main": {
+        "manage-main": {
           controller: 'MainAdminCtrl',
           templateUrl: 'view/manage/admin/main.html'
         },
-        "login": {
+        "manage-login": {
           controller: 'LoginCtrl',
           templateUrl: 'view/manage/login/main.html'
         }

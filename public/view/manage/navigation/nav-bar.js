@@ -1,6 +1,6 @@
 angular.module( 'app.nav-bar', [])
 
-  .directive('navBar', function() {
+  .directive('navBarManage', function() {
     return {
       restrict: 'E',
       templateUrl: 'view/manage/navigation/nav-bar.html',

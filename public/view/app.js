@@ -3,6 +3,7 @@ angular.module( 'app', [
     'app.manage-service-provider',
     'app.manage-customer',
     'app.new-user',
+    'app.landing-page',
     'ui.router',
     'ui.bootstrap',
     'AuthSrvc',
@@ -11,7 +12,7 @@ angular.module( 'app', [
   ])
 
   .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
-    $urlRouterProvider.otherwise( '/manage/customer' );
+    $urlRouterProvider.otherwise( '/index' );
 
   })
 

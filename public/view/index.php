@@ -12,6 +12,7 @@
   <script type="text/javascript" src="//cdn.jsdelivr.net/lodash/2.1.0/lodash.compat.min.js"></script>
   <script type="text/javascript" src="view/app.js"></script>
   <script type="text/javascript" src="view/privileges/privileges-2.js"></script>
+  <script type="text/javascript" src="view/landing/main.js"></script>
   <script type="text/javascript" src="view/manage/admin/main.js"></script>
   <script type="text/javascript" src="view/manage/service-provider/main.js"></script>
   <script type="text/javascript" src="view/manage/customer/main.js"></script>
@@ -39,8 +40,9 @@
 
 <body>
 <div ng-controller="AppCtrl">
-  <div ui-view="main" ng-show="loggedIn"></div>
-  <div ui-view="login" ng-hide="loggedIn"></div>
+  <div ui-view="manage-main" ng-show="loggedIn"></div>
+  <div ui-view="manage-login" ng-hide="loggedIn"></div>
+  <div ui-view="landing-main"></div>
 </div>
 </body>
 </html>

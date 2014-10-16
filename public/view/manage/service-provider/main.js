@@ -7,11 +7,11 @@ angular.module( 'app.manage-service-provider', [
     $stateProvider.state( 'service-provider', {
       url: '/manage/service-provider',
       views: {
-        "main": {
+        "manage-main": {
           controller: 'MainSPCtrl',
           templateUrl: 'view/manage/service-provider/main.html'
         },
-        "login": {
+        "manage-login": {
           controller: 'LoginCtrl',
           templateUrl: 'view/manage/login/main.html'
         }
