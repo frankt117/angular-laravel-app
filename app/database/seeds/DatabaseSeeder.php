@@ -35,6 +35,9 @@ class DatabaseSeeder extends Seeder {
     $this->call('UserCustomerTableSeeder');
     $this->command->info('UserCustomers table seeded');
 
+    $this->call('MarketTableSeeder');
+    $this->command->info('Markets table seeded');
+
 	}
 
 }
