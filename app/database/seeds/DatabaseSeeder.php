@@ -38,6 +38,9 @@ class DatabaseSeeder extends Seeder {
     $this->call('MarketTableSeeder');
     $this->command->info('Markets table seeded');
 
+    $this->call('ServiceCategoryTableSeeder');
+    $this->command->info('Service Category table seeded');
+
 	}
 
 }

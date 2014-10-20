@@ -47,6 +47,9 @@ Route::group(array('prefix' => 'api/v1'), function() {
   Route::resource('markets', 'MarketController',
     array('only' => array('index', 'show', 'store', 'destroy'))
   );
+  Route::resource('service-categories', 'ServiceCategoryController',
+    array('only' => array('index', 'show', 'store', 'destroy'))
+  );
   Route::post('login/auth','AuthController@login');
   Route::get('login/destroy','AuthController@logout');
 });
