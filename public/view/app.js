@@ -8,7 +8,8 @@ angular.module( 'app', [
     'ui.bootstrap',
     'AuthSrvc',
     'app.nav-bar',
-    'privileges'
+    'privileges',
+    'app.service-categories',
   ])
 
   .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {

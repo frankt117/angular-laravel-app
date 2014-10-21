@@ -22,6 +22,8 @@
   <script type="text/javascript" src="view/manage/new-user/service-provider.js"></script>
   <script type="text/javascript" src="view/manage/new-user/customer.js"></script>
   <script type="text/javascript" src="view/manage/navigation/nav-bar.js"></script>
+  <script type="text/javascript" src="view/service-categories/module.js"></script>
+  <script type="text/javascript" src="view/service-categories/service.js"></script>
 
 
   <!--Bootstrap-->

@@ -9,9 +9,23 @@ class ServiceCategoryController extends \BaseController {
    */
   public function index()
   {
-    $module = ServiceCategory::get();
+    $columns = json_decode(Input::get('columns'));
 
-    $response = $module;
+    if ($columns) {
+      $select = [];
+      foreach ($columns as $column) {
+        $select[] = $column;
+      }
+
+      $categories = ServiceCategory::all($select);
+
+      $response = $categories;
+    } else {
+      $categories = ServiceCategory::get();
+
+      $response = $categories;
+    }
+
 
     return Response::json($response);
   }
