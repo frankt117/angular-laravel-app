@@ -24,6 +24,8 @@
   <script type="text/javascript" src="view/manage/navigation/nav-bar.js"></script>
   <script type="text/javascript" src="view/service-categories/module.js"></script>
   <script type="text/javascript" src="view/service-categories/service.js"></script>
+  <script type="text/javascript" src="view/markets/module.js"></script>
+  <script type="text/javascript" src="view/markets/service.js"></script>
 
 
   <!--Bootstrap-->

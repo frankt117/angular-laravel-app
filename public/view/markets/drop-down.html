@@ -1,0 +1,10 @@
+<div class="btn-group" dropdown is-open="marketsDropDownCtrl.status.isopen">
+  <button type="button" class="btn btn-primary dropdown-toggle" ng-disabled="disabled">
+    {{marketsDropDownCtrl.selected}} <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li ng-repeat="market in marketsDropDownCtrl.markets">
+      <a href ng-click="marketsDropDownCtrl.changeSelected(market.name)">{{market.name}}</a>
+    </li>
+  </ul>
+</div>

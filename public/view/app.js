@@ -10,6 +10,7 @@ angular.module( 'app', [
     'app.nav-bar',
     'privileges',
     'app.service-categories',
+    'app.markets'
   ])
 
   .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
