@@ -6,7 +6,7 @@ angular.module( 'app.markets', ['app.markets-service'])
       templateUrl: 'view/markets/drop-down.html',
       controller: function($scope, MarketsService) {
 
-        this.selected = "Select Market";
+        this.selected = MarketsService.getSelectedMarket();
         this.markets = {};
 
         MarketsService.get()
@@ -20,6 +20,8 @@ angular.module( 'app.markets', ['app.markets-service'])
 
         this.changeSelected = function(selectedNew) {
           this.selected = selectedNew;
+          MarketsService.setSelectedMarket(selectedNew);
+          MarketsService.logSelectedMarket();
         };
 
       },

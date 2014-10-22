@@ -14,8 +14,11 @@ angular.module( 'app.landing-page', [
     });
   })
 
-  .controller( 'LandingPageCtrl', function LandingPageCtrl( $scope ) {
+  .controller( 'LandingPageCtrl', function LandingPageCtrl( $scope, MarketsService ) {
 
+    MarketsService.newMarketSelected = function() {
+      console.log("IN THE LANDING PAGE CTRL WAAZZZUUUUPPP!");
+    };
   })
 
 ;
