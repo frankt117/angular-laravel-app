@@ -41,6 +41,9 @@ class DatabaseSeeder extends Seeder {
     $this->call('ServiceCategoryTableSeeder');
     $this->command->info('Service Category table seeded');
 
+    $this->call('PackageTableSeeder');
+    $this->command->info('Package table seeded');
+
 	}
 
 }
