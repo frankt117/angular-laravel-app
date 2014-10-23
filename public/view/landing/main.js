@@ -14,19 +14,22 @@ angular.module( 'app.landing-page', [
     });
   })
 
-  .controller( 'LandingPageCtrl', function LandingPageCtrl( $scope, MarketsService, CategoriesService ) {
+  .controller( 'LandingPageCtrl', function LandingPageCtrl( $scope, MarketsService, CategoriesService, PackagesService ) {
 
     var _selectedMarket = {};
     var _selectedCategory = {};
 
     MarketsService.newMarketSelected = function() {
       _selectedMarket = MarketsService.getSelectedMarket();
-      console.log(_selectedMarket);
     };
 
     CategoriesService.newCategorySelected = function() {
       _selectedCategory = CategoriesService.getSelctedCategory();
-      console.log(_selectedCategory);
+      PackagesService.get()
+        .then(function($response) {
+          console.log($response.data);
+          console.log(CategoriesService.getSelctedCategory());
+        });
     };
 
 
