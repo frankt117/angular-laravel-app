@@ -1,21 +1,34 @@
 var login = angular.module('app.service-categories-services',[]);
 
-login.factory('ServiceCategories',function($http){
-  return{
+login.factory('CategoriesService',function($http){
 
-    get : function() {
-      var data = $http({method:'GET',url:'index.php/api/v1/service-categories'});
-      return data;
-    },
+  var service = {};
+  var _selectedCategory = "Select Category";
 
-    getCategoryNames : function() {
-      var columns = {"columns" : [
-                                    {"0" : "name"}
-                                  ]
-                    };
-      var data = $http({method:'GET',url:'index.php/api/v1/service-categories', params:columns});
-      return data;
-    }
+  service.get = function() {
+    var data = $http({method:'GET',url:'index.php/api/v1/service-categories'});
+    return data;
+  };
 
-  }
+  service.getCategoryNames = function() {
+    var columns = {"columns" : [
+                                  {"0" : "name"}
+                                ]
+                  };
+    var data = $http({method:'GET',url:'index.php/api/v1/service-categories', params:columns});
+    return data;
+  };
+
+  service.getSelctedCategory = function() {
+    return _selectedCategory;
+  };
+
+  service.setSelectedCategory = function(selectNew) {
+    _selectedCategory = selectNew;
+    service.newCategorySelected();
+  };
+
+  service.newCategorySelected = function(){/*overridable action*/}
+
+  return service;
 });

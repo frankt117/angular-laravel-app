@@ -4,12 +4,12 @@ angular.module( 'app.service-categories', ['app.service-categories-services'])
     return {
       restrict: 'E',
       templateUrl: 'view/service-categories/drop-down.html',
-      controller: function($scope, ServiceCategories) {
+      controller: function($scope, CategoriesService) {
 
-        this.selected = "Select Category";
+        this.selected = CategoriesService.getSelctedCategory();
         this.categories = {};
 
-        ServiceCategories.getCategoryNames()
+        CategoriesService.getCategoryNames()
           .then(function($response) {
             console.log($response.data);
             $scope.serviceCategoriesDropDownCtrl.categories = $response.data;
@@ -21,6 +21,7 @@ angular.module( 'app.service-categories', ['app.service-categories-services'])
 
         this.changeSelected = function(selectedNew) {
           this.selected = selectedNew;
+          CategoriesService.setSelectedCategory(selectedNew);
         };
 
 

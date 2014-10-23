@@ -21,7 +21,6 @@ angular.module( 'app.markets', ['app.markets-service'])
         this.changeSelected = function(selectedNew) {
           this.selected = selectedNew;
           MarketsService.setSelectedMarket(selectedNew);
-          MarketsService.logSelectedMarket();
         };
 
       },

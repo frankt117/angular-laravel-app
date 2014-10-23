@@ -3,7 +3,7 @@ var login = angular.module('app.markets-service',[]);
 login.factory('MarketsService',function($http){
 
   var service = {};
-  var _selectedMarket = 'Select Market From Service';
+  var _selectedMarket = 'Dallas/Fort Worth Area';
 
 
   service.get = function() {
@@ -25,13 +25,8 @@ login.factory('MarketsService',function($http){
   };
 
   service.setSelectedMarket = function(selectNew) {
-    console.log(selectNew);
     _selectedMarket = selectNew;
     service.newMarketSelected();
-  };
-
-  service.logSelectedMarket = function() {
-    console.log(_selectedMarket);
   };
 
   service.newMarketSelected = function() {
