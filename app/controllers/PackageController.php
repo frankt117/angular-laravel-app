@@ -9,15 +9,12 @@ class PackageController extends \BaseController {
    */
   public function index()
   {
-    $columns = json_decode(Input::get('columns'));
+    $wheres = json_decode(Input::get('where'));
 
-    if ($columns) {
-      $select = [];
-      foreach ($columns as $column) {
-        $select[] = $column;
-      }
+    if ($wheres) {
 
-      $packages = Package::all($select);
+      $this->print_pre($wheres);
+      $packages = Package::where('category_id', $wheres['category']);
 
       $response = $packages;
     } else {

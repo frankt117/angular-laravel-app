@@ -25,11 +25,7 @@ angular.module( 'app.landing-page', [
 
     CategoriesService.newCategorySelected = function() {
       _selectedCategory = CategoriesService.getSelctedCategory();
-      PackagesService.get()
-        .then(function($response) {
-          console.log($response.data);
-          console.log(CategoriesService.getSelctedCategory());
-        });
+      PackagesService.updatePackageList(_selectedCategory);
     };
 
 

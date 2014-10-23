@@ -6,6 +6,7 @@ angular.module( 'app.packages', ['app.packages-service'])
       templateUrl: 'view/packages/list.html',
       controller: function($scope, PackagesService) {
 
+        this.packages = PackagesService.getPackageList();
 
       },
       controllerAs: 'packagesListCtrl'

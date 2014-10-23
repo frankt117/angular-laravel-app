@@ -23,6 +23,15 @@ login.factory('CategoriesService',function($http){
     return _selectedCategory;
   };
 
+  service.getByCategoryName = function(categoryName) {
+    console.log('HERE');
+    $http({method:'GET',url:'index.php/api/v1/service-categories' + categoryName})
+      .success(function(data) {
+        console.log(data);
+        return data;
+      });
+  };
+
   service.setSelectedCategory = function(selectNew) {
     _selectedCategory = selectNew;
     service.newCategorySelected();

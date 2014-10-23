@@ -36,9 +36,13 @@ class ServiceCategoryController extends \BaseController {
    * * @param  int  $id
    * @return Response
    */
-  public function show($id)
+  public function show($name)
   {
+    $categories = ServiceCategory::where('name', $name)->first();
 
+    $response = $categories;
+
+    return Response::json($response);
   }
 
 
