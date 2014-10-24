@@ -39,7 +39,7 @@
 
 <style>
   body{
-    background-color: #f7f7f7;
+    background-color: #fcfcfc;
   }
 </style>
 

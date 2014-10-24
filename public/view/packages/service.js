@@ -5,6 +5,10 @@ login.factory('PackagesService',function($http, CategoriesService){
   var service = {};
   var _packageList = {};
 
+  service.setPackageList = function(newList) {
+    _packageList = newList;
+  };
+
   service.getAllPackages = function() {
     $http({method:'GET',url:'index.php/api/v1/packages'})
       .success(function(data, status, header, config) {
@@ -18,29 +22,19 @@ login.factory('PackagesService',function($http, CategoriesService){
 
   service.getPackagesByCategory = function(category) {
     var options = {"where" : [
-                                  {"category" : category}
-                               ]
+                                  {"category_id" : category}
+                             ]
                   };
-    $http({method:'GET',url:'index.php/api/v1/packages', params:options})
-      .success(function(data, status, header, config) {
-        console.log(data);
-        return data;
-      })
-      .error(function(data, status, header, config) {
-        return false;
-      });
+    var promise = $http({method:'GET',url:'index.php/api/v1/packages', params:options});
 
+    return promise;
   };
 
   service.getPackageList = function() {
     return _packageList;
   };
 
-  service.updatePackageList = function(category, market) {
-    var categoryId = CategoriesService.getByCategoryName(category);
-    console.log(categoryId);
-    service.getPackagesByCategory(categoryId);
-  };
+  service.updatePackageList = function(category, market) {/* overridable action*/};
 
   return service;
 });

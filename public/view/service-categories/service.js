@@ -23,13 +23,12 @@ login.factory('CategoriesService',function($http){
     return _selectedCategory;
   };
 
-  service.getByCategoryName = function(categoryName) {
-    console.log('HERE');
-    $http({method:'GET',url:'index.php/api/v1/service-categories' + categoryName})
-      .success(function(data) {
-        console.log(data);
-        return data;
-      });
+  service.getByCategoryName_Promise = function(categoryName) {
+    //console.log('HERE');
+    //console.log(categoryName);
+    var promise = $http({method:'GET',url:'index.php/api/v1/service-categories/' + categoryName});
+
+    return promise;
   };
 
   service.setSelectedCategory = function(selectNew) {

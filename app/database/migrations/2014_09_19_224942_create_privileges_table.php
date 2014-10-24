@@ -14,7 +14,7 @@ class CreatePrivilegesTable extends Migration {
 	{
 		Schema::create('privileges', function(Blueprint $table)
 		{
-      $table->foreign('user_id')->references('id')->on('users');
+      $table->integer('user_id');
       $table->integer('module_id');
       $table->integer('privilege_type_id');
       $table->integer('created_by');

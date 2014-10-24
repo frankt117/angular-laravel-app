@@ -16,9 +16,7 @@ class CreatePackagesTable extends Migration {
 		{
 			$table->increments('id');
       $table->integer('user_id')->unsigned();
-      $table->foreign('user_id')->references('id')->on('users');
       $table->integer('category_id')->unsigned();
-      $table->foreign('category_id')->references('id')->on('service_categories');
       $table->char('code', 8);
       $table->char('name', 60);
       $table->text('description');

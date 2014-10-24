@@ -13,8 +13,7 @@ class PackageController extends \BaseController {
 
     if ($wheres) {
 
-      $this->print_pre($wheres);
-      $packages = Package::where('category_id', $wheres['category']);
+      $packages = Package::where('category_id', $wheres->category_id)->get();
 
       $response = $packages;
     } else {

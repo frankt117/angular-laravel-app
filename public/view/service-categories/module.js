@@ -11,7 +11,6 @@ angular.module( 'app.service-categories', ['app.service-categories-services'])
 
         CategoriesService.getCategoryNames()
           .then(function($response) {
-            console.log($response.data);
             $scope.serviceCategoriesDropDownCtrl.categories = $response.data;
           });
 

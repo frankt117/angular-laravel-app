@@ -1,1 +1,8 @@
-<h1>PACKAGES LIST</h1>
+<div class="panel panel-default" ng-repeat="package in packagesListCtrl.packages">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{package.name}}</h3>
+  </div>
+  <div class="panel-body">
+    {{package.description}}
+  </div>
+</div>
