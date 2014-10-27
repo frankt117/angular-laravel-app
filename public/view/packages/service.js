@@ -34,7 +34,12 @@ login.factory('PackagesService',function($http, CategoriesService){
     return _packageList;
   };
 
+
+
+
+
   service.updatePackageList = function(category, market) {/* overridable action*/};
+  service.packageListClicked = function(packageObj) {/*overridable action*/};
 
   return service;
 });

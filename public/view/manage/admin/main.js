@@ -20,12 +20,7 @@ angular.module( 'app.manage-admin', [
   })
 
   .controller( 'MainAdminCtrl', function MainAdminCtrl( $scope ) {
-//    if(sessionStorage.userCategory) {
-//      $scope.userCategory = sessionStorage.userCategory;
-//    } else {
-//      sessionStorage.userCategory = 'ADMIN';
-//      $scope.userCategory = 'ADMIN';
-//    }
+    this.currentView = 'Main';
 
     sessionStorage.userCategory = 'ADMIN';
   })
