@@ -85,6 +85,38 @@ angular.module( 'app.packages', ['app.packages-service'])
       templateUrl: 'view/packages/crud-admin-package-edit-tile.html',
       controller: function($scope, PackagesService, CategoriesService, MarketsService) {
 
+        $scope.fromDate = null;
+        $scope.toDate = null;
+
+        this.fromDateOptions = {
+          formatYear: 'yy',
+          startingDay: 1
+        };
+
+        this.toDateOptions = {
+          formatYear: 'yy',
+          startingDay: 1
+        };
+
+        $scope.open = function($event) {
+          $event.preventDefault();
+          $event.stopPropagation();
+
+          $scope.opened = true;
+        };
+
+        this.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+        this.format = this.formats[0];
+
+        this.today = function() {
+          this.fromDate = new Date();
+        };
+        this.today();
+
+        this.clear = function () {
+          this.fromDate = null;
+        };
+
       },
       controllerAs: 'crudAdminPackageEdit'
     }
