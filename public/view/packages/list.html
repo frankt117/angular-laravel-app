@@ -4,6 +4,6 @@
       <h3 class="panel-title"><a href="" ng-click="packagesListCtrl.clicked(package)">{{package.name}}</a></h3>
     </div>
     <div class="panel-body">
-      {{package.description}}
+      {{package.description | limitTo : 252}}<a href="" ng-click="packagesListCtrl.clicked(package)">...click to continue.</a>
     </div>
 </div>
