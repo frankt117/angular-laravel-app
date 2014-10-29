@@ -20,16 +20,6 @@ angular.module( 'app.login', ['app.new-user'])
 
       var userEmail = $scope.email;
 
-//      $http({
-//        method: "GET",
-//        url: "index.php/api/v1/users/"+$scope.email,
-//        headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
-//        data: { }
-//      }).then(function($response) {
-//        console.log($response);
-//        $scope.$parent.user.userId = $response.data[0].id;
-//        console.log($scope);
-//      });
       var loginCreds = {'email' : $scope.email, 'password' : $scope.password};
       Login.auth(loginCreds).then(function($response) {
         console.log($response.data);
@@ -39,13 +29,9 @@ angular.module( 'app.login', ['app.new-user'])
           sessionStorage.userCategory=$response.data;
           sessionStorage.loggedIn=true;
           $scope.$parent.$parent.loggedIn = true;
-//          $scope.$parent.$parent.$apply(function () {
-//            $scope.$parent.$parent.loggedIn = true;
-//          });
-          console.log($scope.$parent.$parent.loggedIn);
-          //$http({method:'GET',url:'/'});
+
+
           location.reload();
-          //$scope.changeRoute('#/');
         } else {
           $scope.alert = true;
         }

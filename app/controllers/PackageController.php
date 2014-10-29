@@ -45,7 +45,11 @@ class PackageController extends \BaseController {
    */
   public function store()
   {
+    $data = Input::all();
 
+    Package::create($data);
+
+    return Response::json(array('success' => true));
   }
 
 

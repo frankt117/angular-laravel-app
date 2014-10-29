@@ -1,4 +1,4 @@
-angular.module( 'app.packages', ['app.packages-service'])
+angular.module( 'app.packages', ['app.packages-service', 'users'])
 
   .directive('packagesList', function() {
     return {
@@ -98,23 +98,43 @@ angular.module( 'app.packages', ['app.packages-service'])
           startingDay: 1
         };
 
-        $scope.open = function($event) {
+        $scope.openFrom = function($event) {
           $event.preventDefault();
           $event.stopPropagation();
 
-          $scope.opened = true;
+          $scope.openedFrom = true;
         };
 
-        this.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-        this.format = this.formats[0];
+        $scope.openTo = function($event) {
+          console.log($event);
+          $event.preventDefault();
+          $event.stopPropagation();
 
-        this.today = function() {
-          this.fromDate = new Date();
+          $scope.openedTo = true;
         };
-        this.today();
+
+        this.formats = ['dd-MMMM-yyyy', 'yyyy-MM-dd', 'dd.MM.yyyy', 'shortDate'];
+        this.format = this.formats[1];
 
         this.clear = function () {
           this.fromDate = null;
+        };
+
+        this.submit = function (form, $window) {
+
+          //console.log(sc);
+
+          var packageObj = {'user_id' : form.target[1].value, 'category_id' : form.target[3].value, 'name' : form.target[4].value, 'description' : form.target[5].value, 'effective_from' : form.target[6].value, 'effective_to' : form.target[7].value, 'sequence' : 1};
+
+          PackagesService.createPackage(packageObj)
+            .success(function(data, status, header, config) {
+              console.log(data);
+
+            })
+            .error(function(data, status, header, config) {
+              console.log("ERROR");
+            });
+
         };
 
       },

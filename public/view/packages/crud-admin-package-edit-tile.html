@@ -3,17 +3,17 @@
   <div class="col-md-10">
 
 
-    <form class="form-horizontal" role="form" ng-submit="submit($event)">
+    <form class="form-horizontal" role="form" ng-submit="crudAdminPackageEdit.submit($event)">
       <div class="form-group">
         <label for="inputUserId" class="col-md-2 control-label">User Id</label>
         <div class="col-md-8">
-          <input type="text" class="form-control" id="inputUserId" placeholder="117">
+          <user-drop-down-input></user-drop-down-input>
         </div>
       </div>
       <div class="form-group">
         <label for="inputCategoryId" class="col-md-2 control-label">Category Id</label>
         <div class="col-md-8">
-          <input type="text" class="form-control" id="inputCategoryId" placeholder="H-THEA-S">
+          <service-categories-drop-down-for-insert></service-categories-drop-down-for-insert>
         </div>
       </div>
       <div class="form-group">
@@ -33,9 +33,9 @@
         <label for="inputEffectiveFrom" class="col-md-2 control-label">Effective From</label>
         <div class="col-md-8">
           <p class="input-group">
-            <input type="text" class="form-control" datepicker-popup="{{crudAdminPackageEdit.format}}" ng-model="fromDate" is-open="opened"  datepicker-options="crudAdminPackageEdit.fromDateOptions" ng-required="true" close-text="Close" />
+            <input type="text" class="form-control" datepicker-popup="{{crudAdminPackageEdit.format}}" ng-model="fromDate" is-open="openedFrom"  datepicker-options="crudAdminPackageEdit.fromDateOptions" ng-required="true" close-text="Close" />
               <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                <button type="button" class="btn btn-default" ng-click="openFrom($event)"><i class="glyphicon glyphicon-calendar"></i></button>
               </span>
           </p>
         </div>
@@ -45,9 +45,9 @@
         <label for="inputEffectiveTo" class="col-md-2 control-label">Effective To</label>
         <div class="col-md-8">
           <p class="input-group">
-            <input type="text" class="form-control" datepicker-popup="{{crudAdminPackageEdit.format}}" ng-model="toDate" is-open="opened"  datepicker-options="crudAdminPackageEdit.toDateOptions" ng-required="true" close-text="Close" />
+            <input type="text" class="form-control" datepicker-popup="{{crudAdminPackageEdit.format}}" ng-model="toDate" is-open="openedTo"  datepicker-options="crudAdminPackageEdit.toDateOptions" close-text="Close" />
               <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                <button type="button" class="btn btn-default" ng-click="openTo($event)"><i class="glyphicon glyphicon-calendar"></i></button>
               </span>
           </p>
         </div>
@@ -55,7 +55,7 @@
 
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-8">
-          <button type="submit" class="btn btn-success">Update</button>
+          <button type="submit" class="btn btn-success">Submit</button>
         </div>
       </div>
     </form>

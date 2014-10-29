@@ -34,7 +34,11 @@ login.factory('PackagesService',function($http, CategoriesService){
     return _packageList;
   };
 
+  service.createPackage = function(packageObj) {
+    var promise = $http({method:'POST',url:'index.php/api/v1/packages',params:packageObj});
 
+    return promise;
+  };
 
 
 
