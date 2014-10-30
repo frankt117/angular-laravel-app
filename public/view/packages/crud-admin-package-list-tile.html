@@ -9,20 +9,20 @@
     <br>
   </div>
   <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-10" ng-show="packageListAndDetailsCtrl.getCurrentView('LIST')">
       <service-categories-drop-down></service-categories-drop-down>
       <markets-drop-down></markets-drop-down>
     </div>
 
   </div>
 
-  <div class="row">
+  <div class="row" ng-show="packageListAndDetailsCtrl.getCurrentView('LIST')">
     <br>
   </div>
 
   <div class="row">
     <div class="col-md-10">
-      <packages-list></packages-list>
+      <package-list-and-details></package-list-and-details>
     </div>
   </div>
 </div>

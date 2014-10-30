@@ -1,6 +1,6 @@
 <?php
 
-class PackageController extends \BaseController {
+class ImageController extends \BaseController {
 
   /**
    * Display all privileges.
@@ -9,19 +9,9 @@ class PackageController extends \BaseController {
    */
   public function index()
   {
-    $wheres = json_decode(Input::get('where'));
+    $image = Image::get();
 
-    if ($wheres) {
-
-      $packages = Package::where('category_id', $wheres->category_id)->get();
-
-      $response = $packages;
-    } else {
-      $packages = Package::get();
-
-      $response = $packages;
-    }
-
+    $response = $image;
 
     return Response::json($response);
   }
@@ -34,9 +24,7 @@ class PackageController extends \BaseController {
    */
   public function show($id)
   {
-    $package = Package::where('id', $id)->first();
 
-    return $package;
   }
 
 
@@ -47,11 +35,7 @@ class PackageController extends \BaseController {
    */
   public function store()
   {
-    $data = Input::all();
 
-    Package::create($data);
-
-    return Response::json(array('success' => true));
   }
 
 
@@ -63,7 +47,7 @@ class PackageController extends \BaseController {
    */
   public function destroy($id)
   {
-    Package::destroy($id);
+    Image::destroy($id);
 
     return Response::json(array('success' => true));
   }

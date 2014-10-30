@@ -27,11 +27,57 @@ angular.module( 'app.packages', ['app.packages-service', 'users'])
         this.clicked = function(packageObj) {
           console.log("PACKAGE CLICKED!!!");
           console.log(packageObj);
-          PackagesService.packageListClicked(packageObj);
+          PackagesService.packageClicked(packageObj);
         }
 
       },
       controllerAs: 'packagesListCtrl'
+    }
+  })
+
+  .directive('packageDetails', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/packages/details.html',
+      controller: function($scope, PackagesService) {
+        $scope.packageDetailsCtrl.package = {};
+
+        this.updatePackage = function(packageId) {
+          PackagesService.getPackageById(packageId)
+            .success(function(data, status, header, config) {
+              $scope.packageDetailsCtrl.package = data;
+            });
+        };
+
+      },
+      controllerAs: 'packageDetailsCtrl'
+    }
+  })
+
+  .directive('packageListAndDetails', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/packages/list-and-details.html',
+      controller: function($scope, PackagesService) {
+        this._currentView = "LIST";
+
+        PackagesService.packageClicked = function(packageObj) {
+          console.log("LAUNCHING");
+          console.log(packageObj);
+          $scope.packageDetailsCtrl.package = packageObj;
+          $scope.packageListAndDetailsCtrl._currentView = "PACKAGE";
+        };
+
+        this.updateCurrentView = function(viewNew) {
+          $scope.packageListAndDetailsCtrl._currentView = viewNew;
+        };
+
+        this.getCurrentView = function(view) {
+          return this._currentView == view;
+        };
+
+      },
+      controllerAs: 'packageListAndDetailsCtrl'
     }
   })
 
@@ -87,6 +133,7 @@ angular.module( 'app.packages', ['app.packages-service', 'users'])
 
         $scope.fromDate = null;
         $scope.toDate = null;
+        this.successAlert = false;
 
         this.fromDateOptions = {
           formatYear: 'yy',
@@ -129,6 +176,7 @@ angular.module( 'app.packages', ['app.packages-service', 'users'])
           PackagesService.createPackage(packageObj)
             .success(function(data, status, header, config) {
               console.log(data);
+              $scope.crudAdminPackageEdit.successAlert = true;
 
             })
             .error(function(data, status, header, config) {

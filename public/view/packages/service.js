@@ -9,6 +9,10 @@ login.factory('PackagesService',function($http, CategoriesService){
     _packageList = newList;
   };
 
+  service.getPackageList = function() {
+    return _packageList;
+  };
+
   service.getAllPackages = function() {
     $http({method:'GET',url:'index.php/api/v1/packages'})
       .success(function(data, status, header, config) {
@@ -30,9 +34,13 @@ login.factory('PackagesService',function($http, CategoriesService){
     return promise;
   };
 
-  service.getPackageList = function() {
-    return _packageList;
+  service.getPackageById = function(packageId) {
+    var promise = $http({method:'GET',url:'index.php/api/v1/packages/show'});
+
+    return promise;
   };
+
+
 
   service.createPackage = function(packageObj) {
     var promise = $http({method:'POST',url:'index.php/api/v1/packages',params:packageObj});
@@ -43,7 +51,7 @@ login.factory('PackagesService',function($http, CategoriesService){
 
 
   service.updatePackageList = function(category, market) {/* overridable action*/};
-  service.packageListClicked = function(packageObj) {/*overridable action*/};
+  service.packageClicked = function(packageObj) {/*overridable action*/};
 
   return service;
 });
