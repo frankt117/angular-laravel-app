@@ -28,6 +28,8 @@
   <script type="text/javascript" src="view/markets/service.js"></script>
   <script type="text/javascript" src="view/packages/module.js"></script>
   <script type="text/javascript" src="view/packages/service.js"></script>
+  <script type="text/javascript" src="view/images/module.js"></script>
+  <script type="text/javascript" src="view/images/service.js"></script>
   <script type="text/javascript" src="view/users/users.js"></script>
 
   <!--Bootstrap-->

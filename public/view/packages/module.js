@@ -41,6 +41,7 @@ angular.module( 'app.packages', ['app.packages-service', 'users'])
       templateUrl: 'view/packages/details.html',
       controller: function($scope, PackagesService) {
         $scope.packageDetailsCtrl.package = {};
+        $scope.packageDetailsCtrl.slides = {};
 
         this.updatePackage = function(packageId) {
           PackagesService.getPackageById(packageId)
