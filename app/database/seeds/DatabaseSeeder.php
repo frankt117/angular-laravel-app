@@ -46,8 +46,11 @@ class DatabaseSeeder extends Seeder {
 //    $this->call('PackageTableSeeder');
 //    $this->command->info('Package table seeded');
 
-    $this->call('ImageTableSeeder');
-    $this->command->info('Image table seeded');
+//    $this->call('ImageTableSeeder');
+//    $this->command->info('Image table seeded');
+
+    $this->call('TrimTableSeeder');
+    $this->command->info('Trim table seeded');
 
     //DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 

@@ -11,8 +11,9 @@ angular.module( 'app', [
     'privileges',
     'app.service-categories',
     'app.markets',
-    'app.packages',
-    'app.images'
+    'app.images',
+    'app.packages'
+
   ])
 
   .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {

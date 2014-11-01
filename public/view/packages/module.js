@@ -39,16 +39,17 @@ angular.module( 'app.packages', ['app.packages-service', 'users'])
     return {
       restrict: 'E',
       templateUrl: 'view/packages/details.html',
-      controller: function($scope, PackagesService) {
+      controller: function($scope, PackagesService, ImagesService) {
         $scope.packageDetailsCtrl.package = {};
         $scope.packageDetailsCtrl.slides = {};
 
-        this.updatePackage = function(packageId) {
-          PackagesService.getPackageById(packageId)
-            .success(function(data, status, header, config) {
-              $scope.packageDetailsCtrl.package = data;
-            });
-        };
+//        this.updatePackage = function(packageId) {
+//
+//          PackagesService.getPackageById(packageId)
+//            .success(function(data, status, header, config) {
+//              $scope.packageDetailsCtrl.package = data;
+//            });
+//        };
 
       },
       controllerAs: 'packageDetailsCtrl'
@@ -59,12 +60,11 @@ angular.module( 'app.packages', ['app.packages-service', 'users'])
     return {
       restrict: 'E',
       templateUrl: 'view/packages/list-and-details.html',
-      controller: function($scope, PackagesService) {
+      controller: function($scope, PackagesService, ImagesService) {
         this._currentView = "LIST";
 
         PackagesService.packageClicked = function(packageObj) {
-          console.log("LAUNCHING");
-          console.log(packageObj);
+          ImagesService.updateImageList(packageObj.id);
           $scope.packageDetailsCtrl.package = packageObj;
           $scope.packageListAndDetailsCtrl._currentView = "PACKAGE";
         };

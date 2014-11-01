@@ -14,13 +14,9 @@ login.factory('ImagesService',function($http){
   };
 
   service.getAllImages = function() {
-    $http({method:'GET',url:'index.php/api/v1/images'})
-      .success(function(data, status, header, config) {
-        return data;
-      })
-      .error(function(data, status, header, config) {
-        return false;
-      });
+    var promise = $http({method:'GET',url:'index.php/api/v1/images'})
+
+    return promise;
   };
 
   service.getImagesByPackageId = function(packageId) {
@@ -36,7 +32,7 @@ login.factory('ImagesService',function($http){
 
 
 
-  service.updateImageList = function(category, market) {/* overridable action*/};
+  service.updateImageList = function(packageId) {console.log("ORIGINAL FUNC")/* overridable action*/};
 
   return service;
 });
