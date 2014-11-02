@@ -59,6 +59,9 @@ Route::group(array('prefix' => 'api/v1'), function() {
   Route::resource('trims', 'TrimController',
     array('only' => array('index', 'show', 'store', 'destroy'))
   );
+  Route::resource('image-upload', 'ImageUploadController',
+    array('only' => array('store'))
+  );
   Route::post('login/auth','AuthController@login');
   Route::get('login/destroy','AuthController@logout');
 });
