@@ -1,4 +1,4 @@
-angular.module( 'app.packages', ['app.packages-service', 'users', 'angularFileUpload'])
+angular.module( 'app.packages', ['app.packages-service', 'users'])
 
   .directive('packagesList', function() {
     return {
@@ -130,51 +130,7 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'angularFileUp
     return {
       restrict: 'E',
       templateUrl: 'view/packages/crud-admin-package-edit-tile.html',
-      controller: function($scope, PackagesService, CategoriesService, MarketsService, FileUploader) {
-
-        $scope.uploader = new FileUploader({
-          url: 'index.php/api/v1/image-upload'
-        });
-
-
-
-
-        $scope.uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
-          console.info('onWhenAddingFileFailed', item, filter, options);
-        };
-        $scope.uploader.onAfterAddingFile = function(fileItem) {
-          console.info('onAfterAddingFile', fileItem);
-        };
-        $scope.uploader.onAfterAddingAll = function(addedFileItems) {
-          console.info('onAfterAddingAll', addedFileItems);
-        };
-        $scope.uploader.onBeforeUploadItem = function(item) {
-          console.info('onBeforeUploadItem', item);
-        };
-        $scope.uploader.onProgressItem = function(fileItem, progress) {
-          console.info('onProgressItem', fileItem, progress);
-        };
-        $scope.uploader.onProgressAll = function(progress) {
-          console.info('onProgressAll', progress);
-        };
-        $scope.uploader.onSuccessItem = function(fileItem, response, status, headers) {
-          console.info('onSuccessItem', fileItem, response, status, headers);
-        };
-        $scope.uploader.onErrorItem = function(fileItem, response, status, headers) {
-          console.info('onErrorItem', fileItem, response, status, headers);
-        };
-        $scope.uploader.onCancelItem = function(fileItem, response, status, headers) {
-          console.info('onCancelItem', fileItem, response, status, headers);
-        };
-        $scope.uploader.onCompleteItem = function(fileItem, response, status, headers) {
-          console.info('onCompleteItem', fileItem, response, status, headers);
-        };
-        $scope.uploader.onCompleteAll = function() {
-          console.info('onCompleteAll');
-        };
-
-        console.info('uploader', $scope.uploader);
-
+      controller: function($scope, PackagesService, CategoriesService, MarketsService) {
 
 
         $scope.fromDate = null;
@@ -215,19 +171,19 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'angularFileUp
 
         this.submit = function (form, $window) {
 
-          //console.log(sc);
+          console.log(form);
 
-          var packageObj = {'user_id' : form.target[1].value, 'category_id' : form.target[3].value, 'name' : form.target[4].value, 'description' : form.target[5].value, 'effective_from' : form.target[6].value, 'effective_to' : form.target[7].value, 'sequence' : 1};
-
-          PackagesService.createPackage(packageObj)
-            .success(function(data, status, header, config) {
-              console.log(data);
-              $scope.crudAdminPackageEdit.successAlert = true;
-
-            })
-            .error(function(data, status, header, config) {
-              console.log("ERROR");
-            });
+//          var packageObj = {'user_id' : form.target[1].value, 'category_id' : form.target[3].value, 'name' : form.target[4].value, 'description' : form.target[5].value, 'effective_from' : form.target[6].value, 'effective_to' : form.target[7].value, 'sequence' : 1};
+//
+//          PackagesService.createPackage(packageObj)
+//            .success(function(data, status, header, config) {
+//              console.log(data);
+//              $scope.crudAdminPackageEdit.successAlert = true;
+//
+//            })
+//            .error(function(data, status, header, config) {
+//              console.log("ERROR");
+//            });
 
         };
 

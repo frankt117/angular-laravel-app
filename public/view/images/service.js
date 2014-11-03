@@ -32,7 +32,8 @@ login.factory('ImagesService',function($http){
 
 
 
-  service.updateImageList = function(packageId) {console.log("ORIGINAL FUNC")/* overridable action*/};
+  service.updateImageList = function(packageId) {/* overridable action*/};
+  service.imageUploaded = function(image) {/* overridable action*/};
 
   return service;
 });
