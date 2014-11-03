@@ -40,8 +40,8 @@ angular.module( 'app.packages', ['app.packages-service', 'users'])
       restrict: 'E',
       templateUrl: 'view/packages/details.html',
       controller: function($scope, PackagesService, ImagesService) {
-        $scope.packageDetailsCtrl.package = {};
-        $scope.packageDetailsCtrl.slides = {};
+        this.package = {};
+        this.slides = {};
 
 //        this.updatePackage = function(packageId) {
 //
