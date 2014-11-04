@@ -26,20 +26,20 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
       controller: function($scope, PackagesService, ImagesService) {
         this.slidesUploaded = [];
 
-        ImagesService.imageUploaded = function(image) {
-          $scope.imageListAndUploaderCtrl.listEmpty = false;
-          var imageObj = {
-            "path" : "/images/upload/",
-            "title" : image.file.name,
-            "description" : "test"
-          };
-
-          $scope.imageCarouselUploadCtrl.slidesUploaded.push(imageObj);
-          console.log('HERE');
-          console.log($scope.imageCarouselUploadCtrl.slidesUploaded);
-        };
       },
       controllerAs: 'imageCarouselUploadCtrl'
+    }
+  })
+
+  .directive('imageEditTable', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/images/table.html',
+      controller: function($scope, PackagesService, ImagesService) {
+        this.slidesEdit = [];
+
+      },
+      controllerAs: 'imageEditTableCtrl'
     }
   })
 
@@ -68,7 +68,20 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
           this._currentView = view;
         };
 
+        ImagesService.imageUploaded = function(image) {
+          $scope.imageListAndUploaderCtrl.listEmpty = false;
+          var sequence = $scope.imageCarouselUploadCtrl.slidesUploaded.length + 1;
+          var imageObj = {
+            "path" : "/images/upload/",
+            "title" : image.file.name,
+            "description" : "test",
+            "sequence" : sequence
+          };
 
+
+          $scope.imageCarouselUploadCtrl.slidesUploaded.push(imageObj);
+          $scope.imageEditTableCtrl.slidesEdit.push(imageObj);
+        };
 
 
       },
