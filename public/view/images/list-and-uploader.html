@@ -5,7 +5,7 @@
     </ul>
     <div class="panel panel-default">
       <div class="panel-body">
-        <image-carousel ng-show="imageListAndUploaderCtrl.getCurrentView('LIST') && imageListAndUploaderCtrl.isListEmpty() == false"></image-carousel>
+        <image-carousel-upload ng-show="imageListAndUploaderCtrl.getCurrentView('LIST') && imageListAndUploaderCtrl.isListEmpty() == false"></image-carousel-upload>
         <h5 ng-show="imageListAndUploaderCtrl.getCurrentView('LIST') && imageListAndUploaderCtrl.isListEmpty()">No images have been uploaded.</h5>
         <image-uploader ng-show="imageListAndUploaderCtrl.getCurrentView('UPLOAD')"></image-uploader>
       </div>

@@ -19,6 +19,30 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
     }
   })
 
+  .directive('imageCarouselUpload', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/images/carousel-upload.html',
+      controller: function($scope, PackagesService, ImagesService) {
+        this.slidesUploaded = [];
+
+        ImagesService.imageUploaded = function(image) {
+          $scope.imageListAndUploaderCtrl.listEmpty = false;
+          var imageObj = {
+            "path" : "/images/upload/",
+            "title" : image.file.name,
+            "description" : "test"
+          };
+
+          $scope.imageCarouselUploadCtrl.slidesUploaded.push(imageObj);
+          console.log('HERE');
+          console.log($scope.imageCarouselUploadCtrl.slidesUploaded);
+        };
+      },
+      controllerAs: 'imageCarouselUploadCtrl'
+    }
+  })
+
   .directive('imageListAndUploader', function() {
     return {
       restrict: 'E',
@@ -44,18 +68,7 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
           this._currentView = view;
         };
 
-        ImagesService.imageUploaded = function(image) {
-          $scope.imageListAndUploaderCtrl.listEmpty = false;
-          var imageObj = {
-            "path" : "/images/upload/",
-            "title" : image.file.name,
-            "description" : ""
-          };
 
-          $scope.imageCarouselCtrl.slides.push(imageObj);
-          console.log('HERE');
-          console.log(image);
-        };
 
 
       },
