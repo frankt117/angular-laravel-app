@@ -1,7 +1,7 @@
 <table class="table">
   <thead>
   <tr>
-    <th width="50%">Thumbnail</th>
+    <th width="25%">Thumbnail</th>
     <th>Title</th>
     <th>Description</th>
     <th>Sequence</th>
@@ -10,10 +10,18 @@
   </thead>
   <tbody>
     <tr ng-repeat="image in imageEditTableCtrl.slidesEdit">
-      <td></td>
-      <td>{{image.title}}</td>
-      <td>{{image.description}}</td>
-      <td>{{image.sequence}}</td>
+      <td><img src="{{image.path + image.title}}" height="100" widht="100"></td>
+      <td><input type="text" class="form-control" id="imageTitle" placeholder="" ng-model="image.title"></td>
+      <td><input type="text" class="form-control" id="imageDescription" placeholder="" ng-model="image.description"></td>
+      <td>
+        {{image.sequence}}
+        <button type="button" class="btn btn-default btn-sm" ng-click="imageEditTableCtrl.moveUp(image.sequence)">
+          <span class="glyphicon glyphicon-arrow-up"></span>
+        </button>
+        <button type="button" class="btn btn-default btn-sm" ng-click="imageEditTableCtrl.moveDown(image.sequence)">
+          <span class="glyphicon glyphicon-arrow-down"></span>
+        </button>
+      </td>
       <td></td>
     </tr>
   </tbody>

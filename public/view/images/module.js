@@ -38,6 +38,30 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
       controller: function($scope, PackagesService, ImagesService) {
         this.slidesEdit = [];
 
+        this.moveUp = function(sequence) {
+          console.log($scope.imageEditTableCtrl.slidesEdit[sequence-1]);
+          if ( sequence != 1 ) {
+            $current = $scope.imageEditTableCtrl.slidesEdit[sequence-1];
+            $temp = $scope.imageEditTableCtrl.slidesEdit[sequence-2]
+
+            $scope.imageEditTableCtrl.slidesEdit[sequence-2] = $current;
+            $scope.imageEditTableCtrl.slidesEdit[sequence-2].sequence = sequence-1;
+            $scope.imageEditTableCtrl.slidesEdit[sequence-1] = $temp;
+            $scope.imageEditTableCtrl.slidesEdit[sequence-1].sequence = sequence;
+
+            console.log("MOVEUP");
+            console.log($scope.imageCarouselUploadCtrl.slidesUploaded);
+            console.log($scope.imageEditTableCtrl.slidesEdit);
+            $scope.imageCarouselUploadCtrl.slidesUploaded = [];
+            $scope.imageCarouselUploadCtrl.slidesUploaded = $scope.imageEditTableCtrl.slidesEdit;
+            console.log($scope.imageCarouselUploadCtrl.slidesUploaded);
+          }
+        }
+
+        this.moveDown = function(sequence) {
+          console.log(sequence);
+        }
+
       },
       controllerAs: 'imageEditTableCtrl'
     }
@@ -82,6 +106,9 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
           $scope.imageCarouselUploadCtrl.slidesUploaded.push(imageObj);
           $scope.imageEditTableCtrl.slidesEdit.push(imageObj);
         };
+
+
+
 
 
       },
