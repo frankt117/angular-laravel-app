@@ -55,13 +55,13 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
             $scope.imageEditTableCtrl.slidesEdit[sequence-1].sequence = sequence;
 
 
-            $scope.imageCarouselUploadCtrl.slidesUploaded = [];
+//            $scope.imageCarouselUploadCtrl.slidesUploaded = [];
+//
+//            for ( var i = 0; i < $scope.imageEditTableCtrl.slidesEdit.length; i++) {
+//              $scope.imageCarouselUploadCtrl.slidesUploaded.push($scope.imageEditTableCtrl.slidesEdit[i]);
+//            }
 
-            for ( var i = 0; i < $scope.imageEditTableCtrl.slidesEdit.length; i++) {
-              $scope.imageCarouselUploadCtrl.slidesUploaded.push($scope.imageEditTableCtrl.slidesEdit[i]);
-            }
-
-            $scope.imageCarouselUploadCtrl.apply($scope.imageEditTableCtrl.slidesEdit);
+            //$scope.imageCarouselUploadCtrl.apply($scope.imageEditTableCtrl.slidesEdit);
 
 
             //$scope.imageCarouselUploadCtrl.slidesUploaded[sequence-2] = $current;
@@ -108,7 +108,7 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
 
         ImagesService.imageUploaded = function(image) {
           $scope.imageListAndUploaderCtrl.listEmpty = false;
-          var sequence = $scope.imageCarouselUploadCtrl.slidesUploaded.length + 1;
+          var sequence = $scope.imageEditTableCtrl.slidesEdit.length + 1;
           var imageObj = {
             "path" : "/images/upload/",
             "title" : image.file.name,
@@ -117,7 +117,7 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
           };
 
 
-          $scope.imageCarouselUploadCtrl.slidesUploaded.push(imageObj);
+          //$scope.imageCarouselUploadCtrl.slidesUploaded.push(imageObj);
           $scope.imageEditTableCtrl.slidesEdit.push(imageObj);
         };
 

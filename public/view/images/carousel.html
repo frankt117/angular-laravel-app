@@ -1,9 +1,9 @@
 <div style="height: 305px; width:600px;">
   <carousel interval="package">
     <slide ng-repeat="slide in imageCarouselCtrl.slides" active="slide.active">
-      <img ng-src="{{slide.path + slide.title}}" style="margin:auto;">
+      <img ng-src="{{slide.path}}" style="margin:auto;">
       <div class="carousel-caption">
-        <h4>{{slide.description}}</h4>
+        <h4>{{slide.title}}</h4>
         <p>{{slide.description}}</p>
       </div>
     </slide>

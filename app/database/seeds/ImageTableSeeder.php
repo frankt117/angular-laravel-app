@@ -6,9 +6,9 @@ class ImageTableSeeder extends Seeder
     DB::table('images')->delete();
 
     Image::create(array(
-      'title' => 'media_room_1.jpg',
-      'description' => 'Media room example',
-      'path' => '/images/upload/',
+      'title' => 'Media Room Example',
+      'description' => 'Gold media room description.',
+      'path' => '/images/upload/media_room_1.jpg',
       'package_id' => 1,
       'sequence' => 1,
       'effective_from' => date('Y-m-d', strtotime('yesterday')),
@@ -16,9 +16,9 @@ class ImageTableSeeder extends Seeder
     ));
 
     Image::create(array(
-      'title' => 'media_room_2.jpg',
-      'description' => 'Media room example 2',
-      'path' => '/images/upload/',
+      'title' => 'Media Room Example 2',
+      'description' => 'Silver media room description.',
+      'path' => '/images/upload/media_room_2.jpg',
       'package_id' => 1,
       'sequence' => 1,
       'effective_from' => date('Y-m-d', strtotime('yesterday')),
