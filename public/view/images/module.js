@@ -26,6 +26,11 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
       controller: function($scope, PackagesService, ImagesService) {
         this.slidesUploaded = [];
 
+        this.apply = function(newslides) {
+          $scope.imageCarouselUploadCtrl.slidesUploaded = newslides;
+          $scope.apply();
+        };
+
       },
       controllerAs: 'imageCarouselUploadCtrl'
     }
@@ -49,12 +54,21 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
             $scope.imageEditTableCtrl.slidesEdit[sequence-1] = $temp;
             $scope.imageEditTableCtrl.slidesEdit[sequence-1].sequence = sequence;
 
-            console.log("MOVEUP");
-            console.log($scope.imageCarouselUploadCtrl.slidesUploaded);
-            console.log($scope.imageEditTableCtrl.slidesEdit);
+
             $scope.imageCarouselUploadCtrl.slidesUploaded = [];
-            $scope.imageCarouselUploadCtrl.slidesUploaded = $scope.imageEditTableCtrl.slidesEdit;
-            console.log($scope.imageCarouselUploadCtrl.slidesUploaded);
+
+            for ( var i = 0; i < $scope.imageEditTableCtrl.slidesEdit.length; i++) {
+              $scope.imageCarouselUploadCtrl.slidesUploaded.push($scope.imageEditTableCtrl.slidesEdit[i]);
+            }
+
+            $scope.imageCarouselUploadCtrl.apply($scope.imageEditTableCtrl.slidesEdit);
+
+
+            //$scope.imageCarouselUploadCtrl.slidesUploaded[sequence-2] = $current;
+            //$scope.imageCarouselUploadCtrl.slidesUploaded[sequence-1] = $temp;
+
+            //$scope.imageCarouselUploadCtrl.slidesUploaded = $scope.imageEditTableCtrl.slidesEdit;
+            //$scope.apply();
           }
         }
 
@@ -98,7 +112,7 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
           var imageObj = {
             "path" : "/images/upload/",
             "title" : image.file.name,
-            "description" : "test",
+            "description" : "test_"+sequence,
             "sequence" : sequence
           };
 
