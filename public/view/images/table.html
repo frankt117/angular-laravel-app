@@ -11,7 +11,7 @@
   <tbody>
     <tr ng-repeat="image in imageEditTableCtrl.slidesEdit">
       <td><img src="{{image.path + image.title}}" height="100" widht="100"></td>
-      <td><input type="text" class="form-control" id="imageTitle" placeholder="" ng-model="image.title"></td>
+      <td><input type="text" class="form-control" id="imageTitle" placeholder="" ng-model="image.newTitle"></td>
       <td><input type="text" class="form-control" id="imageDescription" placeholder="" ng-model="image.description"></td>
       <td>
         <button type="button" class="btn btn-default btn-sm" ng-click="imageEditTableCtrl.moveUp(image.sequence)">
@@ -21,7 +21,11 @@
           <span class="glyphicon glyphicon-arrow-down"></span>
         </button>
       </td>
-      <td></td>
+      <td>
+        <button type="button" class="btn btn-danger btn-sm" ng-click="imageEditTableCtrl.remove(image.sequence)">
+          <span class="glyphicon glyphicon-remove"></span>
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>

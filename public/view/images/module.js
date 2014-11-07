@@ -44,7 +44,6 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
         this.slidesEdit = [];
 
         this.moveUp = function(sequence) {
-          console.log($scope.imageEditTableCtrl.slidesEdit[sequence-1]);
           if ( sequence != 1 ) {
             $current = $scope.imageEditTableCtrl.slidesEdit[sequence-1];
             $temp = $scope.imageEditTableCtrl.slidesEdit[sequence-2]
@@ -73,7 +72,15 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
         }
 
         this.moveDown = function(sequence) {
-          console.log(sequence);
+          if ( sequence != $scope.imageEditTableCtrl.slidesEdit.length ) {
+            $current = $scope.imageEditTableCtrl.slidesEdit[sequence-1];
+            $temp = $scope.imageEditTableCtrl.slidesEdit[sequence]
+
+            $scope.imageEditTableCtrl.slidesEdit[sequence] = $current;
+            $scope.imageEditTableCtrl.slidesEdit[sequence].sequence = sequence+1;
+            $scope.imageEditTableCtrl.slidesEdit[sequence-1] = $temp;
+            $scope.imageEditTableCtrl.slidesEdit[sequence-1].sequence = sequence;
+          }
         }
 
       },
@@ -112,7 +119,8 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
           var imageObj = {
             "path" : "/images/upload/",
             "title" : image.file.name,
-            "description" : "test_"+sequence,
+            "newTitle" : "",
+            "description" : "",
             "sequence" : sequence
           };
 
@@ -142,6 +150,7 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
 
 
         $scope.uploader.onCompleteItem = function(fileItem, response, status, headers) {
+          fileItem.file.name = response;
           ImagesService.imageUploaded(fileItem);
         };
 

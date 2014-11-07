@@ -21,8 +21,14 @@ class ImageUploadController extends \BaseController {
     {
       $path = public_path()."/images/upload/";
 
-      $file->move($path,Input::file('file')->getClientOriginalName());
+      $name = time()."_".Input::file('file')->getClientOriginalName();
+
+      $file->move($path,$name);
+
+      return $name;
     }
+
+    return false;
 
   }
 
