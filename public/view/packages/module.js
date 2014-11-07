@@ -1,4 +1,4 @@
-angular.module( 'app.packages', ['app.packages-service', 'users'])
+angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular'])
 
   .directive('packagesList', function() {
     return {
