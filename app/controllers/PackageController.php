@@ -22,7 +22,6 @@ class PackageController extends \BaseController {
       $response = $packages;
     }
 
-
     return Response::json($response);
   }
 
@@ -49,9 +48,9 @@ class PackageController extends \BaseController {
   {
     $data = Input::all();
 
-    Package::create($data);
+    $package = Package::create($data);
 
-    return Response::json(array('success' => true));
+    return Response::json($package);
   }
 
 

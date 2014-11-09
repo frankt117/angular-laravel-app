@@ -40,6 +40,7 @@
   <!--Bootstrap-->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <script src="packages/bower_components/angular-bootstrap/ui-bootstrap.js"></script>
   <script src="packages/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 

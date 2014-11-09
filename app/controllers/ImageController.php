@@ -9,9 +9,24 @@ class ImageController extends \BaseController {
    */
   public function index()
   {
-    $image = Image::get();
+//    $image = Image::get();
+//
+//    $response = $image;
+//
+//    return Response::json($response);
 
-    $response = $image;
+    $wheres = json_decode(Input::get('where'));
+
+    if ($wheres) {
+
+      $images = Image::where('package_id', $wheres->package_id)->get();
+
+      $response = $images;
+    } else {
+      $images = Image::get();
+
+      $response = $images;
+    }
 
     return Response::json($response);
   }
@@ -35,7 +50,11 @@ class ImageController extends \BaseController {
    */
   public function store()
   {
+    $data = Input::all();
 
+    Image::create($data);
+
+    return Response::json(array('success' => true));
   }
 
 

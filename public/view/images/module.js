@@ -6,14 +6,23 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
       templateUrl: 'view/images/carousel.html',
       controller: function($scope, PackagesService, ImagesService) {
         this.slides = [];
+        this.show = false;
 
         ImagesService.updateImageList = function(packageId) {
-          ImagesService.getAllImages()
+          ImagesService.getImagesByPackageId(packageId)
             .success(function(data) {
               $scope.imageCarouselCtrl.slides = data;
+              ImagesService._imageList = data;
+              if(data.length > 0) {
+                $scope.imageCarouselCtrl.show = true;
+              }
             });
 
         };
+
+//        ImagesService.isImageListPopulated = function() {
+//          return $scope.imageCarouselCtrl.show;
+//        };
       },
       controllerAs: 'imageCarouselCtrl'
     }
