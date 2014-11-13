@@ -9,9 +9,18 @@ class TrimController extends \BaseController {
    */
   public function index()
   {
-    $trim = Trim::get();
+    $wheres = json_decode(Input::get('where'));
 
-    $response = $trim;
+    if ($wheres) {
+
+      $trims = Trim::where('package_id', $wheres->package_id)->get();
+
+      $response = $trims;
+    } else {
+      $trims = Trim::get();
+
+      $response = $trims;
+    }
 
     return Response::json($response);
   }

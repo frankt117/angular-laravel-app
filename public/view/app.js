@@ -12,7 +12,8 @@ angular.module( 'app', [
     'app.service-categories',
     'app.markets',
     'app.images',
-    'app.packages'
+    'app.packages',
+    'app.trims'
 
   ])
 

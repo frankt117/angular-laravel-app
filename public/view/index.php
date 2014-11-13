@@ -35,6 +35,8 @@
   <script type="text/javascript" src="view/packages/service.js"></script>
   <script type="text/javascript" src="view/images/module.js"></script>
   <script type="text/javascript" src="view/images/service.js"></script>
+  <script type="text/javascript" src="view/trims/module.js"></script>
+  <script type="text/javascript" src="view/trims/service.js"></script>
   <script type="text/javascript" src="view/users/users.js"></script>
 
   <!--Bootstrap-->

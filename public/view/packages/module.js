@@ -50,13 +50,14 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
     return {
       restrict: 'E',
       templateUrl: 'view/packages/list-and-details.html',
-      controller: function($scope, PackagesService, ImagesService) {
+      controller: function($scope, PackagesService, ImagesService, TrimsService) {
         this._currentView = "LIST";
 
         PackagesService.packageClicked = function(packageObj) {
           ImagesService.updateImageList(packageObj.id);
           $scope.packageDetailsCtrl.package = packageObj;
           $scope.packageListAndDetailsCtrl._currentView = "PACKAGE";
+          TrimsService.updateTrimTable(packageObj.id);
         };
 
         this.updateCurrentView = function(viewNew) {
