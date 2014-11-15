@@ -28,14 +28,14 @@ class DatabaseSeeder extends Seeder {
 //    $this->call('PrivilegeTypeTableSeeder');
 //    $this->command->info('PrivilegeTypes table seeded');
 //
-//    $this->call('UserCompanyTableSeeder');
-//    $this->command->info('UserCompanys table seeded');
-//
-//    $this->call('UserServiceProviderTableSeeder');
-//    $this->command->info('UserServices table seeded');
-//
-//    $this->call('UserCustomerTableSeeder');
-//    $this->command->info('UserCustomers table seeded');
+    $this->call('UserEmployeeTableSeeder');
+    $this->command->info('UserEmployees table seeded');
+
+    $this->call('UserServiceProviderTableSeeder');
+    $this->command->info('UserServices table seeded');
+
+    $this->call('UserCustomerTableSeeder');
+    $this->command->info('UserCustomers table seeded');
 //
 //    $this->call('MarketTableSeeder');
 //    $this->command->info('Markets table seeded');
@@ -46,8 +46,8 @@ class DatabaseSeeder extends Seeder {
 //    $this->call('PackageTableSeeder');
 //    $this->command->info('Package table seeded');
 
-    $this->call('ImageTableSeeder');
-    $this->command->info('Image table seeded');
+//    $this->call('ImageTableSeeder');
+//    $this->command->info('Image table seeded');
 
 //    $this->call('TrimTableSeeder');
 //    $this->command->info('Trim table seeded');

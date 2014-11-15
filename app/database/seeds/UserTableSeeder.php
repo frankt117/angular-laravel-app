@@ -36,8 +36,58 @@ class UserTableSeeder extends Seeder
     ));
 
     User::create(array(
-      'email' => 'sp2@gmail.com',
+      'email' => 'lincolnbose@gmail.com',
       'password' => 'SP2',
+      'category' => 'service_provider',
+      'effective_from' => date('Y-m-d H:i:s'),
+      'effective_to' => '',
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    User::create(array(
+      'email' => 'mikejones@gmail.com',
+      'password' => 'SP3',
+      'category' => 'service_provider',
+      'effective_from' => date('Y-m-d H:i:s'),
+      'effective_to' => '',
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    User::create(array(
+      'email' => 'kennybuyers@gmail.com',
+      'password' => 'SP4',
+      'category' => 'service_provider',
+      'effective_from' => date('Y-m-d H:i:s'),
+      'effective_to' => '',
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    User::create(array(
+      'email' => 'derekakunne@gmail.com',
+      'password' => 'SP5',
+      'category' => 'service_provider',
+      'effective_from' => date('Y-m-d H:i:s'),
+      'effective_to' => '',
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    User::create(array(
+      'email' => 'johnchelf@gmail.com',
+      'password' => 'SP6',
+      'category' => 'service_provider',
+      'effective_from' => date('Y-m-d H:i:s'),
+      'effective_to' => '',
+      'created_by' => 1,
+      'updated_by' => 1
+    ));
+
+    User::create(array(
+      'email' => 'dajonwilliams@gmail.com',
+      'password' => 'SP7',
       'category' => 'service_provider',
       'effective_from' => date('Y-m-d H:i:s'),
       'effective_to' => '',

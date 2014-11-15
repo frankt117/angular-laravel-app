@@ -6,7 +6,7 @@ class UserCustomerTableSeeder extends Seeder
     DB::table('user_customers')->delete();
 
     UserCustomer::create(array(
-      'user_id' => 4,
+      'user_id' => 10,
       'name' => 'CUSTOMER_SEED',
       'primary_address' => '1117 Cortana Drive',
       'primary_city' => 'McKinney',
@@ -21,7 +21,7 @@ class UserCustomerTableSeeder extends Seeder
     ));
 
     UserCustomer::create(array(
-      'user_id' => 5,
+      'user_id' => 11,
       'name' => 'Thor Hammer',
       'primary_address' => '10118 Spartan Spear',
       'primary_city' => 'Frisco',

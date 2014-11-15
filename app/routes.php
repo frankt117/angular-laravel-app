@@ -20,7 +20,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
   Route::resource('users', 'UserController',
     array('only' => array('index', 'show', 'store', 'destroy'))
   );
-  Route::resource('users-company', 'UserCompanyController',
+  Route::resource('users-employee', 'UserEmployeeController',
     array('only' => array('index', 'show', 'store', 'destroy'))
   );
   Route::resource('users-sp', 'UserServiceProviderController',
@@ -61,6 +61,9 @@ Route::group(array('prefix' => 'api/v1'), function() {
   );
   Route::resource('image-upload', 'ImageUploadController',
     array('only' => array('store'))
+  );
+  Route::resource('companies', 'CompanyController',
+    array('only' => array('index', 'show', 'store', 'destroy'))
   );
   Route::post('login/auth','AuthController@login');
   Route::get('login/destroy','AuthController@logout');

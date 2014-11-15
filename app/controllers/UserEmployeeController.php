@@ -1,6 +1,6 @@
 <?php
 
-class UserController extends \BaseController {
+class UserEmployeeController extends \BaseController {
 
   /**
    * Display all privileges.
@@ -9,13 +9,7 @@ class UserController extends \BaseController {
    */
   public function index()
   {
-    $userEmployee = UserEmployee::get()->toArray();
-    $userCustomer = UserCustomer::get()->toArray();
-    $userServiceProvider = UserServiceProvider::get()->toArray();
-
-    $return = array_merge($userEmployee, $userCustomer, $userServiceProvider);
-
-    return Response::json($return);
+    return Response::json(UserEmployee::get());
   }
 
   /**
@@ -24,11 +18,9 @@ class UserController extends \BaseController {
    * * @param  int  $id
    * @return Response
    */
-  public function show($email)
+  public function show($id)
   {
-    $user = User::where('email', $email)->get();
 
-    return Response::json($user);
   }
 
 
@@ -51,7 +43,7 @@ class UserController extends \BaseController {
    */
   public function destroy($id)
   {
-    User::destroy($id);
+    UserEmployee::destroy($id);
 
     return Response::json(array('success' => true));
   }
