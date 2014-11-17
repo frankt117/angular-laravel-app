@@ -28,14 +28,14 @@ class DatabaseSeeder extends Seeder {
 //    $this->call('PrivilegeTypeTableSeeder');
 //    $this->command->info('PrivilegeTypes table seeded');
 //
-    $this->call('UserEmployeeTableSeeder');
-    $this->command->info('UserEmployees table seeded');
-
-    $this->call('UserServiceProviderTableSeeder');
-    $this->command->info('UserServices table seeded');
-
-    $this->call('UserCustomerTableSeeder');
-    $this->command->info('UserCustomers table seeded');
+//    $this->call('UserEmployeeTableSeeder');
+//    $this->command->info('UserEmployees table seeded');
+//
+//    $this->call('UserServiceProviderTableSeeder');
+//    $this->command->info('UserServices table seeded');
+//
+//    $this->call('UserCustomerTableSeeder');
+//    $this->command->info('UserCustomers table seeded');
 //
 //    $this->call('MarketTableSeeder');
 //    $this->command->info('Markets table seeded');
@@ -49,8 +49,8 @@ class DatabaseSeeder extends Seeder {
 //    $this->call('ImageTableSeeder');
 //    $this->command->info('Image table seeded');
 
-//    $this->call('TrimTableSeeder');
-//    $this->command->info('Trim table seeded');
+    $this->call('TrimTableSeeder');
+    $this->command->info('Trim table seeded');
 
     //DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 

@@ -1,6 +1,6 @@
 <?php
 
-class CompanyController extends \BaseController {
+class NegotiationController extends \BaseController {
 
   /**
    * Display all privileges.
@@ -13,13 +13,13 @@ class CompanyController extends \BaseController {
 
     if ($wheres) {
 
-      $trims = Company::where('primary_user_id', $wheres->primary_user_id)->get();
+      $negotiations = Negotiation::where('trim_id', $wheres->trim_id)->get();
 
-      $response = $trims;
+      $response = $negotiations;
     } else {
-      $trims = Company::get();
+      $negotiations = Negotiation::get();
 
-      $response = $trims;
+      $response = $negotiations;
     }
 
     return Response::json($response);
@@ -56,7 +56,7 @@ class CompanyController extends \BaseController {
    */
   public function destroy($id)
   {
-    Company::destroy($id);
+    Negotiation::destroy($id);
 
     return Response::json(array('success' => true));
   }

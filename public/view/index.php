@@ -11,6 +11,8 @@
   <script src='packages/bower_components/textAngular/dist/textAngular-rangy.min.js'></script>
   <script src='packages/bower_components/textAngular/dist/textAngular-sanitize.min.js'></script>
   <script src='packages/bower_components/textAngular/dist/textAngular.min.js'></script>
+  <link rel='stylesheet' href='packages/bower_components/semantic/build//minified/definitions/modules/checkbox.min.css'>
+  <script src='packages/bower_components/semantic/build/minified/definitions/modules/checkbox.min.js'></script>
 
 
   <script type="text/javascript" src="http://cdn.jsdelivr.net/restangular/latest/restangular.js"></script>
@@ -18,6 +20,7 @@
   <script type="text/javascript" src="view/app.js"></script>
   <script type="text/javascript" src="view/privileges/privileges-2.js"></script>
   <script type="text/javascript" src="view/landing/main.js"></script>
+  <script type="text/javascript" src="view/negotiate/main.js"></script>
   <script type="text/javascript" src="view/manage/admin/main.js"></script>
   <script type="text/javascript" src="view/manage/service-provider/main.js"></script>
   <script type="text/javascript" src="view/manage/customer/main.js"></script>
@@ -37,7 +40,12 @@
   <script type="text/javascript" src="view/images/service.js"></script>
   <script type="text/javascript" src="view/trims/module.js"></script>
   <script type="text/javascript" src="view/trims/service.js"></script>
+  <script type="text/javascript" src="view/companies/module.js"></script>
+  <script type="text/javascript" src="view/companies/service.js"></script>
+  <script type="text/javascript" src="view/negotiate/module.js"></script>
+  <script type="text/javascript" src="view/negotiate/service.js"></script>
   <script type="text/javascript" src="view/users/users.js"></script>
+
 
   <!--Bootstrap-->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>

@@ -11,8 +11,10 @@
   </thead>
   <tbody>
   <tr ng-repeat="trim in trimTableCtrl.trims">
-    <td></td>
-    <td></td>
+    <td>
+      <semantic-checkbox type="toggle" ng-model="trim.selected"></semantic-checkbox>
+    </td>
+    <td>{{trim.service_provider}}</td>
     <td>{{trim.name}}</td>
     <td></td>
     <td>{{trim.price | currency }}</td>
