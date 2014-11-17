@@ -49,6 +49,24 @@
 
   </div>
 
+  <div ng-if="getMainCurrentView('CUSTOMER_PACKAGE_EDIT')">
+
+    <div class="row">
+      <div class="col-md-10 col-md-offset-2">
+        <button type="" class="btn btn-warning" ng-click="updateMainCurrentView('NEGOTIATE')">Exit</button>
+      </div>
+    </div>
+
+    <div class="row"><br></div>
+
+    <div class="row">
+      <div class="col-md-10 col-md-offset-2">
+        <crud-customer-package-edit></crud-customer-package-edit>
+      </div>
+    </div>
+
+  </div>
+
 </div>
 
 

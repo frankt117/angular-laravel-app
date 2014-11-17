@@ -32,19 +32,47 @@
         Select My Requirement Package
       </div>
 
-      <div class="col-md-4">
-        <div class="btn-group" dropdown is-open="serviceCategoriesDropDownCtrl.status.isopen">
-          <button type="button" class="btn btn-warning dropdown-toggle" ng-disabled="disabled">
-            {{serviceCategoriesDropDownCtrl.selected}} <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" role="menu">
-            <li ng-repeat="package in serviceCategoriesDropDownCtrl.categories">
-              <a href ng-click="serviceCategoriesDropDownCtrl.changeSelected(category.name)">{{category.name}}</a>
-            </li>
-          </ul>
-        </div>
+      <div class="col-md-2">
+        <negotiate-trim-drop-down></negotiate-trim-drop-down>
+      </div>
+
+      <div class="col-md-1">
+        OR
+      </div>
+
+      <div class="col-md-2">
+        <button type="" class="btn btn-primary" ng-click="updateMainCurrentView('CUSTOMER_PACKAGE_EDIT')">Create My Package</button>
       </div>
     </div>
+
+    <div class="row"><br></div>
+
+    <div class="row">
+      <div class="col-md-10">
+        Note: You can create your requirement own package and select it in the list above by pressing Create My Package.
+      </div>
+    </div>
+
+    <div class="row"><br></div>
+
+    <div class="row">
+      <div class="col-md-2">
+        Email address
+      </div>
+      <div class="col-md-6">
+        <input type="email" class="form-control" id="inputEmail" placeholder="john@doe.com">
+      </div>
+    </div>
+
+    <div class="row"><br></div>
+    <div class="row"><br></div>
+
+    <div class="row">
+      <div class="col-md-10">
+        <button type="" class="btn btn-success" ng-click="updateMainCurrentView('PACKAGES')">Initiate Negotiation</button>
+      </div>
+    </div>
+
 
   </div>
 </div>

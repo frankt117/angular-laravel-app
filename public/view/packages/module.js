@@ -205,4 +205,94 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
     }
   })
 
+
+
+
+  .directive('crudCustomerPackageEdit', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/packages/crud-customer-package-edit.html',
+      controller: function($scope, PackagesService, CategoriesService, MarketsService, ImagesService) {
+
+
+        $scope.fromDate = null;
+        $scope.toDate = null;
+        this.successAlert = false;
+
+        this.fromDateOptions = {
+          formatYear: 'yy',
+          startingDay: 1
+        };
+
+        this.toDateOptions = {
+          formatYear: 'yy',
+          startingDay: 1
+        };
+
+        $scope.openFrom = function($event) {
+          $event.preventDefault();
+          $event.stopPropagation();
+
+          $scope.openedFrom = true;
+        };
+
+        $scope.openTo = function($event) {
+          console.log($event);
+          $event.preventDefault();
+          $event.stopPropagation();
+
+          $scope.openedTo = true;
+        };
+
+        this.formats = ['dd-MMMM-yyyy', 'yyyy-MM-dd', 'dd.MM.yyyy', 'shortDate'];
+        this.format = this.formats[1];
+
+        this.clear = function () {
+          this.fromDate = null;
+        };
+
+        this.submit = function (form, $window) {
+
+          console.log("SUBMITTING");
+          console.log(form);
+
+          var packageObj = {'user_id' : form.target[1].value, 'category_id' : form.target[3].value, 'name' : form.target[4].value, 'summary' : form.target[5].value, 'description' : form.target[30].value, 'effective_from' : form.target[32].value, 'effective_to' : form.target[82].value, 'sequence' : 1};
+
+          console.log(packageObj);
+          PackagesService.createPackage(packageObj)
+            .success(function(data, status, header, config) {
+              console.log('SUCCESS!!');
+              console.log(data);
+              $scope.crudCustomerPackageEditCtrl.successAlert = true;
+
+              var length = $scope.imageEditTableCtrl.slidesEdit.length;
+
+              for (var i = 0; i < length; i++) {
+
+                var currentImage = $scope.imageEditTableCtrl.slidesEdit[i];
+                var pathURL = currentImage.path+currentImage.title;
+                console.log(currentImage);
+                var imageObj = {'title' : currentImage.newTitle, 'description' : currentImage.description, 'path' : pathURL, 'package_id' : data.id, 'sequence' : currentImage.sequence, 'effective_from' :  data.effective_from, 'effective_to' : data.effective_to};
+                console.log(imageObj);
+                ImagesService.createImage(imageObj)
+                  .success(function(data, status, header, config) {
+                    console.log("IMAGE CREATED");
+                  })
+                  .error(function(data, status, header, config) {
+                    console.log("IMAGE FAILED");
+                  });
+              }
+
+            })
+            .error(function(data, status, header, config) {
+              console.log("ERROR");
+            });
+
+        };
+
+      },
+      controllerAs: 'crudCustomerPackageEditCtrl'
+    }
+  })
+
 ;
