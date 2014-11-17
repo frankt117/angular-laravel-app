@@ -7,11 +7,9 @@ angular.module( 'app.companies', ['app.companies-service'])
       controller: function($scope, CompaniesService) {
         this.companies = [];
 
-        console.log($scope.trimTableCtrl.trims);
-
         for (var i = 0; i < $scope.trimTableCtrl.trims.length; i++) {
           if($scope.trimTableCtrl.trims[i].selected == true) {
-            $scope.companiesNegotiateTableCtrl.companies.push($scope.trimTableCtrl.trims[i]);
+            this.companies.push($scope.trimTableCtrl.trims[i]);
           }
         }
 

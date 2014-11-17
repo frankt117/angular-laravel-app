@@ -11,8 +11,8 @@
   <script src='packages/bower_components/textAngular/dist/textAngular-rangy.min.js'></script>
   <script src='packages/bower_components/textAngular/dist/textAngular-sanitize.min.js'></script>
   <script src='packages/bower_components/textAngular/dist/textAngular.min.js'></script>
-  <link rel='stylesheet' href='packages/bower_components/semantic/build//minified/definitions/modules/checkbox.min.css'>
-  <script src='packages/bower_components/semantic/build/minified/definitions/modules/checkbox.min.js'></script>
+  <link rel='stylesheet' href='packages/bower_components/semantic/dist/components/checkbox.min.css'>
+  <script src='packages/bower_components/semantic/dist/components/checkbox.min.js'></script>
 
 
   <script type="text/javascript" src="http://cdn.jsdelivr.net/restangular/latest/restangular.js"></script>

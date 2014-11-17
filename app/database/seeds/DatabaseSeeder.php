@@ -13,14 +13,14 @@ class DatabaseSeeder extends Seeder {
 
     //DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
-//		$this->call('UserTableSeeder');
-//    $this->command->info('Comments table seeded');
+		$this->call('UserTableSeeder');
+    $this->command->info('Comments table seeded');
 //
 //    $this->call('PrivilegeTableSeeder');
 //    $this->command->info('Privileges table seeded');
 //
-//    $this->call('CompanyTableSeeder');
-//    $this->command->info('Companys table seeded');
+    $this->call('CompanyTableSeeder');
+    $this->command->info('Companys table seeded');
 //
 //    $this->call('ModuleTableSeeder');
 //    $this->command->info('Modules table seeded');
@@ -28,14 +28,14 @@ class DatabaseSeeder extends Seeder {
 //    $this->call('PrivilegeTypeTableSeeder');
 //    $this->command->info('PrivilegeTypes table seeded');
 //
-//    $this->call('UserEmployeeTableSeeder');
-//    $this->command->info('UserEmployees table seeded');
-//
-//    $this->call('UserServiceProviderTableSeeder');
-//    $this->command->info('UserServices table seeded');
-//
-//    $this->call('UserCustomerTableSeeder');
-//    $this->command->info('UserCustomers table seeded');
+    $this->call('UserEmployeeTableSeeder');
+    $this->command->info('UserEmployees table seeded');
+
+    $this->call('UserServiceProviderTableSeeder');
+    $this->command->info('UserServices table seeded');
+
+    $this->call('UserCustomerTableSeeder');
+    $this->command->info('UserCustomers table seeded');
 //
 //    $this->call('MarketTableSeeder');
 //    $this->command->info('Markets table seeded');
