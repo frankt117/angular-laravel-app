@@ -6,10 +6,10 @@
 
       <div class="container">
         <div class="row">
-          <div class="col-md-10">
+          <div class="col-md-9">
 
             <div class="alert alert-success" role="alert" ng-show="crudCustomerPackageEditCtrl.successAlert"><strong>Success!     </strong>  Your package is viewable in the list now.</div>
-            <form class="form-horizontal" role="form" ng-submit="crudCustomerPackageEditCtrl.submit($event)">
+            <form class="form-horizontal" role="form" ng-submit="crudCustomerPackageEditCtrl.submit($event)" novalidate>
               <div class="form-group" ng-show="false">
                 <label for="inputUserId" class="col-md-2 control-label">User Id</label>
                 <div class="col-md-8">
