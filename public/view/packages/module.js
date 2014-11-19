@@ -46,6 +46,17 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
     }
   })
 
+  .directive('packageDetailsAdmin', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/packages/details-admin.html',
+      controller: function($scope, PackagesService, ImagesService) {
+
+      },
+      controllerAs: 'packageDetailsAdminCtrl'
+    }
+  })
+
   .directive('packageListAndDetails', function() {
     return {
       restrict: 'E',
@@ -71,6 +82,34 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
 
       },
       controllerAs: 'packageListAndDetailsCtrl'
+    }
+  })
+
+  .directive('packageListAndDetailsAdmin', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/packages/list-and-details-admin.html',
+      controller: function($scope, PackagesService, ImagesService, TrimsService) {
+        this._currentView = "LIST";
+
+        PackagesService.packageClicked = function(packageObj) {
+          ImagesService.updateImageList(packageObj.id);
+          $scope.packageDetailsAdminCtrl.package = packageObj;
+          $scope.packageListAndDetailsAdminCtrl._currentView = "PACKAGE";
+          TrimsService.updateTrimTable(packageObj.id);
+        };
+
+        this.updateCurrentView = function(viewNew) {
+          $scope.imageCarouselCtrl.show = false;
+          $scope.packageListAndDetailsAdminCtrl._currentView = viewNew;
+        };
+
+        this.getCurrentView = function(view) {
+          return this._currentView == view;
+        };
+
+      },
+      controllerAs: 'packageListAndDetailsAdminCtrl'
     }
   })
 

@@ -45,6 +45,73 @@ angular.module( 'app.trims', ['app.trims-service'])
 
 
 
+  .directive('addTrimAdmin', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/trims/add-trim-admin.html',
+      controller: function($scope, TrimsService, CompaniesService) {
+        this.marketId = {};
+
+
+        $scope.fromDate = null;
+        $scope.toDate = null;
+        this.successAlert = false;
+
+        this.fromDateOptions = {
+          formatYear: 'yy',
+          startingDay: 1
+        };
+
+        this.toDateOptions = {
+          formatYear: 'yy',
+          startingDay: 1
+        };
+
+        $scope.openFrom = function($event) {
+          $event.preventDefault();
+          $event.stopPropagation();
+
+          $scope.openedFrom = true;
+        };
+
+        $scope.openTo = function($event) {
+          console.log($event);
+          $event.preventDefault();
+          $event.stopPropagation();
+
+          $scope.openedTo = true;
+        };
+
+        this.formats = ['dd-MMMM-yyyy', 'yyyy-MM-dd', 'dd.MM.yyyy', 'shortDate'];
+        this.format = this.formats[1];
+
+        this.clear = function () {
+          this.fromDate = null;
+        };
+
+        this.submit = function (form, $window) {
+
+          console.log("SUBMITTING");
+          console.log(form);
+
+          var packageObj = {'user_id' : form.target[1].value, 'category_id' : form.target[3].value, 'name' : form.target[4].value, 'summary' : form.target[5].value, 'description' : form.target[30].value, 'effective_from' : form.target[32].value, 'effective_to' : form.target[82].value, 'sequence' : 1};
+
+        }
+
+
+        },
+      controllerAs: 'addTrimAdminCtrl'
+    }
+  })
+
+
+
+
+
+;
+
+
+
 
 
 
