@@ -213,7 +213,10 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
       restrict: 'E',
       templateUrl: 'view/packages/crud-customer-package-edit.html',
       controller: function($scope, PackagesService, CategoriesService, MarketsService, ImagesService) {
-
+        this.userId = 9999;
+        this.categoryId = 9999;
+        this.name = "";
+        this.description = '';
 
         $scope.fromDate = null;
         $scope.toDate = null;
@@ -253,12 +256,8 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
 
         this.submit = function (form, $window) {
 
-          console.log("SUBMITTING");
-          console.log(form);
+          var packageObj = {'user_id' : this.userId, 'category_id' : this.categoryId, 'name' : this.name, 'summary' : '', 'description' : this.description, 'effective_from' : '', 'effective_to' : '', 'sequence' : 1};
 
-          var packageObj = {'user_id' : form.target[1].value, 'category_id' : form.target[3].value, 'name' : form.target[4].value, 'summary' : form.target[5].value, 'description' : form.target[30].value, 'effective_from' : form.target[32].value, 'effective_to' : form.target[82].value, 'sequence' : 1};
-
-          console.log(packageObj);
           PackagesService.createPackage(packageObj)
             .success(function(data, status, header, config) {
               console.log('SUCCESS!!');
