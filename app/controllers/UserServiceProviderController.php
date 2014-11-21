@@ -31,7 +31,17 @@ class UserServiceProviderController extends \BaseController {
    */
   public function store()
   {
+    $data = Input::all();
 
+    $user = UserServiceProvider::create($data);
+
+    if($user) {
+      $message = true;
+    } else {
+      $message = false;
+    }
+
+    return Response::json($message);
   }
 
 

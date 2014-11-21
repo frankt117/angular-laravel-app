@@ -12,7 +12,6 @@ angular.module( 'app.trims', ['app.trims-service'])
             if($scope.trimTableCtrl.trims[i].user_id == userId) {
               $scope.trimTableCtrl.trims[i].service_provider = serviceProvider.name;
               $scope.trimTableCtrl.trims[i].company_id = serviceProvider.id;
-              return;
             }
           }
         };
@@ -27,7 +26,6 @@ angular.module( 'app.trims', ['app.trims-service'])
               for(var i = 0; i < trimsData.length; i++) {
                 CompaniesService.getAllByPrimaryUserId(trimsData[i].user_id)
                   .success(function(data) {
-                    var current = i;
                     $scope.trimTableCtrl.updateTrimServiceProvider(data[0].primary_user_id, data[0]);
                   });
               }
