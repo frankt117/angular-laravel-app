@@ -50,7 +50,11 @@ angular.module( 'app.trims', ['app.trims-service'])
       restrict: 'E',
       templateUrl: 'view/trims/add-trim-admin.html',
       controller: function($scope, TrimsService, CompaniesService) {
-        this.marketId = {};
+        this.marketId = 1;
+        this.name = '';
+        this.price = '';
+        this.currency = '$';
+        this.successAlert = false;
 
 
         $scope.fromDate = null;
@@ -91,10 +95,34 @@ angular.module( 'app.trims', ['app.trims-service'])
 
         this.submit = function (form, $window) {
 
-          console.log("SUBMITTING");
+          console.log("SUBMITTING TRIM");
           console.log(form);
 
-          var packageObj = {'user_id' : form.target[1].value, 'category_id' : form.target[3].value, 'name' : form.target[4].value, 'summary' : form.target[5].value, 'description' : form.target[30].value, 'effective_from' : form.target[32].value, 'effective_to' : form.target[82].value, 'sequence' : 1};
+          var trimObj = {'name' : this.name, 'price' : this.price, 'currency' : this.currency, 'user_id' : $scope.userDD.user_id,'package_id' : $scope.packageDetailsAdminCtrl.package.id, 'sequence' : 1, 'market_id' : this.marketId, 'effective_from' : $scope.fromDate, 'effective_to' : $scope.toDate};
+
+
+
+          TrimsService.createTrim(trimObj)
+            .success(function(data, header) {
+
+              var trim = data;
+
+
+              CompaniesService.getAllByPrimaryUserId(trim.user_id)
+                .success(function(data) {
+                  console.log(data);
+                  trim.service_provider = data[0].name;
+                  console.log(trim);
+                  $scope.trimTableCtrl.trims.push(trim);
+                  $scope.addTrimAdminCtrl.successAlert = true;
+                  console.log('SUCCESS!!!');
+                });
+
+
+            })
+            .error(function() {
+              console.log('ERROR UPLOADING TRIM');
+            });
 
         }
 

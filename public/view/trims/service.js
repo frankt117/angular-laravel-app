@@ -21,6 +21,12 @@ login.factory('TrimsService',function($http){
     return promise;
   };
 
+  service.createTrim = function(trimObj) {
+    var promise = $http({method:'POST',url:'index.php/api/v1/trims',params:trimObj});
+
+    return promise;
+  };
+
 
   service.updateTrimTable = function(packageId) {/*overridable action*/};
 

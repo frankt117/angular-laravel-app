@@ -1,87 +1,82 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-10">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Add Trim</h3>
+  </div>
+  <div class="panel-body">
 
-      <div class="alert alert-success" role="alert" ng-show="addTrimAdminCtrl.successAlert"><strong>Success!     </strong>  Your package is viewable in the list now.</div>
-      <form class="form-horizontal" role="form" ng-submit="addTrimAdminCtrl.submit($event)">
-        <div class="form-group">
-          <label for="inputUserId" class="col-md-2 control-label">User Id</label>
-          <div class="col-md-8">
-            <user-drop-down-input></user-drop-down-input>
-          </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10">
+
+          <div class="alert alert-success" role="alert" ng-show="addTrimAdminCtrl.successAlert"><strong>Success!     </strong>  Your trim is viewable in the list now.</div>
+          <form class="form-horizontal" role="form" ng-submit="addTrimAdminCtrl.submit($event)">
+            <div class="form-group">
+              <label for="inputUserId" class="col-md-2 control-label">User Id</label>
+              <div class="col-md-8">
+                <user-drop-down-input></user-drop-down-input>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputCategoryId" class="col-md-2 control-label">Market Id</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="inputName" placeholder="Standard 20x20 - Home theater system" ng-model="addTrimAdminCtrl.marketId">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputName" class="col-md-2 control-label">Name</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="inputName" placeholder="Gold" ng-model="addTrimAdminCtrl.name">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputPrice" class="col-md-2 control-label">Price</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="inputPrice" placeholder="99.99" ng-model="addTrimAdminCtrl.price">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputCurrency" class="col-md-2 control-label">Currency</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="inputCurrency" placeholder="$" ng-model="addTrimAdminCtrl.currency">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputEffectiveFrom" class="col-md-2 control-label">Effective From</label>
+              <div class="col-md-8">
+                <p class="input-group">
+                  <input type="text" class="form-control" datepicker-popup="{{addTrimAdminCtrl.format}}" ng-model="fromDate" is-open="openedFrom"  datepicker-options="addTrimAdminCtrl.fromDateOptions" ng-required="true" close-text="Close" />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="openFrom($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                </p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputEffectiveTo" class="col-md-2 control-label">Effective To</label>
+              <div class="col-md-8">
+                <p class="input-group">
+                  <input type="text" class="form-control" datepicker-popup="{{addTrimAdminCtrl.format}}" ng-model="toDate" is-open="openedTo"  datepicker-options="addTrimAdminCtrl.toDateOptions" close-text="Close" />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="openTo($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                </p>
+              </div>
+            </div>
+
+
+
+            <div class="col-md-offset-2 col-md-8">
+              <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+          </form>
+
+
         </div>
-        <div class="form-group">
-          <label for="inputCategoryId" class="col-md-2 control-label">Market Id</label>
-          <div class="col-md-8">
-            <input type="text" class="form-control" id="inputName" placeholder="Standard 20x20 - Home theater system" ng-model="addTrimAdminCtrl.marketId">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputName" class="col-md-2 control-label">Name</label>
-          <div class="col-md-8">
-            <input type="text" class="form-control" id="inputName" placeholder="Standard 20x20 - Home theater system" ng-model="addTrimAdminCtrl.name">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="inputPrice" class="col-md-2 control-label">Price</label>
-          <div class="col-md-8">
-            <input type="text" class="form-control" id="inputPrice" placeholder="99.99" ng-model="addTrimAdminCtrl.price">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="inputCurrency" class="col-md-2 control-label">Currency</label>
-          <div class="col-md-8">
-            <input type="text" class="form-control" id="inputCurrency" placeholder="$" ng-model="addTrimAdminCtrl.currency">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="inputEffectiveFrom" class="col-md-2 control-label">Effective From</label>
-          <div class="col-md-8">
-            <p class="input-group">
-              <input type="text" class="form-control" datepicker-popup="{{addTrimAdminCtrl.format}}" ng-model="fromDate" is-open="openedFrom"  datepicker-options="addTrimAdminCtrl.fromDateOptions" ng-required="true" close-text="Close" />
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="openFrom($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-              </span>
-            </p>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="inputEffectiveTo" class="col-md-2 control-label">Effective To</label>
-          <div class="col-md-8">
-            <p class="input-group">
-              <input type="text" class="form-control" datepicker-popup="{{addTrimAdminCtrl.format}}" ng-model="toDate" is-open="openedTo"  datepicker-options="addTrimAdminCtrl.toDateOptions" close-text="Close" />
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="openTo($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-              </span>
-            </p>
-          </div>
-        </div>
-
-
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-8">
-            <button type="submit" class="btn btn-success">Submit</button>
-          </div>
-        </div>
-      </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      </div>
     </div>
   </div>
 </div>

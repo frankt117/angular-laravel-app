@@ -12,7 +12,7 @@ class ImageUploadController extends \BaseController {
     $file = Input::file('file'); // your file upload input field in the form should be named 'file'
 
     $rules = array(
-      'image' => 'required|mimes:png,gif,jpeg,jpg |max:20000'
+      'image' => 'required|mimes:png,gif,jpeg,jpg |max:100000'
     );
 
     $validator = Validator::make( array('image'=> $file) , $rules);

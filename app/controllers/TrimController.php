@@ -44,7 +44,11 @@ class TrimController extends \BaseController {
    */
   public function store()
   {
+    $data = Input::all();
 
+    $trim = Trim::create($data);
+
+    return Response::json($trim);
   }
 
 
