@@ -7,6 +7,7 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <div class="alert alert-danger" role="alert" ng-show="alert"><strong>Warning!     </strong>        That user and password combo is incorrect.</div>
+    <div class="alert alert-success" role="alert" ng-if="newUserAlert"><strong>Success!     </strong>You are ready to login now.</div>
     <ul class="nav nav-tabs nav-justified">
       <li ng-class="{ active:isSelected(1) }"><a href ng-click="selectPanel(1)">Login</a></li>
       <li ng-class="{ active:isSelected(2) }" ng-show="showNewUserPanel"><a href ng-click="selectPanel(2)">New User</a></li>

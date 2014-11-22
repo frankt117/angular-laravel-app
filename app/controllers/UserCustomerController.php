@@ -33,15 +33,32 @@ class UserCustomerController extends \BaseController {
   {
     $data = Input::all();
 
-    $user = UserCustomer::create($data);
+    $userData = array('email' => $data['email'], 'password' => $data['password'], 'category' => 'CUSTOMER', 'effective_from' => date('Y-m-d H:i:s'), 'effective_to' => '',
+                  'created_by' => 0, 'updated_by' => 0);
 
-    if($user) {
+    $user = User::create($userData);
+
+    if(!$user) {
+      return Response::json(false);
+    }
+
+
+    $userCustomerData = array('name' => $data['email'], 'primary_address' => '', 'primary_city' => '', 'primary_state' => '',
+                          'primary_zip' => $data['zip_code'], 'billing_address' => '', 'billing_city' => '', 'billing_state' => '', 'billing_zip' => '',
+                          'created_by' => $user['id'], 'updated_by' => $user['id']);
+
+    $userCustomer = UserCustomer::create($userCustomerData);
+
+
+
+    if($userCustomer) {
       $message = true;
     } else {
       $message = false;
     }
 
     return Response::json($message);
+
   }
 
 

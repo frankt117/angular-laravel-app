@@ -7,6 +7,7 @@ angular.module( 'app.login', ['app.new-user'])
     $scope.panelSelected = 1;
     $scope.showNewUserPanel = true;
     $scope.alert = false;
+    $scope.newUserAlert = false;
 
     $scope.clickTest = function () {
       console.log("CLICKED");
