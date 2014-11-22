@@ -52,6 +52,7 @@ angular.module( 'app.trims', ['app.trims-service'])
         this.name = '';
         this.price = '';
         this.currency = '$';
+        this.comment = '';
         this.successAlert = false;
 
 
@@ -96,7 +97,7 @@ angular.module( 'app.trims', ['app.trims-service'])
           console.log("SUBMITTING TRIM");
           console.log(form);
 
-          var trimObj = {'name' : this.name, 'price' : this.price, 'currency' : this.currency, 'user_id' : $scope.userDD.user_id,'package_id' : $scope.packageDetailsAdminCtrl.package.id, 'sequence' : 1, 'market_id' : this.marketId, 'effective_from' : $scope.fromDate, 'effective_to' : $scope.toDate};
+          var trimObj = {'name' : this.name, 'comment' : this.comment, 'price' : this.price, 'currency' : this.currency, 'user_id' : $scope.userDD.user_id,'package_id' : $scope.packageDetailsAdminCtrl.package.id, 'sequence' : 1, 'market_id' : this.marketId, 'effective_from' : $scope.fromDate, 'effective_to' : $scope.toDate};
 
 
 

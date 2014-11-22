@@ -27,6 +27,12 @@ login.factory('TrimsService',function($http){
     return promise;
   };
 
+  service.deleteTrimById = function(trimId) {
+    var promise = $http({method:'DELETE',url:'index.php/api/v1/trims/'+trimId});
+
+    return promise;
+  };
+
 
   service.updateTrimTable = function(packageId) {/*overridable action*/};
 

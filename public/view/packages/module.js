@@ -108,6 +108,24 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
           return this._currentView == view;
         };
 
+        this.deleteTrims = function() {
+
+          var currentTrims = $scope.trimTableCtrl.trims;
+          var newTrims = [];
+
+          for(var i = 0; i < currentTrims.length; i++) {
+            if(!currentTrims[i].selected) {
+              newTrims.push(currentTrims[i]);
+            } else {
+              TrimsService.deleteTrimById(currentTrims[i].id)
+                .success(function(data, header) {
+                });
+            }
+          }
+
+          $scope.trimTableCtrl.trims = newTrims;
+        };
+
       },
       controllerAs: 'packageListAndDetailsAdminCtrl'
     }

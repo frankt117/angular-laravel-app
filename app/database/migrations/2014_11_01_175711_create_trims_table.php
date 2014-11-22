@@ -16,6 +16,7 @@ class CreateTrimsTable extends Migration {
 		{
 			$table->increments('id');
       $table->char('name', 30);
+      $table->string('comment');
       $table->float('price');
       $table->char('currency', 10);
       $table->integer('user_id');

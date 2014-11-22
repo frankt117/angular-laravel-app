@@ -8,6 +8,7 @@ class TrimTableSeeder extends Seeder
     Trim::create(array(
       'name' => 'Gold',
       'price' => 149.99,
+      'comment' => 'Free HDMI cable!',
       'currency' => '$',
       'user_id' => 4,
       'package_id' => 1,
@@ -19,6 +20,7 @@ class TrimTableSeeder extends Seeder
 
     Trim::create(array(
       'name' => 'Silver',
+      'comment' => 'Same day install.',
       'price' => 129.99,
       'currency' => '$',
       'user_id' => 7,
@@ -31,6 +33,7 @@ class TrimTableSeeder extends Seeder
 
     Trim::create(array(
       'name' => 'Platinum',
+      'comment' => 'Free cables included.',
       'price' => 199.99,
       'currency' => '$',
       'user_id' => 9,
@@ -44,6 +47,7 @@ class TrimTableSeeder extends Seeder
 
     Trim::create(array(
       'name' => 'Gold',
+      'comment' => 'Same day service available.',
       'price' => 149.99,
       'currency' => '$',
       'user_id' => 4,
@@ -56,6 +60,7 @@ class TrimTableSeeder extends Seeder
 
     Trim::create(array(
       'name' => 'Silver',
+      'comment' => 'Same day service available.',
       'price' => 129.99,
       'currency' => '$',
       'user_id' => 5,
@@ -69,6 +74,7 @@ class TrimTableSeeder extends Seeder
 
     Trim::create(array(
       'name' => 'Silver',
+      'comment' => 'Same day service available.',
       'price' => 109.99,
       'currency' => '$',
       'user_id' => 6,
@@ -82,6 +88,7 @@ class TrimTableSeeder extends Seeder
 
     Trim::create(array(
       'name' => 'Platinum',
+      'comment' => 'Same day service available.',
       'price' => 1999.99,
       'currency' => '$',
       'user_id' => 7,
@@ -95,6 +102,7 @@ class TrimTableSeeder extends Seeder
 
     Trim::create(array(
       'name' => 'Gold',
+      'comment' => 'Same day service available.',
       'price' => 3999.99,
       'currency' => '$',
       'user_id' => 8,
@@ -107,6 +115,7 @@ class TrimTableSeeder extends Seeder
 
     Trim::create(array(
       'name' => 'Gold',
+      'comment' => 'Same day service available.',
       'price' => 99.99,
       'currency' => '$',
       'user_id' => 9,
