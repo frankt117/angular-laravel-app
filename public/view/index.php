@@ -46,6 +46,7 @@
   <script type="text/javascript" src="view/negotiate/service.js"></script>
   <script type="text/javascript" src="view/users/users.js"></script>
   <script type="text/javascript" src="view/users/service.js"></script>
+  <script type="text/javascript" src="view/oauth/service.js"></script>
 
 
   <!--Bootstrap-->

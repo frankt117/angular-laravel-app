@@ -67,6 +67,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
   );
   Route::post('login/auth','AuthController@login');
   Route::get('login/destroy','AuthController@logout');
+  Route::get('oauth/token','OauthServiceController@getAccessToken');
 });
 
 App::missing(function($exception) {

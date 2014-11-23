@@ -1,6 +1,7 @@
 angular.module( 'app.manage-service-provider', [
     'ui.router',
-    'app.login'
+    'app.login',
+    'app.oauth-service'
   ])
 
   .config(function config( $stateProvider ) {
@@ -14,6 +15,16 @@ angular.module( 'app.manage-service-provider', [
         "manage-login": {
           controller: 'LoginCtrl',
           templateUrl: 'view/manage/login/main.html'
+        }
+      }
+    });
+
+    $stateProvider.state( 'service-provider-oauth', {
+      url: '/manage/service-provider/oauth/:code',
+      views: {
+        "manage-main": {
+          controller: 'OauthCtrl',
+          templateUrl: 'view/manage/service-provider/oauth.html'
         }
       }
     });
@@ -42,6 +53,27 @@ angular.module( 'app.manage-service-provider', [
       }
 
     }
+  })
+
+  .controller( 'OauthCtrl', function OauthCtrl( $scope, OauthService, $http, $stateParams ) {
+
+    console.log("POST");
+    console.log($stateParams);
+
+
+
+
+//    OauthService.getAccessToken()
+//      .success(function(data, header) {
+//        console.log("TOKEN SUCCESS");
+//        console.log(data);
+//        console.log(header);
+//      })
+//      .error(function(data, header) {
+//        console.log("TOKEN ERROR");
+//        console.log(data);
+//        console.log(header);
+//      });
   })
 
 ;
