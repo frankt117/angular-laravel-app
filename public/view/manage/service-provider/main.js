@@ -20,14 +20,28 @@ angular.module( 'app.manage-service-provider', [
   })
 
   .controller( 'MainSPCtrl', function MainSPCtrl( $scope ) {
-//    if(sessionStorage.userCategory) {
-//      $scope.userCategory = sessionStorage.userCategory;
-//    } else {
-//      sessionStorage.userCategory = 'SERVICE';
-//      $scope.userCategory = 'SERVICE';
-//    }
+    sessionStorage.newUserCategory = 'service_provider';
 
-    sessionStorage.userCategory = 'SERVICE';
+    if(sessionStorage.loggedIn == "true" && sessionStorage.userCategory != 'service_provider') {
+
+      switch (sessionStorage.userCategory) {
+        case 'company':
+          window.location = "#/manage/admin";
+          break;
+        case "service_provider":
+          window.location =  "#/manage/service-provider";
+          break;
+        case 'customer':
+          window.location =  "#/manage/customer";
+          break;
+        case 'CUSTOMER':
+          window.location =  "#/manage/customer";
+          break;
+        default :
+          window.location = "#/index";
+      }
+
+    }
   })
 
 ;

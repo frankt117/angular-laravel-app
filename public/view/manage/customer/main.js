@@ -20,14 +20,28 @@ angular.module( 'app.manage-customer', [
   })
 
   .controller( 'MainCustomerCtrl', function MainCustomerCtrl( $scope ) {
-//    if (sessionStorage.userCategory) {
-//      $scope.userCategory = sessionStorage.userCategory;
-//    } else {
-//      sessionStorage.userCategory = 'CUSTOMER';
-//      $scope.userCategory = 'CUSTOMER';
-//    }
+    sessionStorage.newUserCategory = 'customer';
 
-    sessionStorage.userCategory = 'CUSTOMER';
+    if(sessionStorage.loggedIn == "true" && (sessionStorage.userCategory != 'customer' || sessionStorage.userCategory != 'CUSTOMER')) {
+
+      switch (sessionStorage.userCategory) {
+        case 'company':
+          window.location = "#/manage/admin";
+          break;
+        case "service_provider":
+          window.location =  "#/manage/service-provider";
+          break;
+        case 'customer':
+          window.location =  "#/manage/customer";
+          break;
+        case 'CUSTOMER':
+          window.location =  "#/manage/customer";
+          break;
+        default :
+          window.location = "#/index";
+      }
+
+    }
   })
 
 ;

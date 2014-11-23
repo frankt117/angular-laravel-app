@@ -12,7 +12,7 @@ class AuthController extends BaseController
     $user = User::where('email', $email, 'AND')->where('password', $password)->get()->first();
 
     if ( $user ) {
-      return Response::json($user->category);
+      return $user->category;
     } else {
       return "FALSE";
     }

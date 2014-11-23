@@ -20,9 +20,32 @@ angular.module( 'app.manage-admin', [
   })
 
   .controller( 'MainAdminCtrl', function MainAdminCtrl( $scope ) {
+    sessionStorage.newUserCategory = 'company';
+
+    if(sessionStorage.loggedIn == "true" && sessionStorage.userCategory != 'company') {
+
+      switch (sessionStorage.userCategory) {
+        case 'company':
+          window.location = "#/manage/admin";
+          break;
+        case "service_provider":
+          window.location =  "#/manage/service-provider";
+          break;
+        case 'customer':
+          window.location =  "#/manage/customer";
+          break;
+        case 'CUSTOMER':
+          window.location =  "#/manage/customer";
+          break;
+        default :
+          window.location = "#/index";
+      }
+
+    }
+
     this.currentView = 'Main';
 
-    sessionStorage.userCategory = 'ADMIN';
+    //sessionStorage.userCategory = 'ADMIN';
   })
 
 ;

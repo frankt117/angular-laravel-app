@@ -17,7 +17,8 @@
       <br><br>
     </div>
 
-    <p ng-bind-html="packageDetailsAdminCtrl.package.description"></p>
+      <text-angular ta-toolbar="[['bold','italics', 'underline'], ['h1','h2','h3', 'h4', 'h5', 'h6', 'p', 'pre', 'quote', 'ul', 'ol', 'undo', 'redo', 'clear', 'justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent', 'html', 'insertLink']]"
+                    ng-model="packageDetailsAdminCtrl.package.description"></text-angular>
 
     <image-carousel></image-carousel>
 

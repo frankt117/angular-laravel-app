@@ -22,21 +22,39 @@ angular.module( 'app.login', ['app.new-user'])
       var userEmail = $scope.email;
 
       var loginCreds = {'email' : $scope.email, 'password' : $scope.password};
-      Login.auth(loginCreds).then(function($response) {
-        console.log($response.data);
-
-        if ($response.data !== "FALSE") {
+      Login.auth(loginCreds)
+        .success(function(data, header) {
           sessionStorage.userId=$scope.email;
-          sessionStorage.userCategory=$response.data;
+          sessionStorage.userCategory=data;
           sessionStorage.loggedIn=true;
           $scope.$parent.$parent.loggedIn = true;
 
-
-          location.reload();
-        } else {
+          switch (sessionStorage.userCategory) {
+            case 'company':
+              window.location = "#/manage/admin";
+              location.reload();
+              break;
+            case "service_provider":
+              window.location =  "#/manage/service-provider";
+              location.reload();
+              break;
+            case 'customer':
+              window.location =  "#/manage/customer";
+              location.reload();
+              break;
+            case 'CUSTOMER':
+              window.location =  "#/manage/customer";
+              location.reload();
+              break;
+            default :
+              window.location = "#/index";
+          }
+        })
+        .error(function(data, header) {
           $scope.alert = true;
-        }
-      });
+        });
+
+
     }
 
     $scope.isSelected = function isSelected(checkPanel) {
