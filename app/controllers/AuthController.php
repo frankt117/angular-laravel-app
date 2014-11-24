@@ -7,10 +7,8 @@ class AuthController extends BaseController
     $email = Input::get('email');
     $password = Input::get('password');
 
-    $user = User::where('email', $email, 'AND')->where('password', $password)->get()->first();
-
-    if ( $user ) {
-      Auth::login($user);
+    if ( Auth::attempt(array('email' => $email, 'password' => $password)) ) {
+      $user = Auth::user();
       return $user->category;
     } else {
       return "FALSE";

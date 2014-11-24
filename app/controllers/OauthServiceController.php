@@ -29,7 +29,13 @@ class OauthServiceController extends BaseController
     //echo $resp['access_token'];
 
     echo "AUTH TOKEN : <br>";
-    echo Auth::id();
+
+
+    if(Auth::check()) {
+      $this->print_pre(Auth::user());
+    } else {
+      echo "NO USER";
+    }
 
 
 

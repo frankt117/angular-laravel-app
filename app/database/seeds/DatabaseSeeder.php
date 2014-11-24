@@ -13,8 +13,8 @@ class DatabaseSeeder extends Seeder {
 
     //DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
-//		$this->call('UserTableSeeder');
-//    $this->command->info('Comments table seeded');
+		$this->call('UserTableSeeder');
+    $this->command->info('Users table seeded');
 //
 //    $this->call('PrivilegeTableSeeder');
 //    $this->command->info('Privileges table seeded');
@@ -49,8 +49,8 @@ class DatabaseSeeder extends Seeder {
 //    $this->call('ImageTableSeeder');
 //    $this->command->info('Image table seeded');
 
-    $this->call('TrimTableSeeder');
-    $this->command->info('Trim table seeded');
+//    $this->call('TrimTableSeeder');
+//    $this->command->info('Trim table seeded');
 
     //DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 

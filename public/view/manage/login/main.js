@@ -24,31 +24,37 @@ angular.module( 'app.login', ['app.new-user'])
       var loginCreds = {'email' : $scope.email, 'password' : $scope.password};
       Login.auth(loginCreds)
         .success(function(data, header) {
-          sessionStorage.userId=$scope.email;
-          sessionStorage.userCategory=data;
-          sessionStorage.loggedIn=true;
-          $scope.$parent.$parent.loggedIn = true;
 
-          switch (sessionStorage.userCategory) {
-            case 'company':
-              window.location = "#/manage/admin";
-              location.reload();
-              break;
-            case "service_provider":
-              window.location =  "#/manage/service-provider";
-              location.reload();
-              break;
-            case 'customer':
-              window.location =  "#/manage/customer";
-              location.reload();
-              break;
-            case 'CUSTOMER':
-              window.location =  "#/manage/customer";
-              location.reload();
-              break;
-            default :
-              window.location = "#/index";
+          if(data != "FALSE") {
+            sessionStorage.userId=$scope.email;
+            sessionStorage.userCategory=data;
+            sessionStorage.loggedIn=true;
+            $scope.$parent.$parent.loggedIn = true;
+
+            switch (sessionStorage.userCategory) {
+              case 'company':
+                window.location = "#/manage/admin";
+                location.reload();
+                break;
+              case "service_provider":
+                window.location =  "#/manage/service-provider";
+                location.reload();
+                break;
+              case 'customer':
+                window.location =  "#/manage/customer";
+                location.reload();
+                break;
+              case 'CUSTOMER':
+                window.location =  "#/manage/customer";
+                location.reload();
+                break;
+              default :
+                window.location = "#/index";
+            }
+          } else {
+            $scope.alert = true;
           }
+
         })
         .error(function(data, header) {
           $scope.alert = true;
