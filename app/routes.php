@@ -69,6 +69,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
   Route::get('login/destroy','AuthController@logout');
   Route::get('login/get-logged-in','AuthController@getLoggedIn');
   Route::get('oauth/token','OauthServiceController@getAccessToken');
+  Route::post('token/add-to-user','TokenController@addToUser');
 });
 
 App::missing(function($exception) {
