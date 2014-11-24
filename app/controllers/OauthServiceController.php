@@ -11,7 +11,7 @@ class OauthServiceController extends BaseController
     //$code = $_GET['code'];
 
     $token_request_body = array(
-      'client_secret' => 'sk_test_xTp3KIABqSHmcHjRMg0JEW9o',
+      'client_secret' => 'sk_test_pX5SorEzOqZ1VYXvGwDU1U3M',
       'grant_type' => 'authorization_code',
       'code' => $code
     );
@@ -27,6 +27,10 @@ class OauthServiceController extends BaseController
     curl_close($req);
 
     //echo $resp['access_token'];
+
+    echo "AUTH TOKEN : <br>";
+    echo Auth::id();
+
 
 
 
