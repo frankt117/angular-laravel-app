@@ -7,17 +7,19 @@ class AuthController extends BaseController
     $email = Input::get('email');
     $password = Input::get('password');
 
-    //$response = Auth::attempt(array('email' => 'sp2@gmail.com', 'password' => 'SP2'));
-
     $user = User::where('email', $email, 'AND')->where('password', $password)->get()->first();
 
-    Auth::attempt(array('email' => 'sp2@gmail.com', 'password' => 'SP2'));
-
     if ( $user ) {
+      Auth::login($user);
       return $user->category;
     } else {
       return "FALSE";
     }
+  }
+
+  public function getLoggedIn ()
+  {
+    return Response::json(Auth::id());
   }
 
   public function logout ()

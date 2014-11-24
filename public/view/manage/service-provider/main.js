@@ -30,7 +30,16 @@ angular.module( 'app.manage-service-provider', [
     });
   })
 
-  .controller( 'MainSPCtrl', function MainSPCtrl( $scope ) {
+  .controller( 'MainSPCtrl', function MainSPCtrl( $scope, $http ) {
+    $http({method:'GET',url:'index.php/api/v1/login/get-logged-in'})
+      .success(function(data, header) {
+        console.log("AUTH USER :");
+        console.log(data);
+      })
+      .error(function(data, header) {
+        console.log("AUTH USER FAIL");
+      });
+
     sessionStorage.newUserCategory = 'service_provider';
 
     if(sessionStorage.loggedIn == "true" && sessionStorage.userCategory != 'service_provider') {

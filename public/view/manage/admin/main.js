@@ -19,7 +19,17 @@ angular.module( 'app.manage-admin', [
     });
   })
 
-  .controller( 'MainAdminCtrl', function MainAdminCtrl( $scope ) {
+  .controller( 'MainAdminCtrl', function MainAdminCtrl( $scope, $http ) {
+
+    $http({method:'GET',url:'index.php/api/v1/login/get-logged-in'})
+      .success(function(data, header) {
+        console.log("AUTH USER :");
+        console.log(data);
+      })
+      .error(function(data, header) {
+        console.log("AUTH USER FAIL");
+      });
+
     sessionStorage.newUserCategory = 'company';
 
     if(sessionStorage.loggedIn == "true" && sessionStorage.userCategory != 'company') {
