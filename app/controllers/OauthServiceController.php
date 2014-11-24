@@ -21,7 +21,6 @@ class OauthServiceController extends BaseController
     curl_setopt($req, CURLOPT_POST, true );
     curl_setopt($req, CURLOPT_POSTFIELDS, http_build_query($token_request_body));
 
-    // TODO: Additional error handling
     $respCode = curl_getinfo($req, CURLINFO_HTTP_CODE);
     $resp = curl_exec($req);
     curl_close($req);
@@ -38,13 +37,12 @@ class OauthServiceController extends BaseController
     }
 
 
+    $this->print_pre($resp);
+
+    var_dump(Auth::id());
 
 
-
-
-
-
-    return $resp;
+    //return Redirect::to('http://getmepro.com/#/manage/service-provider/oauth/'.$resp);
   }
 
 

@@ -20,7 +20,7 @@ angular.module( 'app.manage-service-provider', [
     });
 
     $stateProvider.state( 'service-provider-oauth', {
-      url: '/manage/service-provider/oauth/:code',
+      url: '/manage/service-provider/oauth/:token',
       views: {
         "manage-main": {
           controller: 'OauthCtrl',
