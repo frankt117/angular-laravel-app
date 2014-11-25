@@ -19,5 +19,12 @@ class TokenController extends \BaseController {
     return Response::json($token);
   }
 
+  public function getByUserId($user_id)
+  {
+    $tokens = Token::where('id', $tokenId)->get();
+
+    return $user_id;
+  }
+
 
 }

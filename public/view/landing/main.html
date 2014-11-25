@@ -67,6 +67,24 @@
 
   </div>
 
+  <div ng-if="getMainCurrentView('CHECKOUT')">
+
+    <div class="row">
+      <div class="col-md-10 col-md-offset-2">
+        <button type="" class="btn btn-warning" ng-click="updateMainCurrentView('PACKAGES')">Exit</button>
+      </div>
+    </div>
+
+    <div class="row"><br></div>
+
+    <div class="row">
+      <div class="col-md-10 col-md-offset-2">
+        <payment-form></payment-form>
+      </div>
+    </div>
+
+  </div>
+
 </div>
 
 

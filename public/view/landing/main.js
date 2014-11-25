@@ -1,5 +1,6 @@
 angular.module( 'app.landing-page', [
-    'ui.router'
+    'ui.router',
+    'app.checkout'
   ])
 
   .config(function config( $stateProvider ) {

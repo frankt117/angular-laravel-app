@@ -70,6 +70,8 @@ Route::group(array('prefix' => 'api/v1'), function() {
   Route::get('login/get-logged-in','AuthController@getLoggedIn');
   Route::get('oauth/token','OauthServiceController@getAccessToken');
   Route::post('token/add-to-user','TokenController@addToUser');
+  Route::get('token/get-by-user-id/{user_id}','TokenController@getByUserId');
+
 });
 
 App::missing(function($exception) {

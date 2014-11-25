@@ -13,6 +13,8 @@
   <script src='packages/bower_components/textAngular/dist/textAngular.min.js'></script>
   <link rel='stylesheet' href='packages/bower_components/semantic/dist/components/checkbox.min.css'>
   <script src='packages/bower_components/semantic/dist/components/checkbox.min.js'></script>
+  <script src="packages/bower_components/angular-load/angular-load.js"></script>
+  <script src="packages/bower_components/angular-payments/lib/angular-payments.js"></script>
 
 
   <script type="text/javascript" src="http://cdn.jsdelivr.net/restangular/latest/restangular.js"></script>
@@ -47,6 +49,7 @@
   <script type="text/javascript" src="view/users/users.js"></script>
   <script type="text/javascript" src="view/users/service.js"></script>
   <script type="text/javascript" src="view/oauth/service.js"></script>
+  <script type="text/javascript" src="view/checkout/module.js"></script>
 
 
   <!--Bootstrap-->
