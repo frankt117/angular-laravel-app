@@ -13,6 +13,12 @@ login.factory('OauthService',function($http){
     return promise;
   };
 
+  service.getTokenByUserId = function(userId) {
+    var promise = $http({method:'GET',url:'index.php/api/v1/token/get-by-user-id/'+userId});
+
+    return promise;
+  };
+
 
   return service;
 });

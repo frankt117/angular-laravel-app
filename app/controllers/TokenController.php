@@ -21,9 +21,15 @@ class TokenController extends \BaseController {
 
   public function getByUserId($user_id)
   {
-    $tokens = Token::where('id', $tokenId)->get();
+    $tokens = Token::where('user_id', $user_id)->get();
 
-    return $user_id;
+    if(!empty($tokens[0])) {
+      $response = $tokens[0];
+    } else {
+      $response = Response::json("false");
+    }
+
+    return $response;
   }
 
 

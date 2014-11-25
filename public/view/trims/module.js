@@ -16,6 +16,16 @@ angular.module( 'app.trims', ['app.trims-service'])
           }
         };
 
+
+        this.getSelectedTrim = function() {
+          for(var i = 0; i < $scope.trimTableCtrl.trims.length; i++) {
+            if($scope.trimTableCtrl.trims[i].selected) {
+              return $scope.trimTableCtrl.trims[i];
+            }
+          }
+        };
+
+
         TrimsService.updateTrimTable = function($packageId) {
           TrimsService.getAllByPackageId($packageId)
             .success(function(data) {
@@ -29,13 +39,11 @@ angular.module( 'app.trims', ['app.trims-service'])
                     $scope.trimTableCtrl.updateTrimServiceProvider(data[0].primary_user_id, data[0]);
                   });
               }
-
-
-
-
-
             });
         };
+
+
+
       },
       controllerAs: 'trimTableCtrl'
     }

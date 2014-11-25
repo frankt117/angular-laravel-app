@@ -4,11 +4,21 @@
   </div>
   <div class="panel-body">
     <div ng-if="paymentFormCtrl.loaded">
+      <form class="form-horizontal" role="form">
+        <div class="form-group">
+          <label for="inputPrice" class="col-md-2 control-label">Price</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control" id="inputPrice" ng-model="paymentFormCtrl.price" placeholder="" />
+          </div>
+        </div>
+
+      </form>
+
       <form stripe-form="stripeCallback" class="form-horizontal" role="form">
         <div class="form-group">
           <label for="inputCCNumber" class="col-md-2 control-label">Card Number</label>
           <div class="col-md-8">
-            <input type="text" class="form-control" id="inputCCNumber" ng-model="cardNumber" placeholder="" />
+            <input type="text" class="form-control" id="inputCCNumber" ng-model="number" placeholder="" />
           </div>
         </div>
         <div class="form-group">
@@ -20,11 +30,11 @@
         <div class="form-group">
           <label for="inputCVC" class="col-md-2 control-label">CVC</label>
           <div class="col-md-8">
-            <input type="text" class="form-control" id="inputCVC" ng-model="cvc" placeholder="CVC" />
+            <input type="text" class="form-control" id="inputCVC" ng-model="cvc" placeholder="" />
           </div>
         </div>
         <div class="form-group">
-          <label for="submit" class="col-md-2 control-label">Submit</label>
+          <label for="submit" class="col-md-2 control-label"></label>
           <div class="col-md-8">
             <button type="submit" class="btn btn-success">Submit</button>
           </div>
