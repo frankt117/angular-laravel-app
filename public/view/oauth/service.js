@@ -5,8 +5,10 @@ login.factory('OauthService',function($http){
   var service = {};
 
 
-  service.getAccessToken = function() {
-    var promise = $http({method:'GET',url:'index.php/api/v1/oauth/token'})
+  service.addToken = function(userId, tokenId) {
+    var options = {"user_id" : userId, "token_id" : tokenId};
+
+    var promise = $http({method:'POST',url:'index.php/api/v1/token/add-to-user', params:options});
 
     return promise;
   };

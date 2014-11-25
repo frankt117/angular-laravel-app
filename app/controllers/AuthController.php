@@ -7,7 +7,11 @@ class AuthController extends BaseController
     $email = Input::get('email');
     $password = Input::get('password');
 
-    if ( Auth::attempt(array('email' => $email, 'password' => $password)) ) {
+    if(Auth::check()) {
+      Auth::logout();
+    }
+
+    if ( Auth::attempt(array('email' => $email, 'password' => $password), false) ) {
       $user = Auth::user();
       return $user->category;
     } else {

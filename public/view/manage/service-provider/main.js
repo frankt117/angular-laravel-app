@@ -67,22 +67,18 @@ angular.module( 'app.manage-service-provider', [
   .controller( 'OauthCtrl', function OauthCtrl( $scope, OauthService, $http, $stateParams ) {
 
     console.log("POST");
-    console.log($stateParams);
+    console.log($stateParams['token']);
 
 
-
-
-//    OauthService.getAccessToken()
-//      .success(function(data, header) {
-//        console.log("TOKEN SUCCESS");
-//        console.log(data);
-//        console.log(header);
-//      })
-//      .error(function(data, header) {
-//        console.log("TOKEN ERROR");
-//        console.log(data);
-//        console.log(header);
-//      });
+    OauthService.addToken(sessionStorage.userId, $stateParams['token'])
+      .success(function(data, header) {
+        console.log("TOKEN SUCCESS");
+        console.log(data);
+      })
+      .error(function(data, header) {
+        console.log("TOKEN ERROR");
+        console.log(data);
+      });
   })
 
 ;
