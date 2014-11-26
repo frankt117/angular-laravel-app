@@ -9,11 +9,11 @@ class UserController extends \BaseController {
    */
   public function index()
   {
-    $userCompany = UserCompany::get()->toArray();
+    $userEmployee = UserEmployee::get()->toArray();
     $userCustomer = UserCustomer::get()->toArray();
     $userServiceProvider = UserServiceProvider::get()->toArray();
 
-    $return = array_merge($userCompany, $userCustomer, $userServiceProvider);
+    $return = array_merge($userEmployee, $userCustomer, $userServiceProvider);
 
     return Response::json($return);
   }
@@ -24,9 +24,11 @@ class UserController extends \BaseController {
    * * @param  int  $id
    * @return Response
    */
-  public function show($id)
+  public function show($email)
   {
+    $user = User::where('email', $email)->get();
 
+    return Response::json($user);
   }
 
 
@@ -37,7 +39,17 @@ class UserController extends \BaseController {
    */
   public function store()
   {
+    $data = Input::all();
 
+    $user = User::create($data);
+
+    if($user) {
+      $message = true;
+    } else {
+      $message = false;
+    }
+
+    return Response::json($message);
   }
 
 

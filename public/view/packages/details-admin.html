@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{packageDetailsAdminCtrl.package.name}}</h3>
+  </div>
+  <div class="panel-body">
+    <trim-table></trim-table>
+
+    <button type="button" class="btn btn-warning btn-medium" ng-click="packageListAndDetailsAdminCtrl.updateCurrentView('TRIM')">
+      Add Trim
+    </button>
+    <button type="button" class="btn btn-danger btn-medium" ng-click="packageListAndDetailsAdminCtrl.deleteTrims()">
+      Delete Trim
+    </button>
+
+
+    <div class="row">
+      <br><br>
+    </div>
+
+      <text-angular ta-toolbar="[['bold','italics', 'underline'], ['h1','h2','h3', 'h4', 'h5', 'h6', 'p', 'pre', 'quote', 'ul', 'ol', 'undo', 'redo', 'clear', 'justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent', 'html', 'insertLink']]"
+                    ng-model="packageDetailsAdminCtrl.package.description"></text-angular>
+
+    <image-carousel></image-carousel>
+
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<packages-list ng-show="packageListAndDetailsCtrl.getCurrentView('LIST')"></packages-list>
+
+<div class="row" ng-show="packageListAndDetailsCtrl.getCurrentView('PACKAGE')">
+  <div class="col-md-10 ">
+    <button type="" class="btn btn-warning" ng-click="packageListAndDetailsCtrl.updateCurrentView('LIST')" ng-show="packageListAndDetailsCtrl.getCurrentView('PACKAGE')">Exit</button>
+  </div>
+
+</div>
+
+<div class="row">
+  <br>
+</div>
+<package-details ng-show="packageListAndDetailsCtrl.getCurrentView('PACKAGE')"></package-details>

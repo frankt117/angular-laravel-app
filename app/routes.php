@@ -20,7 +20,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
   Route::resource('users', 'UserController',
     array('only' => array('index', 'show', 'store', 'destroy'))
   );
-  Route::resource('users-company', 'UserCompanyController',
+  Route::resource('users-employee', 'UserEmployeeController',
     array('only' => array('index', 'show', 'store', 'destroy'))
   );
   Route::resource('users-sp', 'UserServiceProviderController',
@@ -44,6 +44,35 @@ Route::group(array('prefix' => 'api/v1'), function() {
   Route::resource('users.modules.privileges', 'UserModulePrivilegeController',
     array('only' => array('index', 'show', 'store', 'destroy', 'update'))
   );
+  Route::resource('markets', 'MarketController',
+    array('only' => array('index', 'show', 'store', 'destroy'))
+  );
+  Route::resource('service-categories', 'ServiceCategoryController',
+    array('only' => array('index', 'show', 'store', 'destroy'))
+  );
+  Route::resource('packages', 'PackageController',
+    array('only' => array('index', 'show', 'store', 'destroy'))
+  );
+  Route::resource('images', 'ImageController',
+    array('only' => array('index', 'show', 'store', 'destroy'))
+  );
+  Route::resource('trims', 'TrimController',
+    array('only' => array('index', 'show', 'store', 'destroy'))
+  );
+  Route::resource('image-upload', 'ImageUploadController',
+    array('only' => array('store'))
+  );
+  Route::resource('companies', 'CompanyController',
+    array('only' => array('index', 'show', 'store', 'destroy'))
+  );
+  Route::post('login/auth','AuthController@login');
+  Route::get('login/destroy','AuthController@logout');
+  Route::get('login/get-logged-in','AuthController@getLoggedIn');
+  Route::get('oauth/token','OauthServiceController@getAccessToken');
+  Route::post('token/add-to-user','TokenController@addToUser');
+  Route::get('token/get-by-user-id/{user_id}','TokenController@getByUserId');
+  Route::post('billing/charge/','BillingController@charge');
+
 });
 
 App::missing(function($exception) {

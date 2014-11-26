@@ -1,0 +1,27 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{packageDetailsCtrl.package.name}}</h3>
+  </div>
+  <div class="panel-body">
+    <trim-table></trim-table>
+
+    <button type="button" class="btn btn-success btn-medium" ng-click="updateMainCurrentView('CHECKOUT')">
+      Purchase
+    </button>
+    <button type="button" class="btn btn-warning btn-medium" ng-click="updateMainCurrentView('NEGOTIATE')">
+      Negotiate
+    </button>
+    <button type="button" class="btn btn-primary btn-medium">
+      Ask A Question
+    </button>
+
+    <div class="row">
+      <br><br>
+    </div>
+
+    <p ng-bind-html="packageDetailsCtrl.package.description"></p>
+
+    <image-carousel></image-carousel>
+
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div style="height: 400px; width:600px;">
+  <carousel interval="myIntervalUpload">
+    <slide ng-repeat="slide in imageCarouselUploadCtrl.slidesUploaded" active="slide.activeUpload">
+      <img ng-src="{{slide.path + slide.title}}" style="height: 400px; width:600px;">
+      <div class="carousel-caption">
+        <h4>{{slide.newTitle}}</h4>
+        <p>{{slide.description}}</p>
+      </div>
+    </slide>
+  </carousel>
+</div>
+

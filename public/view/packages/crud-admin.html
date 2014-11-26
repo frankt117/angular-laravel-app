@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <ul class="nav nav-tabs nav-justified">
+      <li ng-class="{ active:packageCrudAdminCtrl.getCurrentView('MAIN') }"><a href ng-click="packageCrudAdminCtrl.setCurrentView('MAIN')">Packages</a></li>
+      <li ng-class="{ active:packageCrudAdminCtrl.getCurrentView('EDIT') }"><a href ng-click="packageCrudAdminCtrl.setCurrentView('EDIT')">Create New Package</a></li>
+    </ul>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <crud-admin-package-list-tile ng-show="packageCrudAdminCtrl.getCurrentView('MAIN')"></crud-admin-package-list-tile>
+        <crud-admin-package-edit ng-show="packageCrudAdminCtrl.getCurrentView('EDIT')"></crud-admin-package-edit>
+      </div>
+
+    </div>
+
+
+  </div>
+
+</div>
+

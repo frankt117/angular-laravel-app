@@ -1,0 +1,24 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th></th>
+    <th>Service Provider</th>
+    <th>Trim</th>
+    <th>Comments</th>
+    <th>Price</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="trim in trimTableCtrl.trims">
+    <td>
+      <semantic-checkbox type="toggle" ng-model="trim.selected"></semantic-checkbox>
+    </td>
+    <td>{{trim.service_provider}}</td>
+    <td>{{trim.name}}</td>
+    <td>{{trim.comment}}</td>
+    <td>{{trim.price | currency }}</td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>

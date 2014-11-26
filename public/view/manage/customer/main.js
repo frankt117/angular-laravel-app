@@ -7,11 +7,11 @@ angular.module( 'app.manage-customer', [
     $stateProvider.state( 'customer', {
       url: '/manage/customer',
       views: {
-        "main": {
+        "manage-main": {
           controller: 'MainCustomerCtrl',
           templateUrl: 'view/manage/customer/main.html'
         },
-        "login": {
+        "manage-login": {
           controller: 'LoginCtrl',
           templateUrl: 'view/manage/login/main.html'
         }
@@ -20,7 +20,28 @@ angular.module( 'app.manage-customer', [
   })
 
   .controller( 'MainCustomerCtrl', function MainCustomerCtrl( $scope ) {
-    $scope.user.userCategory = 'CUSTOMER';
+    sessionStorage.newUserCategory = 'customer';
+
+    if(sessionStorage.loggedIn == "true" && (sessionStorage.userCategory != 'customer' || sessionStorage.userCategory != 'CUSTOMER')) {
+
+      switch (sessionStorage.userCategory) {
+        case 'company':
+          window.location = "#/manage/admin";
+          break;
+        case "service_provider":
+          window.location =  "#/manage/service-provider";
+          break;
+        case 'customer':
+          window.location =  "#/manage/customer";
+          break;
+        case 'CUSTOMER':
+          window.location =  "#/manage/customer";
+          break;
+        default :
+          window.location = "#/index";
+      }
+
+    }
   })
 
 ;

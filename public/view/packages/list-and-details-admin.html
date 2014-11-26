@@ -1,0 +1,21 @@
+<packages-list ng-show="packageListAndDetailsAdminCtrl.getCurrentView('LIST')"></packages-list>
+
+<div class="row" ng-show="packageListAndDetailsAdminCtrl.getCurrentView('PACKAGE')">
+  <div class="col-md-10 ">
+    <button type="" class="btn btn-warning" ng-click="packageListAndDetailsAdminCtrl.updateCurrentView('LIST')" ng-show="packageListAndDetailsAdminCtrl.getCurrentView('PACKAGE')">Exit</button>
+  </div>
+
+</div>
+
+<div class="row" ng-show="packageListAndDetailsAdminCtrl.getCurrentView('TRIM')">
+  <div class="col-md-10">
+    <button type="" class="btn btn-warning" ng-click="packageListAndDetailsAdminCtrl.updateCurrentView('PACKAGE')" ng-show="packageListAndDetailsAdminCtrl.getCurrentView('TRIM')">Exit</button>
+  </div>
+
+</div>
+
+<div class="row">
+  <br>
+</div>
+<package-details-admin ng-show="packageListAndDetailsAdminCtrl.getCurrentView('PACKAGE')"></package-details-admin>
+<add-trim-admin ng-if="packageListAndDetailsAdminCtrl.getCurrentView('TRIM')"></add-trim-admin>
