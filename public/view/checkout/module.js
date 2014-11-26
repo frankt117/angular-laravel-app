@@ -7,20 +7,22 @@ angular.module( 'app.checkout', ['angularLoad', 'angularPayments', 'app.oauth-se
       controller: function($scope, angularLoad, OauthService, $window) {
         this.loaded = false;
         this.trim = $scope.trimTableCtrl.getSelectedTrim();
-        this.price = this.trim.price.toFixed(2);
+        this.price = this.trim.price;
         $scope.name = '';
         $scope.address_line1 = '';
         console.log(this.trim);
 
-        OauthService.getTokenByUserId(this.trim.user_id)
-          .success(function(data, header) {
-            $scope.paymentFormCtrl.token = data;
-            console.log(data);
+//        OauthService.getTokenByUserId(this.trim.user_id)
+//          .success(function(data, header) {
+//            $scope.paymentFormCtrl.token = data;
+//            console.log(data);
 
             angularLoad.loadScript('https://js.stripe.com/v2/').then(function() {
               console.log("STRIPE LOADED!!");
-              console.log("KEY = "+$scope.paymentFormCtrl.token.publishable_key);
-              $window.Stripe.setPublishableKey($scope.paymentFormCtrl.token.publishable_key);
+              //console.log("KEY = "+$scope.paymentFormCtrl.token.publishable_key);
+              //$window.Stripe.setPublishableKey($scope.paymentFormCtrl.token.publishable_key);
+              //$window.Stripe.setPublishableKey('pk_test_zXpmfHRz4nWxDRwGhS0G9mRr');
+              $window.Stripe.setPublishableKey('pk_test_p129Weylj3u3q3OW6BHO7YH1');
               console.log("KEY SET");
               $scope.paymentFormCtrl.loaded = true;
             }).catch(function() {
@@ -28,10 +30,10 @@ angular.module( 'app.checkout', ['angularLoad', 'angularPayments', 'app.oauth-se
             });
 
 
-          })
-          .error(function(data, header) {
-
-          });
+//          })
+//          .error(function(data, header) {
+//
+//          });
 
 
         $scope.stripeCallback = function (code, result) {
