@@ -34,6 +34,9 @@ require __DIR__.'/../bootstrap/autoload.php';
 
 $app = require_once __DIR__.'/../bootstrap/start.php';
 
+require_once('../vendor/stripe/stripe-php/lib/Stripe.php');
+Stripe::setApiKey("sk_test_pX5SorEzOqZ1VYXvGwDU1U3M");
+
 /*
 |--------------------------------------------------------------------------
 | Run The Application

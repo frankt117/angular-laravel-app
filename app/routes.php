@@ -71,6 +71,7 @@ Route::group(array('prefix' => 'api/v1'), function() {
   Route::get('oauth/token','OauthServiceController@getAccessToken');
   Route::post('token/add-to-user','TokenController@addToUser');
   Route::get('token/get-by-user-id/{user_id}','TokenController@getByUserId');
+  Route::post('billing/charge/','BillingController@charge');
 
 });
 

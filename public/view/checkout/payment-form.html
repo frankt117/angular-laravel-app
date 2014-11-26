@@ -4,6 +4,9 @@
   </div>
   <div class="panel-body">
     <div ng-if="paymentFormCtrl.loaded">
+      <div ng-if="checkoutForm.card.$invalid"> Error: invalid card number! </div>
+      <div ng-if="checkoutForm.expiry.$invalid"> Error: invalid expiration date number! </div>
+      <div ng-if="checkoutForm.cvc.$invalid"> Error: invalid CVC number! </div>
       <form class="form-horizontal" role="form">
         <div class="form-group">
           <label for="inputPrice" class="col-md-2 control-label">Price</label>
@@ -18,19 +21,19 @@
         <div class="form-group">
           <label for="inputCCNumber" class="col-md-2 control-label">Card Number</label>
           <div class="col-md-8">
-            <input type="text" class="form-control" id="inputCCNumber" ng-model="number" placeholder="" />
+            <input type="text" class="form-control" id="inputCCNumber" ng-model="number" placeholder="" payments-format="card" payment-validate="card" payments-type-model="type"/>
           </div>
         </div>
         <div class="form-group">
           <label for="inputExpNumber" class="col-md-2 control-label">Expiration Date</label>
           <div class="col-md-8">
-            <input type="text" class="form-control" id="inputExpNumber" ng-model="expiry" placeholder="" />
+            <input type="text" class="form-control" id="inputExpNumber" ng-model="expiry" placeholder="" payments-format="expiry" payments-validate="expiry"/>
           </div>
         </div>
         <div class="form-group">
           <label for="inputCVC" class="col-md-2 control-label">CVC</label>
           <div class="col-md-8">
-            <input type="text" class="form-control" id="inputCVC" ng-model="cvc" placeholder="" />
+            <input type="text" class="form-control" id="inputCVC" ng-model="cvc" placeholder="" payments-format="cvc" payments-valide="cvc"/>
           </div>
         </div>
         <div class="form-group">

@@ -4,12 +4,14 @@ angular.module( 'app.checkout', ['angularLoad', 'angularPayments', 'app.oauth-se
     return {
       restrict: 'E',
       templateUrl: 'view/checkout/payment-form.html',
-      controller: function($scope, angularLoad, OauthService, $window) {
+      controller: function($scope, angularLoad, OauthService, $window, $http) {
         this.loaded = false;
         this.trim = $scope.trimTableCtrl.getSelectedTrim();
         this.price = this.trim.price;
+        this.userId = this.trim.user_id;
         $scope.name = '';
         $scope.address_line1 = '';
+        console.log("TRIM");
         console.log(this.trim);
 
 //        OauthService.getTokenByUserId(this.trim.user_id)
@@ -42,6 +44,17 @@ angular.module( 'app.checkout', ['angularLoad', 'angularPayments', 'app.oauth-se
           } else {
             console.log('success! token: ' + result.id);
             console.log(code);
+
+            var options = {"user_id" : $scope.paymentFormCtrl.userId, "token" : result.id, "price" : $scope.paymentFormCtrl.price};
+
+            $http({method:'POST',url:'index.php/api/v1/billing/charge', params:options})
+              .success(function(data, header) {
+                console.log("CHARGED");
+                console.log(data);
+              })
+              .error(function(data, header) {
+                console.log("CHARGE FAILED");
+              });
           }
         };
 
