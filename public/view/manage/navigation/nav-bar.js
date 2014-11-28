@@ -32,6 +32,17 @@ angular.module( 'app.nav-bar', [])
     }
   })
 
+  .directive('navBarLogin', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/manage/navigation/nav-bar-login.html',
+      controller: function($scope) {
+
+      },
+      controllerAs: 'navBarCtrl'
+    }
+  })
+
 
   .directive('navBar', function() {
     return {

@@ -180,7 +180,12 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
       restrict: 'E',
       templateUrl: 'view/packages/crud-admin-package-edit-tile.html',
       controller: function($scope, PackagesService, CategoriesService, MarketsService, ImagesService) {
-
+        this.categoryId = '';
+        this.code = '';
+        this.name = '';
+        this.summary = '';
+        this.description = '';
+        this.sequence = '';
 
         $scope.fromDate = null;
         $scope.toDate = null;
@@ -220,12 +225,8 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
 
         this.submit = function (form, $window) {
 
-          console.log("SUBMITTING");
-          console.log(form);
+          var packageObj = {'user_id' : $scope.userDD.user_id, 'category_id' : $scope.serviceCategoriesDropDownForInsertCtrl.selectedId, 'code' : this.code, 'name' : this.name, 'summary' : this.summary, 'description' : $scope.inputDescription, 'effective_from' : $scope.fromDate, 'effective_to' : $scope.toDate, 'sequence' : this.sequence};
 
-          var packageObj = {'user_id' : form.target[1].value, 'category_id' : form.target[3].value, 'name' : form.target[4].value, 'summary' : form.target[5].value, 'description' : form.target[30].value, 'effective_from' : form.target[32].value, 'effective_to' : form.target[82].value, 'sequence' : 1};
-
-          console.log(packageObj);
           PackagesService.createPackage(packageObj)
             .success(function(data, status, header, config) {
               console.log('SUCCESS!!');
@@ -238,9 +239,7 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
 
                 var currentImage = $scope.imageEditTableCtrl.slidesEdit[i];
                 var pathURL = currentImage.path+currentImage.title;
-                console.log(currentImage);
                 var imageObj = {'title' : currentImage.newTitle, 'description' : currentImage.description, 'path' : pathURL, 'package_id' : data.id, 'sequence' : currentImage.sequence, 'effective_from' :  data.effective_from, 'effective_to' : data.effective_to};
-                console.log(imageObj);
                 ImagesService.createImage(imageObj)
                   .success(function(data, status, header, config) {
                     console.log("IMAGE CREATED");
@@ -249,6 +248,15 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
                     console.log("IMAGE FAILED");
                   });
               }
+
+              $scope.crudAdminPackageEdit.categoryId = '';
+              $scope.crudAdminPackageEdit.code = '';
+              $scope.crudAdminPackageEdit.name = '';
+              $scope.crudAdminPackageEdit.summary = '';
+              $scope.crudAdminPackageEdit.description = '';
+              $scope.crudAdminPackageEdit.sequence = '';
+              $scope.userDD.user_id = '';
+              $scope.$scope.serviceCategoriesDropDownForInsertCtrl.selectedId = '';
 
             })
             .error(function(data, status, header, config) {

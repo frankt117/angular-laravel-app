@@ -1,6 +1,6 @@
 <div class="container">
 <div class="row">
-  <div class="col-md-10">
+  <div class="col-md-12">
 
     <div class="alert alert-success" role="alert" ng-show="crudAdminPackageEdit.successAlert"><strong>Success!     </strong>  Your package is viewable in the list now.</div>
     <form class="form-horizontal" role="form" ng-submit="crudAdminPackageEdit.submit($event)">
@@ -17,15 +17,27 @@
         </div>
       </div>
       <div class="form-group">
+        <label for="inputCode" class="col-md-2 control-label">Code</label>
+        <div class="col-md-8">
+          <input type="text" class="form-control" id="inputCode"  ng-model="crudAdminPackageEdit.code">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputSequence" class="col-md-2 control-label">Sequence</label>
+        <div class="col-md-8">
+          <input type="text" class="form-control" id="inputSequence"  ng-model="crudAdminPackageEdit.sequence">
+        </div>
+      </div>
+      <div class="form-group">
         <label for="inputName" class="col-md-2 control-label">Name</label>
         <div class="col-md-8">
-          <input type="text" class="form-control" id="inputName" placeholder="Standard 20x20 - Home theater system">
+          <input type="text" class="form-control" id="inputName" placeholder="Standard 20x20 - Home theater system" ng-model="crudAdminPackageEdit.name">
         </div>
       </div>
       <div class="form-group">
         <label for="inputSearchDescription" class="col-md-2 control-label">Summary</label>
         <div class="col-md-8">
-          <textarea class="form-control" rows="4" maxlength="250"></textarea>
+          <textarea class="form-control" rows="4" maxlength="250" ng-model="crudAdminPackageEdit.summary"></textarea>
         </div>
       </div>
       <div class="form-group">

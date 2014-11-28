@@ -15,6 +15,7 @@
   <script src='packages/bower_components/semantic/dist/components/checkbox.min.js'></script>
   <script src="packages/bower_components/angular-load/angular-load.js"></script>
   <script src="packages/bower_components/angular-payments/lib/angular-payments.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
 
 
   <script type="text/javascript" src="http://cdn.jsdelivr.net/restangular/latest/restangular.js"></script>
@@ -64,6 +65,17 @@
 <style>
   body{
     background-color: #fcfcfc;
+
+  }
+  .logo-bold {
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    color: #FFFFFF;
+  }
+  .logo-medium {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    color: #FFFFFF;
   }
 </style>
 
