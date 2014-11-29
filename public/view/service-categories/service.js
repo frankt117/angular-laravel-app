@@ -10,6 +10,16 @@ login.factory('CategoriesService',function($http){
     return data;
   };
 
+  service.getByCode = function(code) {
+    var wheres = {"where" : [
+                      {"code" : code}
+    ]
+    };
+    var promise = $http({method:'GET',url:'index.php/api/v1/service-categories', params:wheres});
+
+    return promise;
+  };
+
   service.getCategoryNames = function() {
     var columns = {"columns" : [
                                   {"0" : "name"}

@@ -1,0 +1,101 @@
+<!--<top-nav></top-nav>-->
+<nav-bar-2></nav-bar-2>
+
+
+  <div class="row">
+    <br>
+  </div>
+  <div class="row">
+    <br>
+  </div>
+  <div class="row">
+    <br>
+  </div>
+  <div class="row">
+    <br>
+  </div>
+
+
+  <div ng-show="getMainCurrentView('PACKAGES')">
+    <div class="row" ng-show="packageListAndDetailsCtrl.getCurrentView('LIST')">
+      <div class="col-md-8 col-md-offset-2">
+        <service-categories-drop-down></service-categories-drop-down>
+        <markets-drop-down></markets-drop-down>
+      </div>
+
+    </div>
+
+    <div class="row" ng-show="packageListAndDetailsCtrl.getCurrentView('LIST')">
+      <br>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <package-list-and-details></package-list-and-details>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <div ng-if="getMainCurrentView('NEGOTIATE')">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-2">
+        <button type="" class="btn btn-warning" ng-click="updateMainCurrentView('PACKAGES')">Exit</button>
+      </div>
+    </div>
+
+    <div class="row"><br></div>
+
+    <div class="row">
+      <div class="col-md-10 col-md-offset-2">
+        <initiate-negotiation></initiate-negotiation>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div ng-if="getMainCurrentView('CUSTOMER_PACKAGE_EDIT')">
+
+    <div class="row">
+      <div class="col-md-10 col-md-offset-2">
+        <button type="" class="btn btn-warning" ng-click="updateMainCurrentView('NEGOTIATE')">Exit</button>
+      </div>
+    </div>
+
+    <div class="row"><br></div>
+
+    <div class="row">
+      <div class="col-md-10 col-md-offset-2">
+        <crud-customer-package-edit></crud-customer-package-edit>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <div ng-if="getMainCurrentView('CHECKOUT')">
+
+    <div class="row">
+      <div class="col-md-10 col-md-offset-2">
+        <button type="" class="btn btn-warning" ng-click="updateMainCurrentView('PACKAGES')">Exit</button>
+      </div>
+    </div>
+
+    <div class="row"><br></div>
+
+    <div class="row">
+      <div class="col-md-10 col-md-offset-2">
+        <payment-form></payment-form>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+
