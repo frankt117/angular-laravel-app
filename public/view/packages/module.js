@@ -51,7 +51,22 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
       restrict: 'E',
       templateUrl: 'view/packages/details-admin.html',
       controller: function($scope, PackagesService, ImagesService) {
+        this.package = {};
 
+        this.hydratePackage = function(packageObj) {
+          $scope.packageDetailsAdminCtrl.package = packageObj;
+          console.log("HYDRATE");
+          console.log($scope.packageDetailsAdminCtrl.package);
+          $scope.inputDescription = packageObj.description;
+          $scope.fromDate = packageObj.effective_from;
+
+          if (packageObj.effective_to != '0000-00-00') {
+            $scope.toDate = packageObj.effective_to;
+          }
+
+
+          $scope.userDD.updateSelectedName(packageObj.user_id);
+        }
       },
       controllerAs: 'packageDetailsAdminCtrl'
     }
@@ -93,14 +108,14 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
         this._currentView = "LIST";
 
         PackagesService.packageClicked = function(packageObj) {
-          ImagesService.updateImageList(packageObj.id);
-          $scope.packageDetailsAdminCtrl.package = packageObj;
+
           $scope.packageListAndDetailsAdminCtrl._currentView = "PACKAGE";
-          TrimsService.updateTrimTable(packageObj.id);
+          $scope.updatePackageAdminCtrl.updatePackage(packageObj);
+
         };
 
         this.updateCurrentView = function(viewNew) {
-          $scope.imageCarouselCtrl.show = false;
+          //$scope.imageCarouselCtrl.show = false;
           $scope.packageListAndDetailsAdminCtrl._currentView = viewNew;
         };
 
@@ -356,6 +371,52 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
 
       },
       controllerAs: 'crudCustomerPackageEditCtrl'
+    }
+  })
+
+
+
+  .directive('updatePackageAdmin', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/packages/update-admin.html',
+      controller: function($scope, PackagesService, CategoriesService, MarketsService, TrimsService, ImagesService) {
+        this._currentUpdatePackageView = 'DETAILS';
+
+
+        this.getCurrentView = function(view) {
+          return this._currentUpdatePackageView == view;
+        };
+
+        this.setCurrentView = function(view) {
+          this._currentUpdatePackageView = view;
+        };
+
+
+        this.updatePackage = function(packageObj) {
+          TrimsService.updateTrimTable(packageObj.id);
+          //$scope.packageDetailsAdminCtrl.package = packageObj;
+          $scope.packageDetailsAdminCtrl.hydratePackage(packageObj);
+          ImagesService.updateImageList(packageObj.id);
+          $scope.serviceCategoriesDropDownForUpdateCtrl.updateSelectedById(packageObj.category_id);
+        }
+
+
+      },
+      controllerAs: 'updatePackageAdminCtrl'
+    }
+  })
+
+  .directive('updateTrimsAdmin', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/packages/update-trims-admin.html',
+      controller: function($scope,TrimsService, ImagesService) {
+
+
+
+      },
+      controllerAs: 'updateTrimsAdminCtrl'
     }
   })
 

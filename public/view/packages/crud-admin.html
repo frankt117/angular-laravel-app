@@ -7,7 +7,7 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <crud-admin-package-list-tile ng-show="packageCrudAdminCtrl.getCurrentView('MAIN')"></crud-admin-package-list-tile>
-        <crud-admin-package-edit ng-show="packageCrudAdminCtrl.getCurrentView('EDIT')"></crud-admin-package-edit>
+        <crud-admin-package-edit ng-if="packageCrudAdminCtrl.getCurrentView('EDIT')"></crud-admin-package-edit>
       </div>
 
     </div>

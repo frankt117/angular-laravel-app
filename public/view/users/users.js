@@ -61,6 +61,19 @@
           $scope.userDD.user_id = userId;
         };
 
+        this.updateSelectedName = function(userId) {
+          console.log('USERS =');
+          console.log(users.data);
+          users.user_id = userId;
+
+          for ( var i = 0; i < users.data.length; i++ ) {
+            if (users.data[i].user_id == userId) {
+              users.user_name = users.data[i].name;
+              return;
+            }
+          }
+        }
+
       },
       controllerAs: 'userDD'
     }

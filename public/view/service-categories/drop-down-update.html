@@ -1,0 +1,11 @@
+<div class="btn-group" dropdown is-open="serviceCategoriesDropDownForUpdateCtrl.status.isopen">
+  <button type="button" class="btn btn-default dropdown-toggle" ng-disabled="disabled">
+    {{serviceCategoriesDropDownForUpdateCtrl.selectedName}} <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li ng-repeat="category in serviceCategoriesDropDownForUpdateCtrl.categories">
+      <a href ng-click="serviceCategoriesDropDownForUpdateCtrl.changeSelected(category)">{{category.name}}</a>
+    </li>
+  </ul>
+</div>
+<input type="text" class="form-control" id="inputName" placeholder="" ng-model="serviceCategoriesDropDownForUpdateCtrl.selectedId">

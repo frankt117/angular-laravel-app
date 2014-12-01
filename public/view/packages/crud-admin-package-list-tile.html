@@ -1,28 +1,26 @@
-<div class="container">
-  <div class="row">
-    <br>
-  </div>
-  <div class="row">
-    <br>
-  </div>
-  <div class="row">
-    <br>
-  </div>
-  <div class="row">
-    <div class="col-md-10" ng-show="packageListAndDetailsAdminCtrl.getCurrentView('LIST')">
-      <service-categories-drop-down></service-categories-drop-down>
-      <markets-drop-down></markets-drop-down>
-    </div>
-
+<div class="row">
+  <br>
+</div>
+<div class="row">
+  <br>
+</div>
+<div class="row">
+  <br>
+</div>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1" ng-show="packageListAndDetailsAdminCtrl.getCurrentView('LIST')">
+    <service-categories-drop-down></service-categories-drop-down>
+    <markets-drop-down></markets-drop-down>
   </div>
 
-  <div class="row" ng-show="packageListAndDetailsAdminCtrl.getCurrentView('LIST')">
-    <br>
-  </div>
+</div>
 
-  <div class="row">
-    <div class="col-md-10">
-      <package-list-and-details-admin></package-list-and-details-admin>
-    </div>
+<div class="row" ng-show="packageListAndDetailsAdminCtrl.getCurrentView('LIST')">
+  <br>
+</div>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <package-list-and-details-admin></package-list-and-details-admin>
   </div>
 </div>

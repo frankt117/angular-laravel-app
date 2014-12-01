@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-12">
+    <ul class="nav nav-tabs nav-justified">
+      <li ng-class="{ active:updatePackageAdminCtrl.getCurrentView('DETAILS') }"><a href ng-click="updatePackageAdminCtrl.setCurrentView('DETAILS')">Details</a></li>
+      <li ng-class="{ active:updatePackageAdminCtrl.getCurrentView('IMAGES') }"><a href ng-click="updatePackageAdminCtrl.setCurrentView('IMAGES')">Images</a></li>
+      <li ng-class="{ active:updatePackageAdminCtrl.getCurrentView('TRIMS') }"><a href ng-click="updatePackageAdminCtrl.setCurrentView('TRIMS')">Trims</a></li>
+    </ul>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <package-details-admin ng-show="updatePackageAdminCtrl.getCurrentView('DETAILS')"></package-details-admin>
+        <update-trims-admin ng-show="updatePackageAdminCtrl.getCurrentView('TRIMS')"></update-trims-admin>
+      </div>
+
+    </div>
+
+
+  </div>
+
+</div>
