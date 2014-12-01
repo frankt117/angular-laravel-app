@@ -399,6 +399,14 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
           $scope.packageDetailsAdminCtrl.hydratePackage(packageObj);
           ImagesService.updateImageList(packageObj.id);
           $scope.serviceCategoriesDropDownForUpdateCtrl.updateSelectedById(packageObj.category_id);
+          ImagesService.getImagesByPackageId(packageObj.id)
+            .success(function(data, header) {
+              console.log("UPDATE PACKAGE LIST");
+              console.log(data);
+            })
+            .error(function(data, header) {
+
+            });
         }
 
 
