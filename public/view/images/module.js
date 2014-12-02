@@ -147,6 +147,46 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
     }
   })
 
+
+  .directive('imageListAndUploaderUpdate', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/images/list-and-uploader-update.html',
+      controller: function($scope, PackagesService, ImagesService) {
+        this.list = {};
+        this.listEmpty = true;
+
+        this.isListEmpty = function() {
+          if(this.listEmpty) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        ImagesService.imageUploaded = function(image) {
+          var sequence = $scope.imageEditTableCtrl.slidesEdit.length + 1;
+          var imageObj = {
+            "path" : "/images/upload/",
+            "title" : image.file.name,
+            "newTitle" : "",
+            "description" : "",
+            "sequence" : sequence
+          };
+
+
+          //$scope.imageCarouselUploadCtrl.slidesUploaded.push(imageObj);
+          $scope.imageEditTableCtrl.slidesEdit.push(imageObj);
+        };
+
+
+      },
+      controllerAs: 'imageListAndUploaderUpdateCtrl'
+    }
+  })
+
+
+
   .directive('imageUploader', function() {
     return {
       restrict: 'E',

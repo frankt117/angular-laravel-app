@@ -6,50 +6,50 @@
     <form class="form-horizontal" role="form" ng-submit="crudAdminPackageEdit.submit($event)">
       <div class="form-group">
         <label for="inputUserId" class="col-md-2 control-label">User Id</label>
-        <div class="col-md-8">
+        <div class="col-md-10">
           <user-drop-down-input></user-drop-down-input>
         </div>
       </div>
       <div class="form-group">
         <label for="inputCategoryId" class="col-md-2 control-label">Category Id</label>
-        <div class="col-md-8">
+        <div class="col-md-10">
           <service-categories-drop-down-for-insert></service-categories-drop-down-for-insert>
         </div>
       </div>
       <div class="form-group">
         <label for="inputCode" class="col-md-2 control-label">Code</label>
-        <div class="col-md-8">
+        <div class="col-md-10">
           <input type="text" class="form-control" id="inputCode"  ng-model="crudAdminPackageEdit.code">
         </div>
       </div>
       <div class="form-group">
         <label for="inputSequence" class="col-md-2 control-label">Sequence</label>
-        <div class="col-md-8">
+        <div class="col-md-10">
           <input type="text" class="form-control" id="inputSequence"  ng-model="crudAdminPackageEdit.sequence">
         </div>
       </div>
       <div class="form-group">
         <label for="inputName" class="col-md-2 control-label">Name</label>
-        <div class="col-md-8">
+        <div class="col-md-10">
           <input type="text" class="form-control" id="inputName" placeholder="Standard 20x20 - Home theater system" ng-model="crudAdminPackageEdit.name">
         </div>
       </div>
       <div class="form-group">
         <label for="inputSearchDescription" class="col-md-2 control-label">Summary</label>
-        <div class="col-md-8">
+        <div class="col-md-10">
           <textarea class="form-control" rows="4" maxlength="250" ng-model="crudAdminPackageEdit.summary"></textarea>
         </div>
       </div>
       <div class="form-group">
         <label for="inputDescription" class="col-md-2 control-label">Detailed Description</label>
-        <div class="col-md-8">
+        <div class="col-md-10">
           <text-angular ta-toolbar="[['h1','h2','h3', 'h4', 'h5', 'h6', 'p', 'pre', 'quote'],['bold','italics', 'underline', 'ul', 'ol'], ['undo', 'redo', 'clear'], ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent', 'html', 'insertLink']]" ng-model="inputDescription"></text-angular>
         </div>
       </div>
 
       <div class="form-group">
         <label for="inputEffectiveFrom" class="col-md-2 control-label">Effective From</label>
-        <div class="col-md-8">
+        <div class="col-md-10">
           <p class="input-group">
             <input type="text" class="form-control" datepicker-popup="{{crudAdminPackageEdit.format}}" ng-model="fromDate" is-open="openedFrom"  datepicker-options="crudAdminPackageEdit.fromDateOptions" ng-required="true" close-text="Close" />
               <span class="input-group-btn">
@@ -61,7 +61,7 @@
 
       <div class="form-group">
         <label for="inputEffectiveTo" class="col-md-2 control-label">Effective To</label>
-        <div class="col-md-8">
+        <div class="col-md-10">
           <p class="input-group">
             <input type="text" class="form-control" datepicker-popup="{{crudAdminPackageEdit.format}}" ng-model="toDate" is-open="openedTo"  datepicker-options="crudAdminPackageEdit.toDateOptions" close-text="Close" />
               <span class="input-group-btn">
@@ -73,7 +73,9 @@
 
       <div class="form-group">
         <label for="inputEffectiveTo" class="col-md-2 control-label">Images</label>
-        <image-list-and-uploader></image-list-and-uploader>
+        <div class="col-md-10">
+          <image-list-and-uploader></image-list-and-uploader>
+        </div>
       </div>
 
       <div class="form-group">

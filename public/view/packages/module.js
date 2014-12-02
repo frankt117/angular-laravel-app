@@ -394,6 +394,9 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
 
 
         this.updatePackage = function(packageObj) {
+          $scope.imageEditTableCtrl.slidesEdit = [];
+          //$scope.imageListAndUploaderCtrl.listEmpty = true;
+
           TrimsService.updateTrimTable(packageObj.id);
           //$scope.packageDetailsAdminCtrl.package = packageObj;
           $scope.packageDetailsAdminCtrl.hydratePackage(packageObj);
@@ -402,7 +405,26 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
           ImagesService.getImagesByPackageId(packageObj.id)
             .success(function(data, header) {
               console.log("UPDATE PACKAGE LIST");
-              console.log(data);
+
+              for ( var i = 0; i < data.length; i++ ) {
+                console.log(data[i].path.substring(0, 15));
+                console.log(data[i].path.substring(15));
+
+                var imageObj = {
+                  "path" : "/images/upload/",
+                  "title" : data[i].path.substring(15),
+                  "newTitle" : data[i].title,
+                  "description" : data[i].description,
+                  "sequence" : data[i].sequence,
+                  "fromDb" : true
+                };
+
+                $scope.imageEditTableCtrl.slidesEdit.push(imageObj);
+                //$scope.imageListAndUploaderCtrl.listEmpty = false;
+              }
+
+              console.log($scope.imageEditTableCtrl.slidesEdit);
+
             })
             .error(function(data, header) {
 

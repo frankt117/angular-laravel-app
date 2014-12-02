@@ -5,11 +5,11 @@
       <li ng-class="{ active:updatePackageAdminCtrl.getCurrentView('IMAGES') }"><a href ng-click="updatePackageAdminCtrl.setCurrentView('IMAGES')">Images</a></li>
       <li ng-class="{ active:updatePackageAdminCtrl.getCurrentView('TRIMS') }"><a href ng-click="updatePackageAdminCtrl.setCurrentView('TRIMS')">Trims</a></li>
     </ul>
-    <div class="panel panel-default">
+    <div class="panel panel-primary">
       <div class="panel-body">
         <package-details-admin ng-show="updatePackageAdminCtrl.getCurrentView('DETAILS')"></package-details-admin>
         <update-trims-admin ng-show="updatePackageAdminCtrl.getCurrentView('TRIMS')"></update-trims-admin>
-        <image-list-and-uploader class="col-md-offset-1" ng-show="updatePackageAdminCtrl.getCurrentView('IMAGES')"></image-list-and-uploader>
+        <image-list-and-uploader-update class="col-md-offset-1" ng-show="updatePackageAdminCtrl.getCurrentView('IMAGES')"></image-list-and-uploader-update>
       </div>
 
     </div>
