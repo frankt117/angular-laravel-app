@@ -53,20 +53,77 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
       controller: function($scope, PackagesService, ImagesService) {
         this.package = {};
 
+
+        this.fromDate = null;
+        this.toDate = null;
+        this.successAlert = false;
+
+        this.fromDateOptions = {
+          formatYear: 'yy',
+          startingDay: 1
+        };
+
+        this.toDateOptions = {
+          formatYear: 'yy',
+          startingDay: 1
+        };
+
+        this.openFrom = function($event) {
+          $event.preventDefault();
+          $event.stopPropagation();
+
+          $scope.packageDetailsAdminCtrl.openedFrom = true;
+        };
+
+        this.openTo = function($event) {
+          console.log($event);
+          $event.preventDefault();
+          $event.stopPropagation();
+
+          $scope.packageDetailsAdminCtrl.openedTo = true;
+        };
+
+        this.formats = ['dd-MMMM-yyyy', 'yyyy-MM-dd', 'dd.MM.yyyy', 'shortDate'];
+        this.format = this.formats[1];
+
+        this.clear = function () {
+          this.fromDate = null;
+        };
+
+
         this.hydratePackage = function(packageObj) {
           $scope.packageDetailsAdminCtrl.package = packageObj;
           console.log("HYDRATE");
           console.log($scope.packageDetailsAdminCtrl.package);
           $scope.inputDescription = packageObj.description;
-          $scope.fromDate = packageObj.effective_from;
+          this.fromDate = packageObj.effective_from;
 
           if (packageObj.effective_to != '0000-00-00') {
-            $scope.toDate = packageObj.effective_to;
+            this.toDate = packageObj.effective_to;
           }
 
 
           $scope.userDD.updateSelectedName(packageObj.user_id);
         }
+
+
+
+        this.submit = function (form, $window) {
+
+          this.package.effective_from = this.fromDate;
+          this.package.effective_to = this.toDate.getYear();
+          console.log("UPDATING PACKAGE");
+          console.log(this.package);
+
+          //var packageObj = {'user_id' : $scope.userDD.user_id, 'category_id' : $scope.serviceCategoriesDropDownForInsertCtrl.selectedId, 'code' : this.code, 'name' : this.name, 'summary' : this.summary, 'description' : $scope.inputDescription, 'effective_from' : $scope.fromDate, 'effective_to' : $scope.toDate, 'sequence' : this.sequence};
+
+//          PackagesService.createPackage(packageObj)
+//            .success(function(data, status, header, config) {
+//
+//            });
+
+        }
+
       },
       controllerAs: 'packageDetailsAdminCtrl'
     }
