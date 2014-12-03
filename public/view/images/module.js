@@ -171,7 +171,8 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
             "title" : image.file.name,
             "newTitle" : "",
             "description" : "",
-            "sequence" : sequence
+            "sequence" : sequence,
+            "new" : true
           };
 
 

@@ -92,14 +92,16 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
 
 
         this.hydratePackage = function(packageObj) {
+          this.toDate = null;
+          this.fromDate = null;
           $scope.packageDetailsAdminCtrl.package = packageObj;
           console.log("HYDRATE");
           console.log($scope.packageDetailsAdminCtrl.package);
           $scope.inputDescription = packageObj.description;
-          this.fromDate = new Date (packageObj.effective_from);
+          this.fromDate = packageObj.effective_from;
 
           if (packageObj.effective_to != '0000-00-00') {
-            this.toDate = new Date (packageObj.effective_to);
+            this.toDate = packageObj.effective_to;
           }
 
 
@@ -110,26 +112,35 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
 
         this.submit = function (form, $window) {
 
-          var newFromDate = new Date(this.fromDate);
-          this.package.effective_from = newFromDate.getFullYear()+'-'+(newFromDate.getMonth()+1)+'-'+newFromDate.getDate();
-          var newToDate = new Date(this.toDate);
-          this.package.effective_to = newToDate.getFullYear()+'-'+(newToDate.getMonth()+1)+'-'+newToDate.getDate();
-          //var month =  (this.fromDate.getMonth()+1);
-          //var day = this.fromDate.getDate();
-          //var newDate = year+'-'+month+'-'+day;
-          //console.log(newDate);
-//          this.package.effective_to = this.toDate.getFullYear()+'-'+this.toDate.getMonth()+'-'+this.toDate.getDate();
-          console.log("UPDATING PACKAGE");
-          console.log(this.package);
+          if (this.package.effective_from != this.fromDate) {
+            var newFromDate = new Date(this.fromDate);
+            this.package.effective_from = newFromDate.getFullYear()+'-'+(newFromDate.getMonth()+1)+'-'+newFromDate.getDate();
+          }
 
-          //var packageObj = {'user_id' : $scope.userDD.user_id, 'category_id' : $scope.serviceCategoriesDropDownForInsertCtrl.selectedId, 'code' : this.code, 'name' : this.name, 'summary' : this.summary, 'description' : $scope.inputDescription, 'effective_from' : $scope.fromDate, 'effective_to' : $scope.toDate, 'sequence' : this.sequence};
+          if (this.package.effective_to != this.toDate) {
+            var newToDate = new Date(this.toDate);
+            this.package.effective_to = newToDate.getFullYear()+'-'+(newToDate.getMonth()+1)+'-'+newToDate.getDate();
+          }
 
-//          PackagesService.createPackage(packageObj)
-//            .success(function(data, status, header, config) {
-//
-//            });
+
+          PackagesService.createPackage(this.package)
+            .success(function(data, status, header, config) {
+              console.log(data);
+              $scope.packageDetailsAdminCtrl.addAlert();
+            });
 
         }
+
+
+        this.alerts = [];
+
+        this.addAlert = function() {
+          $scope.packageDetailsAdminCtrl.alerts.push({type: 'success', msg: 'Success!  Package updated.'});
+        };
+
+        this.closeAlert = function(index) {
+          $scope.packageDetailsAdminCtrl.alerts.splice(index, 1);
+        };
 
       },
       controllerAs: 'packageDetailsAdminCtrl'
