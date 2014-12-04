@@ -92,6 +92,8 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
 
 
         this.hydratePackage = function(packageObj) {
+          this.toDate = null;
+          this.fromDate = null;
           $scope.packageDetailsAdminCtrl.package = packageObj;
           console.log("HYDRATE");
           console.log($scope.packageDetailsAdminCtrl.package);
@@ -110,19 +112,35 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
 
         this.submit = function (form, $window) {
 
-          this.package.effective_from = this.fromDate;
-          this.package.effective_to = this.toDate.getYear();
-          console.log("UPDATING PACKAGE");
-          console.log(this.package);
+          if (this.package.effective_from != this.fromDate) {
+            var newFromDate = new Date(this.fromDate);
+            this.package.effective_from = newFromDate.getFullYear()+'-'+(newFromDate.getMonth()+1)+'-'+newFromDate.getDate();
+          }
 
-          //var packageObj = {'user_id' : $scope.userDD.user_id, 'category_id' : $scope.serviceCategoriesDropDownForInsertCtrl.selectedId, 'code' : this.code, 'name' : this.name, 'summary' : this.summary, 'description' : $scope.inputDescription, 'effective_from' : $scope.fromDate, 'effective_to' : $scope.toDate, 'sequence' : this.sequence};
+          if (this.package.effective_to != this.toDate) {
+            var newToDate = new Date(this.toDate);
+            this.package.effective_to = newToDate.getFullYear()+'-'+(newToDate.getMonth()+1)+'-'+newToDate.getDate();
+          }
 
-//          PackagesService.createPackage(packageObj)
-//            .success(function(data, status, header, config) {
-//
-//            });
+
+          PackagesService.createPackage(this.package)
+            .success(function(data, status, header, config) {
+              console.log(data);
+              $scope.packageDetailsAdminCtrl.addAlert();
+            });
 
         }
+
+
+        this.alerts = [];
+
+        this.addAlert = function() {
+          $scope.packageDetailsAdminCtrl.alerts.push({type: 'success', msg: 'Success!  Package updated.'});
+        };
+
+        this.closeAlert = function(index) {
+          $scope.packageDetailsAdminCtrl.alerts.splice(index, 1);
+        };
 
       },
       controllerAs: 'packageDetailsAdminCtrl'
