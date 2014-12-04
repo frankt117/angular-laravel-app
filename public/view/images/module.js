@@ -92,6 +92,10 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
           }
         }
 
+        this.remove = function(image) {
+          ImagesService.deleteImageFromUpdateList(image);
+        }
+
       },
       controllerAs: 'imageEditTableCtrl'
     }

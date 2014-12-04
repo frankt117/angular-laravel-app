@@ -44,6 +44,7 @@ login.factory('ImagesService',function($http){
   service.updateImageList = function(packageId) {/* overridable action*/};
   service.imageUploaded = function(image) {/* overridable action*/};
   service.isImageListPopulated = function() {/* overridable action*/ return false;};
+  service.deleteImageFromUpdateList = function(packageId) {/* overridable action*/};
 
   return service;
 });
