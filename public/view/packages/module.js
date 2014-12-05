@@ -159,6 +159,7 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
           $scope.packageDetailsCtrl.package = packageObj;
           $scope.packageListAndDetailsCtrl._currentView = "PACKAGE";
           TrimsService.updateTrimTable(packageObj.id);
+          $scope.selectedPackage = packageObj;
         };
 
         this.updateCurrentView = function(viewNew) {
@@ -186,6 +187,7 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
 
           $scope.packageListAndDetailsAdminCtrl._currentView = "PACKAGE";
           $scope.updatePackageAdminCtrl.updatePackage(packageObj);
+          $scope.selectedPackage = packageObj;
 
         };
 

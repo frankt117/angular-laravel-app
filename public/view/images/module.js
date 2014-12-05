@@ -184,6 +184,12 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
           $scope.imageEditTableCtrl.slidesEdit.push(imageObj);
         };
 
+        ImagesService.deleteImageFromUpdateList = function(image) {
+          console.log("DELETING IMAGE NOW!!");
+          console.log(image);
+          console.log($scope.selectedPackage);
+        }
+
 
       },
       controllerAs: 'imageListAndUploaderUpdateCtrl'
