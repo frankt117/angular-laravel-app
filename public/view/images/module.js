@@ -93,7 +93,81 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
         }
 
         this.remove = function(image) {
-          ImagesService.deleteImageFromUpdateList(image);
+          ImagesService.deleteImageFromUpdateList(image)
+            .success(function(data, header) {
+              var temp = [];
+              var currentSequence = 1;
+
+              for (var i = 0; i < $scope.imageEditTableCtrl.slidesEdit.length; i++ ) {
+                if ( $scope.imageEditTableCtrl.slidesEdit[i].sequence != image.sequence ) {
+                  $scope.imageEditTableCtrl.slidesEdit[i].sequence = currentSequence;
+                  temp.push($scope.imageEditTableCtrl.slidesEdit[i]);
+                  currentSequence += 1;
+                }
+              }
+
+              $scope.imageEditTableCtrl.slidesEdit = temp;
+            });
+
+        }
+
+        this.findImagesInListBySequence = function(sequenceId) {
+          var images = [];
+
+          for (var i = 0; i < this.slidesEdit.length; i++ ) {
+            if ( this.slidesEdit[i].sequence == sequenceId ) {
+              images.push(this.slidesEdit[i]);
+            }
+          }
+
+          return images;
+        }
+
+        this.findLargestSequenceInList = function() {
+          var largest = 0;
+
+          for (var i = 0; i < this.slidesEdit.length; i++ ) {
+            if ( this.slidesEdit[i].sequence > largest ) {
+              largest = this.slidesEdit[i].sequence;
+            }
+          }
+
+          return largest;
+        }
+
+        this.sortImageList = function() {
+          console.log("SORTING : ");
+          console.log(this.slidesEdit);
+
+          var tempList = [];
+          var currentSequence = 1;
+          var largest = this.findLargestSequenceInList();
+          var size = this.slidesEdit.length;
+
+          if (largest > size) {
+            size = largest;
+          }
+
+          for ( var i = 0; i < size; i++ ) {
+            var images = this.findImagesInListBySequence(i+1);
+            console.log(i+" IMAGES =");
+            console.log(images);
+
+            if (images.length > 0) {
+              for (var x = 0; x < images.length; x++) {
+                var image = { "id" : images[x].id, "description" : images[x].description, "fromDb" : images[x].fromDb, "newTitle" : images[x].newTitle, "path" : images[x].path, "sequence" : images[x].sequence, "title" : images[x].title};
+                image.sequence = currentSequence;
+                //images[x].sequence = currentSequence;
+                tempList.push(image);
+                currentSequence += 1;
+              }
+            }
+          }
+
+          console.log("FINAL SORT:");
+          console.log(tempList);
+
+          $scope.imageEditTableCtrl.slidesEdit = tempList;
         }
 
       },
@@ -185,9 +259,43 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
         };
 
         ImagesService.deleteImageFromUpdateList = function(image) {
-          console.log("DELETING IMAGE NOW!!");
-          console.log(image);
-          console.log($scope.selectedPackage);
+          return ImagesService.deleteImage(image.id);
+        }
+
+        this.update = function() {
+          console.log("UPDATING IMAGES!!!!!!!!!!!!!!!");
+          console.log($scope.imageEditTableCtrl.slidesEdit);
+          var images = $scope.imageEditTableCtrl.slidesEdit;
+
+          var newFromDate = new Date();
+          var effectiveFrom = newFromDate.getFullYear()+'-'+(newFromDate.getMonth()+1)+'-'+newFromDate.getDate();
+
+          for ( var i = 0; i < images.length; i++ ) {
+            var pathURL = images[i].path+images[i].title;
+            var id = '';
+
+            if (images[i].id) {
+              id = images[i].id;
+            }
+
+            if (id == '') {
+              var imageObj = {'title' : images[i].newTitle, 'description' : images[i].description, 'path' : pathURL, 'package_id' : $scope.selectedPackage.id,
+                'sequence' : images[i].sequence, 'effective_from' :  effectiveFrom, 'effective_to' : ''};
+            } else {
+              var imageObj = {'title' : images[i].newTitle, 'description' : images[i].description, 'path' : pathURL, 'package_id' : $scope.selectedPackage.id,
+                'sequence' : images[i].sequence, 'effective_from' :  effectiveFrom, 'effective_to' : '', 'id' : id};
+            }
+
+            ImagesService.createImage(imageObj)
+              .success(function(data, header) {
+                console.log("IMAGE RECORD UPDATED")
+              })
+              .error(function(data, header) {
+                console.log("ERROR WITH IMAGE RECORD UPDATE");
+                console.log(data);
+              });
+          }
+
         }
 
 

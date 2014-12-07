@@ -493,14 +493,18 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
                   "newTitle" : data[i].title,
                   "description" : data[i].description,
                   "sequence" : data[i].sequence,
+                  "id" : data[i].id,
                   "fromDb" : true
                 };
 
                 $scope.imageEditTableCtrl.slidesEdit.push(imageObj);
+
                 //$scope.imageListAndUploaderCtrl.listEmpty = false;
               }
 
-              console.log($scope.imageEditTableCtrl.slidesEdit);
+              $scope.imageEditTableCtrl.sortImageList();
+
+              //console.log($scope.imageEditTableCtrl.slidesEdit);
 
             })
             .error(function(data, header) {

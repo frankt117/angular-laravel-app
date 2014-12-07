@@ -38,6 +38,13 @@ login.factory('ImagesService',function($http){
     return promise;
   };
 
+  service.deleteImage = function(imageId) {
+    var promise = $http({method:'DELETE',url:'index.php/api/v1/images/'+imageId})
+
+    return promise;
+  };
+
+
 
 
 

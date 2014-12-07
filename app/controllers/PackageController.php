@@ -48,7 +48,7 @@ class PackageController extends \BaseController {
   {
     $data = Input::all();
 
-    if ( $data['id'] ) {
+    if ( !empty($data['id']) ) {
       $package = Package::where('id', $data['id'])->first();
 
       if (!empty($package)) {
