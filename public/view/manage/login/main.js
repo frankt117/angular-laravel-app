@@ -8,12 +8,34 @@ angular.module( 'app.login', ['app.new-user'])
     $scope.showNewUserPanel = true;
     $scope.alert = false;
     $scope.newUserAlert = false;
+    $scope.loginAlerts = [];
 
     $scope.clickTest = function () {
       console.log("CLICKED");
     };
 
+
+
+    $scope.addLoginAlert = function(category) {
+      switch(category) {
+        case "LOGIN_FAIL" :
+          $scope.loginAlerts.push({type: 'danger', strong : 'Warning!  ', msg: 'That user and password combo is incorrect.'});
+          break;
+        case "NEW_USER_SUCCESS" :
+          $scope.loginAlerts.push({type: 'success', strong : 'Success!  ', msg: 'You are ready to login now.'});
+          break;
+        default :
+          break;
+
+      }
+    };
+
+    $scope.closeLoginAlert = function(index) {
+      $scope.loginAlerts.splice(index, 1);
+    };
+
     $scope.submit = function (form, $window) {
+      console.log("LOGIN FORM EXECUTED!!!");
       $scope.email = form.target[0].value;
       $scope.password = form.target[1].value;
 
@@ -52,12 +74,12 @@ angular.module( 'app.login', ['app.new-user'])
                 window.location = "#/index";
             }
           } else {
-            $scope.alert = true;
+            $scope.addLoginAlert('LOGIN_FAIL');
           }
 
         })
         .error(function(data, header) {
-          $scope.alert = true;
+          $scope.addLoginAlert('LOGIN_FAIL');
         });
 
 
@@ -69,7 +91,7 @@ angular.module( 'app.login', ['app.new-user'])
 
     $scope.selectPanel = function selectPanel(panel) {
      $scope.panelSelected = panel;
-     console.log($scope.panelSelected);
+     $scope.loginAlerts = [];
     }
 
     if ( sessionStorage.userCategory === 'ADMIN') {

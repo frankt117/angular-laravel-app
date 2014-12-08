@@ -33,7 +33,7 @@ class UserCustomerController extends \BaseController {
   {
     $data = Input::all();
 
-    $userData = array('email' => $data['email'], 'password' => $data['password'], 'category' => 'CUSTOMER', 'effective_from' => date('Y-m-d H:i:s'), 'effective_to' => '',
+    $userData = array('email' => $data['email'], 'password' => Hash::make($data['password']), 'category' => 'CUSTOMER', 'effective_from' => date('Y-m-d H:i:s'), 'effective_to' => '',
                   'created_by' => 0, 'updated_by' => 0);
 
     $user = User::create($userData);
