@@ -19,6 +19,7 @@ angular.module( 'app.new-user-customer', ['app.users-service'])
               $scope.addLoginAlert('NEW_USER_SUCCESS');
             })
             .error(function(data, header){
+              $scope.addCustomLoginAlert('ERROR', data);
             });
 
 

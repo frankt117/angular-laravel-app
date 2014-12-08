@@ -30,6 +30,17 @@ angular.module( 'app.login', ['app.new-user'])
       }
     };
 
+    $scope.addCustomLoginAlert = function(category, message) {
+      switch(category) {
+        case "ERROR" :
+          $scope.loginAlerts.push({type: 'danger', strong : 'Error!  ', msg: message});
+          break;
+        default :
+          break;
+
+      }
+    };
+
     $scope.closeLoginAlert = function(index) {
       $scope.loginAlerts.splice(index, 1);
     };
