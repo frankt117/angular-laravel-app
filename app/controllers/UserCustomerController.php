@@ -33,7 +33,13 @@ class UserCustomerController extends \BaseController {
   {
     $data = Input::all();
 
-    $userData = array('email' => $data['email'], 'password' => $data['password'], 'category' => 'CUSTOMER', 'effective_from' => date('Y-m-d H:i:s'), 'effective_to' => '',
+    $user = User::where('email', $data['email'])->first();
+
+    if (!empty($user->id)) {
+      return Response::make('An account for this email has already been created.', 409);
+    }
+
+    $userData = array('email' => $data['email'], 'password' => Hash::make($data['password']), 'category' => 'CUSTOMER', 'effective_from' => date('Y-m-d H:i:s'), 'effective_to' => '',
                   'created_by' => 0, 'updated_by' => 0);
 
     $user = User::create($userData);

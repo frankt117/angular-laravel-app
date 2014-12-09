@@ -1,6 +1,5 @@
 angular.module( 'app.landing-page', [
-    'ui.router',
-    'app.checkout'
+    'ui.router'
   ])
 
   .config(function config( $stateProvider ) {
@@ -15,28 +14,7 @@ angular.module( 'app.landing-page', [
     });
   })
 
-  .controller( 'LandingPageCtrl', function LandingPageCtrl( $scope, MarketsService, CategoriesService, PackagesService ) {
-
-    var _selectedMarket = {};
-    var _selectedCategory = {};
-    $scope._currentMainView = "PACKAGES";
-
-    MarketsService.newMarketSelected = function() {
-      _selectedMarket = MarketsService.getSelectedMarket();
-    };
-
-    CategoriesService.newCategorySelected = function() {
-      _selectedCategory = CategoriesService.getSelctedCategory();
-      PackagesService.updatePackageList(_selectedCategory);
-    };
-
-    $scope.updateMainCurrentView = function(viewNew) {
-      $scope._currentMainView = viewNew;
-    };
-
-    $scope.getMainCurrentView = function(view) {
-      return $scope._currentMainView == view;
-    };
+  .controller( 'LandingPageCtrl', function LandingPageCtrl( $scope ) {
 
 
 

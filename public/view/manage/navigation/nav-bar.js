@@ -16,6 +16,33 @@ angular.module( 'app.nav-bar', [])
     }
   })
 
+  .directive('navBarServiceProvider', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/manage/navigation/nav-bar-service-provider.html',
+      controller: function($scope) {
+
+        $scope.logOff = function() {
+          console.log('LOGGING OFF');
+          sessionStorage.clear();
+          location.reload();
+        };
+      },
+      controllerAs: 'navBarCtrl'
+    }
+  })
+
+  .directive('navBarLogin', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/manage/navigation/nav-bar-login.html',
+      controller: function($scope) {
+
+      },
+      controllerAs: 'navBarCtrl'
+    }
+  })
+
 
   .directive('navBar', function() {
     return {
@@ -25,6 +52,29 @@ angular.module( 'app.nav-bar', [])
 
       },
       controllerAs: 'navBarCtrl'
+    }
+  })
+
+  .directive('navBar2', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/manage/navigation/nav-bar-2.html',
+      controller: function($scope) {
+
+      },
+      controllerAs: 'navBar2Ctrl'
+    }
+  })
+
+
+  .directive('topNav', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/manage/navigation/top-nav.html',
+      controller: function($scope) {
+
+      },
+      controllerAs: 'topNavCtrl'
     }
   })
 ;

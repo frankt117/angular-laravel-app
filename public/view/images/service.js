@@ -38,12 +38,20 @@ login.factory('ImagesService',function($http){
     return promise;
   };
 
+  service.deleteImage = function(imageId) {
+    var promise = $http({method:'DELETE',url:'index.php/api/v1/images/'+imageId})
+
+    return promise;
+  };
+
+
 
 
 
   service.updateImageList = function(packageId) {/* overridable action*/};
   service.imageUploaded = function(image) {/* overridable action*/};
   service.isImageListPopulated = function() {/* overridable action*/ return false;};
+  service.deleteImageFromUpdateList = function(packageId) {/* overridable action*/};
 
   return service;
 });

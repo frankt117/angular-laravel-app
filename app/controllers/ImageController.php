@@ -52,9 +52,21 @@ class ImageController extends \BaseController {
   {
     $data = Input::all();
 
-    Image::create($data);
+    if ( !empty($data['id']) ) {
+      $image = Image::where('id', $data['id'])->first();
 
-    return Response::json(array('success' => true));
+      if (!empty($image)) {
+        $image->fill($data);
+        $image->save();
+      } else {
+        $image = "There was an issue please try again.";
+      }
+    } else {
+      $image = Image::create($data);
+    }
+
+
+    return $image;
   }
 
 

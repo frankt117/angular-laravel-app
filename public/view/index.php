@@ -15,6 +15,7 @@
   <script src='packages/bower_components/semantic/dist/components/checkbox.min.js'></script>
   <script src="packages/bower_components/angular-load/angular-load.js"></script>
   <script src="packages/bower_components/angular-payments/lib/angular-payments.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
 
 
   <script type="text/javascript" src="http://cdn.jsdelivr.net/restangular/latest/restangular.js"></script>
@@ -22,6 +23,7 @@
   <script type="text/javascript" src="view/app.js"></script>
   <script type="text/javascript" src="view/privileges/privileges-2.js"></script>
   <script type="text/javascript" src="view/landing/main.js"></script>
+  <script type="text/javascript" src="view/main/main.js"></script>
   <script type="text/javascript" src="view/negotiate/main.js"></script>
   <script type="text/javascript" src="view/manage/admin/main.js"></script>
   <script type="text/javascript" src="view/manage/service-provider/main.js"></script>
@@ -53,17 +55,29 @@
 
 
   <!--Bootstrap-->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="packages/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="packages/bootstrap/bootstrap.css">
   <script src="packages/bower_components/angular-bootstrap/ui-bootstrap.js"></script>
   <script src="packages/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 </head>
 
 <style>
   body{
-    background-color: #fcfcfc;
+    background-color: #f8f8f8;
+
+  }
+  .logo-bold {
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    color: #FFFFFF;
+  }
+  .logo-medium {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    color: #FFFFFF;
   }
 </style>
 
@@ -72,6 +86,8 @@
   <div ui-view="manage-main" ng-show="loggedIn"></div>
   <div ui-view="manage-login" ng-hide="loggedIn"></div>
   <div ui-view="landing-main"></div>
+  <div ui-view="main"></div>
+  <div ui-view="main-search-by-category"></div>
 </div>
 </body>
 </html>

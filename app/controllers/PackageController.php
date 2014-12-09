@@ -48,7 +48,20 @@ class PackageController extends \BaseController {
   {
     $data = Input::all();
 
-    $package = Package::create($data);
+    if ( !empty($data['id']) ) {
+      $package = Package::where('id', $data['id'])->first();
+
+      if (!empty($package)) {
+        $package->fill($data);
+        $package->save();
+      } else {
+        $package = "There was an issue please try again.";
+      }
+    } else {
+      $package = Package::create($data);
+    }
+
+
 
     return Response::json($package);
   }

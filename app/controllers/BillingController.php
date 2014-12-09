@@ -17,7 +17,7 @@ class BillingController extends BaseController
           "currency" => "usd",
           "card" => $token,
           "description" => "test",
-          "application_fee" => 123 // amount incents
+          "application_fee" => 12 // amount incents
         ),
         $tokens[0]->access_token // user's access token from the Stripe Connect flow
       );

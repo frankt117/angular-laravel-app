@@ -21,9 +21,17 @@ class ServiceCategoryController extends \BaseController {
 
       $response = $categories;
     } else {
-      $categories = ServiceCategory::get();
+      $wheres = json_decode(Input::get('where'));
 
-      $response = $categories;
+      if ($wheres) {
+        $categories = ServiceCategory::where('code', $wheres->code)->first();
+
+        $response = $categories;
+      } else {
+        $categories = ServiceCategory::get();
+
+        $response = $categories;
+      }
     }
 
 

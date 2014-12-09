@@ -51,6 +51,96 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
       restrict: 'E',
       templateUrl: 'view/packages/details-admin.html',
       controller: function($scope, PackagesService, ImagesService) {
+        this.package = {};
+
+
+        this.fromDate = null;
+        this.toDate = null;
+        this.successAlert = false;
+
+        this.fromDateOptions = {
+          formatYear: 'yy',
+          startingDay: 1
+        };
+
+        this.toDateOptions = {
+          formatYear: 'yy',
+          startingDay: 1
+        };
+
+        this.openFrom = function($event) {
+          $event.preventDefault();
+          $event.stopPropagation();
+
+          $scope.packageDetailsAdminCtrl.openedFrom = true;
+        };
+
+        this.openTo = function($event) {
+          console.log($event);
+          $event.preventDefault();
+          $event.stopPropagation();
+
+          $scope.packageDetailsAdminCtrl.openedTo = true;
+        };
+
+        this.formats = ['dd-MMMM-yyyy', 'yyyy-MM-dd', 'dd.MM.yyyy', 'shortDate'];
+        this.format = this.formats[1];
+
+        this.clear = function () {
+          this.fromDate = null;
+        };
+
+
+        this.hydratePackage = function(packageObj) {
+          this.toDate = null;
+          this.fromDate = null;
+          $scope.packageDetailsAdminCtrl.package = packageObj;
+          console.log("HYDRATE");
+          console.log($scope.packageDetailsAdminCtrl.package);
+          $scope.inputDescription = packageObj.description;
+          this.fromDate = packageObj.effective_from;
+
+          if (packageObj.effective_to != '0000-00-00') {
+            this.toDate = packageObj.effective_to;
+          }
+
+
+          $scope.userDD.updateSelectedName(packageObj.user_id);
+        }
+
+
+
+        this.submit = function (form, $window) {
+
+          if (this.package.effective_from != this.fromDate) {
+            var newFromDate = new Date(this.fromDate);
+            this.package.effective_from = newFromDate.getFullYear()+'-'+(newFromDate.getMonth()+1)+'-'+newFromDate.getDate();
+          }
+
+          if (this.package.effective_to != this.toDate) {
+            var newToDate = new Date(this.toDate);
+            this.package.effective_to = newToDate.getFullYear()+'-'+(newToDate.getMonth()+1)+'-'+newToDate.getDate();
+          }
+
+
+          PackagesService.createPackage(this.package)
+            .success(function(data, status, header, config) {
+              console.log(data);
+              $scope.packageDetailsAdminCtrl.addAlert();
+            });
+
+        }
+
+
+        this.alerts = [];
+
+        this.addAlert = function() {
+          $scope.packageDetailsAdminCtrl.alerts.push({type: 'success', msg: 'Success!  Package updated.'});
+        };
+
+        this.closeAlert = function(index) {
+          $scope.packageDetailsAdminCtrl.alerts.splice(index, 1);
+        };
 
       },
       controllerAs: 'packageDetailsAdminCtrl'
@@ -69,6 +159,7 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
           $scope.packageDetailsCtrl.package = packageObj;
           $scope.packageListAndDetailsCtrl._currentView = "PACKAGE";
           TrimsService.updateTrimTable(packageObj.id);
+          $scope.selectedPackage = packageObj;
         };
 
         this.updateCurrentView = function(viewNew) {
@@ -93,14 +184,15 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
         this._currentView = "LIST";
 
         PackagesService.packageClicked = function(packageObj) {
-          ImagesService.updateImageList(packageObj.id);
-          $scope.packageDetailsAdminCtrl.package = packageObj;
+
           $scope.packageListAndDetailsAdminCtrl._currentView = "PACKAGE";
-          TrimsService.updateTrimTable(packageObj.id);
+          $scope.updatePackageAdminCtrl.updatePackage(packageObj);
+          $scope.selectedPackage = packageObj;
+
         };
 
         this.updateCurrentView = function(viewNew) {
-          $scope.imageCarouselCtrl.show = false;
+          //$scope.imageCarouselCtrl.show = false;
           $scope.packageListAndDetailsAdminCtrl._currentView = viewNew;
         };
 
@@ -180,7 +272,12 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
       restrict: 'E',
       templateUrl: 'view/packages/crud-admin-package-edit-tile.html',
       controller: function($scope, PackagesService, CategoriesService, MarketsService, ImagesService) {
-
+        this.categoryId = '';
+        this.code = '';
+        this.name = '';
+        this.summary = '';
+        this.description = '';
+        this.sequence = '';
 
         $scope.fromDate = null;
         $scope.toDate = null;
@@ -220,12 +317,8 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
 
         this.submit = function (form, $window) {
 
-          console.log("SUBMITTING");
-          console.log(form);
+          var packageObj = {'user_id' : $scope.userDD.user_id, 'category_id' : $scope.serviceCategoriesDropDownForInsertCtrl.selectedId, 'code' : this.code, 'name' : this.name, 'summary' : this.summary, 'description' : $scope.inputDescription, 'effective_from' : $scope.fromDate, 'effective_to' : $scope.toDate, 'sequence' : this.sequence};
 
-          var packageObj = {'user_id' : form.target[1].value, 'category_id' : form.target[3].value, 'name' : form.target[4].value, 'summary' : form.target[5].value, 'description' : form.target[30].value, 'effective_from' : form.target[32].value, 'effective_to' : form.target[82].value, 'sequence' : 1};
-
-          console.log(packageObj);
           PackagesService.createPackage(packageObj)
             .success(function(data, status, header, config) {
               console.log('SUCCESS!!');
@@ -238,9 +331,7 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
 
                 var currentImage = $scope.imageEditTableCtrl.slidesEdit[i];
                 var pathURL = currentImage.path+currentImage.title;
-                console.log(currentImage);
                 var imageObj = {'title' : currentImage.newTitle, 'description' : currentImage.description, 'path' : pathURL, 'package_id' : data.id, 'sequence' : currentImage.sequence, 'effective_from' :  data.effective_from, 'effective_to' : data.effective_to};
-                console.log(imageObj);
                 ImagesService.createImage(imageObj)
                   .success(function(data, status, header, config) {
                     console.log("IMAGE CREATED");
@@ -249,6 +340,15 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
                     console.log("IMAGE FAILED");
                   });
               }
+
+              $scope.crudAdminPackageEdit.categoryId = '';
+              $scope.crudAdminPackageEdit.code = '';
+              $scope.crudAdminPackageEdit.name = '';
+              $scope.crudAdminPackageEdit.summary = '';
+              $scope.crudAdminPackageEdit.description = '';
+              $scope.crudAdminPackageEdit.sequence = '';
+              $scope.userDD.user_id = '';
+              $scope.$scope.serviceCategoriesDropDownForInsertCtrl.selectedId = '';
 
             })
             .error(function(data, status, header, config) {
@@ -348,6 +448,86 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
 
       },
       controllerAs: 'crudCustomerPackageEditCtrl'
+    }
+  })
+
+
+
+  .directive('updatePackageAdmin', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/packages/update-admin.html',
+      controller: function($scope, PackagesService, CategoriesService, MarketsService, TrimsService, ImagesService) {
+        this._currentUpdatePackageView = 'DETAILS';
+
+
+        this.getCurrentView = function(view) {
+          return this._currentUpdatePackageView == view;
+        };
+
+        this.setCurrentView = function(view) {
+          this._currentUpdatePackageView = view;
+        };
+
+
+        this.updatePackage = function(packageObj) {
+          $scope.imageEditTableCtrl.slidesEdit = [];
+          //$scope.imageListAndUploaderCtrl.listEmpty = true;
+
+          TrimsService.updateTrimTable(packageObj.id);
+          //$scope.packageDetailsAdminCtrl.package = packageObj;
+          $scope.packageDetailsAdminCtrl.hydratePackage(packageObj);
+          ImagesService.updateImageList(packageObj.id);
+          $scope.serviceCategoriesDropDownForUpdateCtrl.updateSelectedById(packageObj.category_id);
+          ImagesService.getImagesByPackageId(packageObj.id)
+            .success(function(data, header) {
+              console.log("UPDATE PACKAGE LIST");
+
+              for ( var i = 0; i < data.length; i++ ) {
+                console.log(data[i].path.substring(0, 15));
+                console.log(data[i].path.substring(15));
+
+                var imageObj = {
+                  "path" : "/images/upload/",
+                  "title" : data[i].path.substring(15),
+                  "newTitle" : data[i].title,
+                  "description" : data[i].description,
+                  "sequence" : data[i].sequence,
+                  "id" : data[i].id,
+                  "fromDb" : true
+                };
+
+                $scope.imageEditTableCtrl.slidesEdit.push(imageObj);
+
+                //$scope.imageListAndUploaderCtrl.listEmpty = false;
+              }
+
+              $scope.imageEditTableCtrl.sortImageList();
+
+              //console.log($scope.imageEditTableCtrl.slidesEdit);
+
+            })
+            .error(function(data, header) {
+
+            });
+        }
+
+
+      },
+      controllerAs: 'updatePackageAdminCtrl'
+    }
+  })
+
+  .directive('updateTrimsAdmin', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/packages/update-trims-admin.html',
+      controller: function($scope,TrimsService, ImagesService) {
+
+
+
+      },
+      controllerAs: 'updateTrimsAdminCtrl'
     }
   })
 

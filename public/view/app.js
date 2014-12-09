@@ -4,6 +4,7 @@ angular.module( 'app', [
     'app.manage-customer',
     'app.new-user',
     'app.landing-page',
+    'app.main',
     'app.negotiate-page',
     'ui.router',
     'ui.bootstrap',
