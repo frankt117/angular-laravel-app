@@ -18,5 +18,10 @@ login.factory('UsersService',function($http){
   };
 
 
+
+
+  service.userDropDownClickedAction = function (userId) {/* overridable action */};
+
+
   return service;
 });

@@ -1,4 +1,4 @@
-angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular'])
+angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'users', 'textAngular'])
 
   .directive('packagesList', function() {
     return {
@@ -10,7 +10,7 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
 
         console.log(this.packages);
 
-        PackagesService.updatePackageList = function(category, market) {
+        PackagesService.updatePackageList = function(category, userId) {
           var categoryObj = CategoriesService.getByCategoryName_Promise(category)
             .success(function(data) {
               PackagesService.getPackagesByCategory(data.id)
@@ -227,10 +227,11 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
     return {
       restrict: 'E',
       templateUrl: 'view/packages/crud-admin.html',
-      controller: function($scope, PackagesService, CategoriesService, MarketsService) {
+      controller: function($scope, PackagesService, CategoriesService, MarketsService, UsersService) {
 
         var _selectedMarket = {};
         var _selectedCategory = {};
+        var _selectedUserId = {};
         this._currentView = 'MAIN';
 
         MarketsService.newMarketSelected = function() {
@@ -241,6 +242,12 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
           _selectedCategory = CategoriesService.getSelctedCategory();
           PackagesService.updatePackageList(_selectedCategory);
         };
+
+        UsersService.userDropDownClickedAction = function(userId) {
+          _selectedUserId = userId;
+          console.log('GO MEAN GREEN!!! '+userId);
+          PackagesService.updatePackageList(_selectedCategory, userId);
+        }
 
         PackagesService.packageListClicked = function(packageObj) {
           console.log("IN CRUD CONTROLLER!!!");

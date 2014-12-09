@@ -1,12 +1,12 @@
 (function() {
-  var UserModule = angular.module('users', ['restangular']);
+  var UserModule = angular.module('users', ['restangular', 'app.users-service']);
 
 
   UserModule.directive('userDropDown', function() {
     return {
       restrict: 'E',
       templateUrl: 'view/users/users-drop-down-tile.html',
-      controller: function($scope, Restangular) {
+      controller: function($scope, Restangular, UsersService) {
         var users = this;
 
         users.user_name = "Select User";
@@ -24,12 +24,15 @@
 
         });
 
-        this.click = function (userId, userName) {
-          $scope.userDD.user_name = userId;
+        users.click = function (userId, userName) {
+          console.log("USER CLICKED!! YOLO");
+          $scope.userDropDownCtrl.user_name = userName;
+
+          UsersService.userDropDownClickedAction(userId);
         };
 
       },
-      controllerAs: 'userDD'
+      controllerAs: 'userDropDownCtrl'
     }
   });
 

@@ -34,6 +34,16 @@ login.factory('PackagesService',function($http, CategoriesService){
     return promise;
   };
 
+  service.getPackagesByCategoryAndUserId = function(category, userId) {
+    var options = {"where" : [
+      {"category_id" : category, "user_id" : userId}
+    ]
+    };
+    var promise = $http({method:'GET',url:'index.php/api/v1/packages', params:options});
+
+    return promise;
+  };
+
   service.getPackageById = function(packageId) {
     var promise = $http({method:'GET',url:'index.php/api/v1/packages/show'});
 
