@@ -11,17 +11,28 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
         console.log(this.packages);
 
         PackagesService.updatePackageList = function(category, userId) {
-          var categoryObj = CategoriesService.getByCategoryName_Promise(category)
-            .success(function(data) {
-              PackagesService.getPackagesByCategory(data.id)
-                .success(function(data) {
-                  console.log(data);
-                  $scope.packagesListCtrl.packages = data;
-                  PackagesService.setPackageList(data);
-                  console.log($scope);
+          if(userId) {
+            CategoriesService.getByCategoryName_Promise(category)
+              .success(function(data) {
+                PackagesService.getPackagesByCategoryAndUserId(data.id, userId)
+                  .success(function(data) {
+                    $scope.packagesListCtrl.packages = data;
+                    PackagesService.setPackageList(data);
 
-                })
-            });
+                  })
+              });
+          } else {
+            CategoriesService.getByCategoryName_Promise(category)
+              .success(function(data) {
+                PackagesService.getPackagesByCategory(data.id)
+                  .success(function(data) {
+                    $scope.packagesListCtrl.packages = data;
+                    PackagesService.setPackageList(data);
+
+                  })
+              });
+          }
+
         };
 
         this.clicked = function(packageObj) {
@@ -229,28 +240,26 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
       templateUrl: 'view/packages/crud-admin.html',
       controller: function($scope, PackagesService, CategoriesService, MarketsService, UsersService) {
 
-        var _selectedMarket = {};
-        var _selectedCategory = {};
-        var _selectedUserId = {};
+        this._selectedMarket = {};
+        this._selectedCategory = {};
+        this._selectedUserId = null;
         this._currentView = 'MAIN';
 
         MarketsService.newMarketSelected = function() {
-          _selectedMarket = MarketsService.getSelectedMarket();
+          this._selectedMarket = MarketsService.getSelectedMarket();
         };
 
         CategoriesService.newCategorySelected = function() {
-          _selectedCategory = CategoriesService.getSelctedCategory();
-          PackagesService.updatePackageList(_selectedCategory);
+          this._selectedCategory = CategoriesService.getSelctedCategory();
+          PackagesService.updatePackageList(this._selectedCategory, $scope.packageCrudAdminCtrl._selectedUserId);
         };
 
         UsersService.userDropDownClickedAction = function(userId) {
-          _selectedUserId = userId;
-          console.log('GO MEAN GREEN!!! '+userId);
-          PackagesService.updatePackageList(_selectedCategory, userId);
+          $scope.packageCrudAdminCtrl._selectedUserId = userId;
+          PackagesService.updatePackageList(CategoriesService.getSelctedCategory(), userId);
         }
 
         PackagesService.packageListClicked = function(packageObj) {
-          console.log("IN CRUD CONTROLLER!!!");
         };
 
         this.getCurrentView = function(view) {
