@@ -1,6 +1,6 @@
-var login = angular.module('app.packages-service',[]);
+var login = angular.module('app.packages-service',['app.images-service']);
 
-login.factory('PackagesService',function($http, CategoriesService){
+login.factory('PackagesService',function($http, CategoriesService, ImagesService){
 
   var service = {};
   var _packageList = {};
@@ -12,6 +12,39 @@ login.factory('PackagesService',function($http, CategoriesService){
   service.getPackageList = function() {
     return _packageList;
   };
+
+  service.setImagesForPackageListById = function(packageId, images) {
+    for (var i = 0; i < _packageList.length; i ++) {
+      if (_packageList[i].id == packageId) {
+        _packageList[i].images = images;
+      }
+    }
+  };
+
+  service.setPackageListImages = function() {
+    function setImages(packageId) {
+      var id = packageId;
+
+      ImagesService.getImagesByPackageId(_packageList[i].id)
+        .success(function(data, status) {
+          console.log("IMAGES =");
+          console.log(data);
+          console.log("PACKAGE ID =");
+          console.log(id);
+          service.setImagesForPackageListById(id, data);
+        })
+        .error(function(data, status) {
+
+        });
+    }
+
+    for (var i = 0; i < _packageList.length; i++) {
+      setImages(_packageList[i].id);
+    }
+
+    console.log("PACKAGERS WITH IMAGES =");
+    console.log(service.getPackageList());
+  }
 
   service.getAllPackages = function() {
     $http({method:'GET',url:'index.php/api/v1/packages'})

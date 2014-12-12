@@ -1,10 +1,10 @@
-angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'users', 'textAngular'])
+angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'users', 'textAngular', 'app.images-service'])
 
   .directive('packagesList', function() {
     return {
       restrict: 'E',
       templateUrl: 'view/packages/list.html',
-      controller: function($scope, PackagesService, CategoriesService) {
+      controller: function($scope, PackagesService, CategoriesService, ImagesService) {
 
         this.packages = PackagesService.getPackageList();
 
@@ -27,8 +27,11 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
                 PackagesService.getPackagesByCategory(data.id)
                   .success(function(data) {
                     $scope.packagesListCtrl.packages = data;
+                    console.log("PACKAGE LIST =");
+                    console.log(data);
                     PackagesService.setPackageList(data);
-
+                    PackagesService.setPackageListImages();
+                    console.log("PACKAGE LIST WITH IMAGES =");
                   })
               });
           }

@@ -5,6 +5,21 @@
       <h3 class="panel-title"><a href="" ng-click="packagesListCtrl.clicked(package)">{{package.name}}</a></h3>
     </div>
     <div class="panel-body">
-      {{package.summary | limitTo : 252}}<a href="" ng-click="packagesListCtrl.clicked(package)">...click for details.</a>
+      <div class="row">
+        <div class="col-md-11 col-md-offset-1">
+          {{package.summary | limitTo : 252}}
+        </div>
+      </div>
+      <div class="row"><br></div>
+      <div class="row">
+        <div class="col-md-4 col-md-offset-1">
+          <a href="" ng-click="packagesListCtrl.clicked(package)">
+            <button type="button" class="btn btn-default btn-small" ng-click="updateMainCurrentView('CHECKOUT')">
+              Details
+            </button>
+          </a>
+        </div>
+
+      </div>
     </div>
 </div>
