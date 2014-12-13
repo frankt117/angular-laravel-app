@@ -21,17 +21,21 @@ login.factory('PackagesService',function($http, CategoriesService, ImagesService
     }
   };
 
+  service.setHeadLineImageForPackageListById = function(packageId, images) {
+    for (var i = 0; i < _packageList.length; i ++) {
+      if (_packageList[i].id == packageId) {
+        _packageList[i].headImage = images[0];
+      }
+    }
+  };
+
   service.setPackageListImages = function() {
     function setImages(packageId) {
       var id = packageId;
 
       ImagesService.getImagesByPackageId(_packageList[i].id)
         .success(function(data, status) {
-          console.log("IMAGES =");
-          console.log(data);
-          console.log("PACKAGE ID =");
-          console.log(id);
-          service.setImagesForPackageListById(id, data);
+          service.setHeadLineImageForPackageListById(id, data);
         })
         .error(function(data, status) {
 
@@ -42,7 +46,7 @@ login.factory('PackagesService',function($http, CategoriesService, ImagesService
       setImages(_packageList[i].id);
     }
 
-    console.log("PACKAGERS WITH IMAGES =");
+    console.log("PACKAGE WITH IMAGES");
     console.log(service.getPackageList());
   }
 

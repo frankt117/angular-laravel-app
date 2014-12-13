@@ -19,7 +19,7 @@ class ImageController extends \BaseController {
 
     if ($wheres) {
 
-      $images = Image::where('package_id', $wheres->package_id)->get();
+      $images = Image::where('package_id', $wheres->package_id)->orderBy('sequence', 'ASC')->get();
 
       $response = $images;
     } else {
