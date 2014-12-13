@@ -1,6 +1,6 @@
-var login = angular.module('app.packages-service',['app.images-service']);
+var login = angular.module('app.packages-service',['app.images-service', 'app.trims-service']);
 
-login.factory('PackagesService',function($http, CategoriesService, ImagesService){
+login.factory('PackagesService',function($http, CategoriesService, ImagesService, TrimsService){
 
   var service = {};
   var _packageList = {};
@@ -33,7 +33,7 @@ login.factory('PackagesService',function($http, CategoriesService, ImagesService
     function setImages(packageId) {
       var id = packageId;
 
-      ImagesService.getImagesByPackageId(_packageList[i].id)
+      ImagesService.getImagesByPackageId(id)
         .success(function(data, status) {
           service.setHeadLineImageForPackageListById(id, data);
         })
@@ -47,6 +47,36 @@ login.factory('PackagesService',function($http, CategoriesService, ImagesService
     }
 
     console.log("PACKAGE WITH IMAGES");
+    console.log(service.getPackageList());
+  }
+
+  service.setHeadLineTrimForPackageListById = function(packageId, trims) {
+    for (var i = 0; i < _packageList.length; i ++) {
+      if (_packageList[i].id == packageId) {
+        _packageList[i].headTrim = trims[0];
+      }
+    }
+  };
+
+
+  service.setPackageListTrims = function() {
+    function setTrims(packageId) {
+      var id = packageId;
+
+      TrimsService.getAllByPackageId(id)
+        .success(function(data, status) {
+          service.setHeadLineTrimForPackageListById(id, data);
+        })
+        .error(function(data, status) {
+
+        });
+    }
+
+    for (var i = 0; i < _packageList.length; i++) {
+      setTrims(_packageList[i].id);
+    }
+
+    console.log("PACKAGE WITH TRIMS");
     console.log(service.getPackageList());
   }
 

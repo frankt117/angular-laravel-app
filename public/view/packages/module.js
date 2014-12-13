@@ -27,11 +27,9 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
                 PackagesService.getPackagesByCategory(data.id)
                   .success(function(data) {
                     $scope.packagesListCtrl.packages = data;
-                    console.log("PACKAGE LIST =");
-                    console.log(data);
                     PackagesService.setPackageList(data);
                     PackagesService.setPackageListImages();
-                    console.log("PACKAGE LIST WITH IMAGES =");
+                    PackagesService.setPackageListTrims();
                   })
               });
           }
