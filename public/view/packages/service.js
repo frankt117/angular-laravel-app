@@ -127,7 +127,7 @@ login.factory('PackagesService',function($http, CategoriesService, ImagesService
 
 
 
-  service.updatePackageList = function(category, market) {/* overridable action*/};
+  service.updatePackageList = function(category, market) {/* overridable action*/ console.log("DEFAULT LOGIC CALLED")};
   service.packageClicked = function(packageObj) {/*overridable action*/};
 
   return service;
