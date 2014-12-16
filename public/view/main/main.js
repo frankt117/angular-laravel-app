@@ -29,6 +29,18 @@ angular.module( 'app.main', [
     });
   })
 
+  .config(function config( $stateProvider ) {
+    $stateProvider.state( 'info', {
+      url: '/app/info/:category',
+      views: {
+        "landing-main": {
+          controller: 'InfoCtrl',
+          templateUrl: 'view/info/main.html'
+        }
+      }
+    });
+  })
+
 
 
   .controller( 'MainCtrl', function MainCtrl( $scope, MarketsService, CategoriesService, PackagesService ) {
@@ -116,6 +128,17 @@ angular.module( 'app.main', [
       .error(function(data, header) {
         console.log("FAILED GETTING CATS");
       });
+
+  })
+
+
+  .controller( 'InfoCtrl', function InfoCtrl( $scope, $stateParams ) {
+    $scope._currentInfoView = "DEFAULT";
+    $scope._currentInfoView = $stateParams['category'];
+
+    $scope.getInfoView = function(view) {
+      return $scope._currentInfoView == view;
+    };
 
   })
 
