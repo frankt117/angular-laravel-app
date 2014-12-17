@@ -1445,6 +1445,9 @@ body {
 .nav .about {
     margin-left: 43px;
 }
+.nav .about a {
+    color: #ffffff;
+}
 .nav .services {
     margin-left: -29px;
 }
@@ -1916,6 +1919,9 @@ body {
     position: relative;
     top: 28px;
     cursor: pointer;
+}
+.footer .footerLinks a {
+    color: #54849c;
 }
 .footer .footerLinks div {
     display: inline-block;
