@@ -12,6 +12,17 @@ angular.module( 'app.info', [])
     }
   })
 
+  .directive('faq', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/info/faq.html',
+      controller: function($scope) {
+
+      },
+      controllerAs: 'faqCtrl'
+    }
+  })
+
 
 
 
