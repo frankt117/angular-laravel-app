@@ -23,6 +23,17 @@ angular.module( 'app.info', [])
     }
   })
 
+  .directive('privacyPolicy', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/info/privacy-policy.html',
+      controller: function($scope) {
+
+      },
+      controllerAs: 'privacyPolicyCtrl'
+    }
+  })
+
 
 
 
