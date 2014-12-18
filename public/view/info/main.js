@@ -34,6 +34,17 @@ angular.module( 'app.info', [])
     }
   })
 
+  .directive('termsOfService', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/info/terms-of-service.html',
+      controller: function($scope) {
+
+      },
+      controllerAs: 'termsOfServiceCtrl'
+    }
+  })
+
 
 
 
