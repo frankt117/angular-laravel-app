@@ -18,7 +18,7 @@ class CreatePackagesTable extends Migration {
       $table->integer('user_id')->unsigned();
       $table->integer('category_id')->unsigned();
       $table->char('code', 8);
-      $table->char('name', 60);
+      $table->char('name', 100);
       $table->text('summary');
       $table->text('description');
       $table->integer('sequence');
