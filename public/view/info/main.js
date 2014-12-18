@@ -45,6 +45,17 @@ angular.module( 'app.info', [])
     }
   })
 
+  .directive('contactUs', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/info/contact-us.html',
+      controller: function($scope) {
+
+      },
+      controllerAs: 'contactUsCtrl'
+    }
+  })
+
 
 
 
