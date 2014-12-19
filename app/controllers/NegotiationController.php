@@ -44,7 +44,23 @@ class NegotiationController extends \BaseController {
    */
   public function store()
   {
-    return Response::json(array('success' => true));
+    $data = Input::all();
+
+    $trim = Trim::where('id', $data['trim_id'])->first();
+    $user = User::where('id', $trim->user_id)->first();
+
+    $data['code'] = 'TEST';
+    $data['sequence'] = 1;
+    $data['type'] = 'I';
+    $data['to_company_id'] = $trim->user_id;
+    $data['to_company_id'] = '';
+    $data['target_to_email_id'] = $user->email;
+    $data['mail_subject'] = 'GETMPRO.COM - CUSTOMER NEGOTIATION';
+
+
+    $negotiation = Negotiation::create($data);
+
+    return $negotiation;
   }
 
 

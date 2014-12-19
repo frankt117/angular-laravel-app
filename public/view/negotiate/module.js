@@ -10,11 +10,6 @@ angular.module( 'app.negotiation', ['app.negotiations-service'])
         this.customerEmailAddress = '';
 
         this.submit = function() {
-          console.log("NEGOTIATION INITIATED!!");
-          console.log(this.comment);
-          console.log($scope.negotiateTrimDropDownCtrl.selectedTrimId);
-          console.log(this.customerEmailAddress);
-
           var obj = {'trim_id' : $scope.negotiateTrimDropDownCtrl.selectedTrimId, 'respond_to_email_id' : this.customerEmailAddress, 'mail_text' : this.comment};
 
           NegotiationsService.createNegotiation(obj)
@@ -22,7 +17,6 @@ angular.module( 'app.negotiation', ['app.negotiations-service'])
               console.log(data);
             })
             .error(function(data, header) {
-              console.log('EFFFFEDDDD');
             });
         };
 
