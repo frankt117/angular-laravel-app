@@ -18,7 +18,7 @@
 
     <form class="form-horizontal" role="form" ng-submit="">
       <div class="col-md-12">
-        <text-angular ta-toolbar="[['bold','italics', 'underline', 'h2','h3', 'h4', 'p', 'pre', 'ul', 'ol', 'undo', 'redo', 'clear', 'justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent', 'html', 'insertLink']]" ng-model="inputDescription"></text-angular>
+        <text-angular ng-model="initiateNegotiationCtrl.comment" ta-toolbar="[['bold','italics', 'underline', 'h2','h3', 'h4', 'p', 'pre', 'ul', 'ol', 'undo', 'redo', 'clear', 'justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent', 'html', 'insertLink']]" ng-model="inputDescription"></text-angular>
       </div>
     </form>
 
@@ -60,7 +60,7 @@
         Email address
       </div>
       <div class="col-md-6">
-        <input type="email" class="form-control" id="inputEmail" placeholder="john@doe.com">
+        <input ng-model="initiateNegotiationCtrl.customerEmailAddress" type="email" class="form-control" id="inputEmail" placeholder="john@doe.com">
       </div>
     </div>
 
@@ -69,7 +69,7 @@
 
     <div class="row">
       <div class="col-md-10">
-        <button type="" class="btn btn-success" ng-click="updateMainCurrentView('PACKAGES')">Initiate Negotiation</button>
+        <button type="" class="btn btn-success" ng-click="initiateNegotiationCtrl.submit()">Initiate Negotiation</button>
       </div>
     </div>
 

@@ -17,6 +17,12 @@ login.factory('NegotiationsService',function($http){
     return promise;
   };
 
+  service.createNegotiation = function(negotiationObj) {
+    var promise = $http({method:'POST',url:'index.php/api/v1/negotiations',params:negotiationObj});
+
+    return promise;
+  };
+
 
   return service;
 });

@@ -44,7 +44,7 @@ class NegotiationController extends \BaseController {
    */
   public function store()
   {
-
+    return Response::json(array('success' => true));
   }
 
 
