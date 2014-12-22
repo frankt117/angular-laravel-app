@@ -15,6 +15,7 @@ class CreateNegotiationsTable extends Migration {
 		Schema::create('negotiations', function(Blueprint $table)
 		{
 			$table->increments('id');
+      $table->integer('initial_id');
       $table->char('code', 30);
       $table->integer('sequence');
       $table->char('type', 1);
@@ -25,8 +26,10 @@ class CreateNegotiationsTable extends Migration {
       $table->integer('sample_package_id');
       $table->char('respond_to_email_id');
       $table->char('target_to_email_id');
+      $table->char('respond_to_phone_number', 15);
       $table->text('mail_text');
       $table->string('mail_subject');
+      $table->float('proposed_price');
       $table->boolean('responded_flag');
       $table->integer('created_by');
       $table->integer('updated_by');

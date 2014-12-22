@@ -8,16 +8,24 @@ angular.module( 'app.negotiation', ['app.negotiations-service'])
         this.package = $scope.packageDetailsCtrl.package;
         this.comment = '';
         this.customerEmailAddress = '';
+        this.customerPhoneNumber = '';
+        this.successAlert = false;
 
         this.submit = function() {
-          var obj = {'trim_id' : $scope.negotiateTrimDropDownCtrl.selectedTrimId, 'respond_to_email_id' : this.customerEmailAddress, 'mail_text' : this.comment};
+          for (var i = 0; i < $scope.companiesNegotiateTableCtrl.companies.length; i++ ) {
+            var obj = {'trim_id' : $scope.companiesNegotiateTableCtrl.companies[i].id, 'respond_to_email_id' : this.customerEmailAddress, 'respond_to_phone_number' : this.customerPhoneNumber, 'mail_text' : this.comment};
 
-          NegotiationsService.createNegotiation(obj)
-            .success(function(data, header) {
-              console.log(data);
-            })
-            .error(function(data, header) {
-            });
+            NegotiationsService.createNegotiation(obj)
+              .success(function(data, header) {
+                console.log(data);
+                $scope.initiateNegotiationCtrl.successAlert = true;
+              })
+              .error(function(data, header) {
+              });
+
+          }
+
+
         };
 
 
