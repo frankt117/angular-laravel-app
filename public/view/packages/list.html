@@ -1,10 +1,42 @@
 <div class="panel panel-primary" ng-repeat="package in packagesListCtrl.packages">
 
-
   <div class="panel-heading">
-      <h3 class="panel-title"><a href="" ng-click="packagesListCtrl.clicked(package)">{{package.name}}</a></h3>
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="panel-title"><a href="" ng-click="packagesListCtrl.clicked(package)">{{package.name}}</a></h3>
+      </div>
+
+
+
+      <div class="col-sm-6">
+        <h6 class="panel-title text-right">Starting at </h6>
+        <h4 class="panel-title text-right"><em>{{package.headTrim.price | currency }}</em></h4>
+      </div>
     </div>
-    <div class="panel-body">
-      {{package.summary | limitTo : 252}}<a href="" ng-click="packagesListCtrl.clicked(package)">...click for details.</a>
+
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-2" ng-if="package.headImage">
+        <a ng-click="packagesListCtrl.clicked(package)" class="thumbnail">
+          <img ng-src="{{package.headImage.path}}">
+        </a>
+      </div>
+      <div class="col-md-10">
+        {{package.summary | limitTo : 252}}
+        <div class="row"><br></div>
+        <div class="row">
+          <div class="col-md-10">
+            <a href="" ng-click="packagesListCtrl.clicked(package)">
+              <button type="button" class="btn btn-default btn-small" ng-click="packagesListCtrl.clicked(package)">
+                Details
+              </button>
+            </a>
+          </div>
+
+        </div>
+      </div>
     </div>
+
+  </div>
 </div>

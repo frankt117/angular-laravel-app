@@ -17,7 +17,8 @@ angular.module( 'app', [
     'app.packages',
     'app.trims',
     'app.companies',
-    'app.negotiation'
+    'app.negotiation',
+    'app.info'
 
   ])
 

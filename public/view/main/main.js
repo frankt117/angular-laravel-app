@@ -1,6 +1,8 @@
 angular.module( 'app.main', [
     'ui.router',
-    'app.checkout'
+    'app.checkout',
+    'app.service-categories-services',
+    'app.packages-service'
   ])
 
   .config(function config( $stateProvider ) {
@@ -22,6 +24,18 @@ angular.module( 'app.main', [
         "landing-main": {
           controller: 'MainSearchByCategoryCtrl',
           templateUrl: 'view/main/main.html'
+        }
+      }
+    });
+  })
+
+  .config(function config( $stateProvider ) {
+    $stateProvider.state( 'info', {
+      url: '/app/info/:category',
+      views: {
+        "landing-main": {
+          controller: 'InfoCtrl',
+          templateUrl: 'view/info/main.html'
         }
       }
     });
@@ -60,6 +74,34 @@ angular.module( 'app.main', [
     var _selectedCategory = {};
     $scope._currentMainView = "PACKAGES";
 
+    PackagesService.updatePackageList = function(category, userId) {
+      console.log("MAIN CONTROLLER LOGIC CALLED");
+      if(userId) {
+        CategoriesService.getByCategoryName_Promise(category)
+          .success(function(data) {
+            PackagesService.getPackagesByCategoryAndUserId(data.id, userId)
+              .success(function(data) {
+                $scope.packagesListCtrl.packages = data;
+                PackagesService.setPackageList(data);
+
+              })
+          });
+      } else {
+        CategoriesService.getByCategoryName_Promise(category)
+          .success(function(data) {
+            PackagesService.getPackagesByCategory(data.id)
+              .success(function(data) {
+                $scope.packagesListCtrl.packages = data;
+                PackagesService.setPackageList(data);
+                PackagesService.setPackageListImages();
+                PackagesService.setPackageListTrims();
+              })
+          });
+      }
+
+    };
+
+
     MarketsService.newMarketSelected = function() {
       _selectedMarket = MarketsService.getSelectedMarket();
     };
@@ -86,6 +128,17 @@ angular.module( 'app.main', [
       .error(function(data, header) {
         console.log("FAILED GETTING CATS");
       });
+
+  })
+
+
+  .controller( 'InfoCtrl', function InfoCtrl( $scope, $stateParams ) {
+    $scope._currentInfoView = "DEFAULT";
+    $scope._currentInfoView = $stateParams['category'];
+
+    $scope.getInfoView = function(view) {
+      return $scope._currentInfoView == view;
+    };
 
   })
 

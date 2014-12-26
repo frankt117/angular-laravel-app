@@ -65,6 +65,9 @@ Route::group(array('prefix' => 'api/v1'), function() {
   Route::resource('companies', 'CompanyController',
     array('only' => array('index', 'show', 'store', 'destroy'))
   );
+  Route::resource('negotiations', 'NegotiationController',
+    array('only' => array('index', 'show', 'store', 'destroy'))
+  );
   Route::post('login/auth','AuthController@login');
   Route::get('login/destroy','AuthController@logout');
   Route::get('login/get-logged-in','AuthController@getLoggedIn');

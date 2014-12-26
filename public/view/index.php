@@ -52,6 +52,7 @@
   <script type="text/javascript" src="view/users/service.js"></script>
   <script type="text/javascript" src="view/oauth/service.js"></script>
   <script type="text/javascript" src="view/checkout/module.js"></script>
+  <script type="text/javascript" src="view/info/main.js"></script>
 
 
   <!--Bootstrap-->
@@ -88,6 +89,7 @@
   <div ui-view="landing-main"></div>
   <div ui-view="main"></div>
   <div ui-view="main-search-by-category"></div>
+  <div ui-view="info"></div>
 </div>
 </body>
 </html>

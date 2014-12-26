@@ -1,27 +1,39 @@
-angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular'])
+angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'users', 'textAngular', 'app.images-service'])
 
   .directive('packagesList', function() {
     return {
       restrict: 'E',
       templateUrl: 'view/packages/list.html',
-      controller: function($scope, PackagesService, CategoriesService) {
+      controller: function($scope, PackagesService, CategoriesService, ImagesService) {
 
         this.packages = PackagesService.getPackageList();
 
         console.log(this.packages);
 
-        PackagesService.updatePackageList = function(category, market) {
-          var categoryObj = CategoriesService.getByCategoryName_Promise(category)
-            .success(function(data) {
-              PackagesService.getPackagesByCategory(data.id)
-                .success(function(data) {
-                  console.log(data);
-                  $scope.packagesListCtrl.packages = data;
-                  PackagesService.setPackageList(data);
-                  console.log($scope);
+        PackagesService.updatePackageList = function(category, userId) {
+          if(userId) {
+            CategoriesService.getByCategoryName_Promise(category)
+              .success(function(data) {
+                PackagesService.getPackagesByCategoryAndUserId(data.id, userId)
+                  .success(function(data) {
+                    $scope.packagesListCtrl.packages = data;
+                    PackagesService.setPackageList(data);
 
-                })
-            });
+                  })
+              });
+          } else {
+            CategoriesService.getByCategoryName_Promise(category)
+              .success(function(data) {
+                PackagesService.getPackagesByCategory(data.id)
+                  .success(function(data) {
+                    $scope.packagesListCtrl.packages = data;
+                    PackagesService.setPackageList(data);
+                    PackagesService.setPackageListImages();
+                    PackagesService.setPackageListTrims();
+                  })
+              });
+          }
+
         };
 
         this.clicked = function(packageObj) {
@@ -227,23 +239,28 @@ angular.module( 'app.packages', ['app.packages-service', 'users', 'textAngular']
     return {
       restrict: 'E',
       templateUrl: 'view/packages/crud-admin.html',
-      controller: function($scope, PackagesService, CategoriesService, MarketsService) {
+      controller: function($scope, PackagesService, CategoriesService, MarketsService, UsersService) {
 
-        var _selectedMarket = {};
-        var _selectedCategory = {};
+        this._selectedMarket = {};
+        this._selectedCategory = {};
+        this._selectedUserId = null;
         this._currentView = 'MAIN';
 
         MarketsService.newMarketSelected = function() {
-          _selectedMarket = MarketsService.getSelectedMarket();
+          this._selectedMarket = MarketsService.getSelectedMarket();
         };
 
         CategoriesService.newCategorySelected = function() {
-          _selectedCategory = CategoriesService.getSelctedCategory();
-          PackagesService.updatePackageList(_selectedCategory);
+          this._selectedCategory = CategoriesService.getSelctedCategory();
+          PackagesService.updatePackageList(this._selectedCategory, $scope.packageCrudAdminCtrl._selectedUserId);
         };
 
+        UsersService.userDropDownClickedAction = function(userId) {
+          $scope.packageCrudAdminCtrl._selectedUserId = userId;
+          PackagesService.updatePackageList(CategoriesService.getSelctedCategory(), userId);
+        }
+
         PackagesService.packageListClicked = function(packageObj) {
-          console.log("IN CRUD CONTROLLER!!!");
         };
 
         this.getCurrentView = function(view) {

@@ -17,6 +17,22 @@ login.factory('NegotiationsService',function($http){
     return promise;
   };
 
+  service.createNegotiation = function(negotiationObj) {
+    var promise = $http({method:'POST',url:'index.php/api/v1/negotiations',params:negotiationObj});
+
+    return promise;
+  };
+
+  service.getNegotiationsByInitialId = function(initialId) {
+    var options = {"where" : [
+      {"initial_id" : initialId}
+    ]
+    };
+    var promise = $http({method:'GET',url:'index.php/api/v1/negotiations', params:options});
+
+    return promise;
+  };
+
 
   return service;
 });

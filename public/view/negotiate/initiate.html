@@ -3,6 +3,7 @@
     <h3 class="panel-title">Negotiate : {{initiateNegotiationCtrl.package.name}}</h3>
   </div>
   <div class="panel-body">
+    <div class="alert alert-success" role="alert" ng-show="initiateNegotiationCtrl.successAlert"><strong>Success!     </strong>  Your negotiation has been sent to the service provider.</div>
     <companies-negotiate-table></companies-negotiate-table>
 
     <div class="row"><br></div>
@@ -18,7 +19,7 @@
 
     <form class="form-horizontal" role="form" ng-submit="">
       <div class="col-md-12">
-        <text-angular ta-toolbar="[['bold','italics', 'underline', 'h2','h3', 'h4', 'p', 'pre', 'ul', 'ol', 'undo', 'redo', 'clear', 'justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent', 'html', 'insertLink']]" ng-model="inputDescription"></text-angular>
+        <text-angular ng-model="initiateNegotiationCtrl.comment" ta-toolbar="[['bold','italics', 'underline', 'h2','h3', 'h4', 'p', 'pre', 'ul', 'ol', 'undo', 'redo', 'clear', 'justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent', 'html', 'insertLink']]" ng-model="inputDescription"></text-angular>
       </div>
     </form>
 
@@ -27,40 +28,51 @@
     <div class="row"><br></div>
     <div class="row"><br></div>
 
-    <div class="row">
-      <div class="col-md-3">
-        Select My Requirement Package
-      </div>
+    <!--<div class="row">-->
+      <!--<div class="col-md-3">-->
+        <!--Select My Requirement Package-->
+      <!--</div>-->
 
-      <div class="col-md-2">
-        <negotiate-trim-drop-down></negotiate-trim-drop-down>
-      </div>
+      <!--<div class="col-md-2">-->
+        <!--<negotiate-trim-drop-down></negotiate-trim-drop-down>-->
+      <!--</div>-->
 
-      <div class="col-md-1">
-        OR
-      </div>
+      <!--<div class="col-md-1">-->
+        <!--OR-->
+      <!--</div>-->
 
-      <div class="col-md-2">
-        <button type="" class="btn btn-default" ng-click="updateMainCurrentView('CUSTOMER_PACKAGE_EDIT')">Create My Package</button>
-      </div>
-    </div>
+      <!--<div class="col-md-2">-->
+        <!--<button type="" class="btn btn-default" ng-click="updateMainCurrentView('CUSTOMER_PACKAGE_EDIT')">Create My Package</button>-->
+      <!--</div>-->
+    <!--</div>-->
 
-    <div class="row"><br></div>
+    <!--<div class="row"><br></div>-->
 
-    <div class="row">
-      <div class="col-md-10">
-        Note: You can create your requirement own package and select it in the list above by pressing Create My Package.
-      </div>
-    </div>
+    <!--<div class="row">-->
+      <!--<div class="col-md-10">-->
+        <!--Note: You can create your requirement own package and select it in the list above by pressing Create My Package.-->
+      <!--</div>-->
+    <!--</div>-->
 
-    <div class="row"><br></div>
+    <!--<div class="row"><br></div>-->
 
     <div class="row">
       <div class="col-md-2">
         Email address
       </div>
       <div class="col-md-6">
-        <input type="email" class="form-control" id="inputEmail" placeholder="john@doe.com">
+        <input ng-model="initiateNegotiationCtrl.customerEmailAddress" type="email" class="form-control" id="inputEmail" placeholder="john@doe.com">
+      </div>
+    </div>
+
+    <div class="row"><br></div>
+
+    <div class="row">
+      <div class="col-md-2">
+        Phone Number
+      </div>
+      <div class="col-md-6">
+        <input ng-model="initiateNegotiationCtrl.customerPhoneNumber" class="form-control" id="inputPhone" placeholder="2144451117">
       </div>
     </div>
 
@@ -69,7 +81,7 @@
 
     <div class="row">
       <div class="col-md-10">
-        <button type="" class="btn btn-success" ng-click="updateMainCurrentView('PACKAGES')">Initiate Negotiation</button>
+        <button type="" class="btn btn-success" ng-click="initiateNegotiationCtrl.submit()">Initiate Negotiation</button>
       </div>
     </div>
 

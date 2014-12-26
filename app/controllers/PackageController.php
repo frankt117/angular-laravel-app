@@ -13,7 +13,12 @@ class PackageController extends \BaseController {
 
     if ($wheres) {
 
-      $packages = Package::where('category_id', $wheres->category_id)->get();
+      if(!empty($wheres->category_id) && !empty($wheres->user_id)) {
+        $packages = Package::where('category_id', $wheres->category_id)->where('user_id', $wheres->user_id)->get();
+      } else {
+        $packages = Package::where('category_id', $wheres->category_id)->get();
+      }
+
 
       $response = $packages;
     } else {

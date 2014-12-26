@@ -13,7 +13,7 @@ class TrimController extends \BaseController {
 
     if ($wheres) {
 
-      $trims = Trim::where('package_id', $wheres->package_id)->get();
+      $trims = Trim::where('package_id', $wheres->package_id)->orderBy('price', 'ASC')->get();
 
       $response = $trims;
     } else {

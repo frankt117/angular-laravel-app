@@ -16,7 +16,7 @@ class CreateServiceCategoriesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->char('code', 8);
-      $table->char('name', 30);
+      $table->char('name', 50);
       $table->string('description');
       $table->integer('sequence');
       $table->date('effective_from');
