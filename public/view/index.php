@@ -90,6 +90,7 @@
   <div ui-view="main"></div>
   <div ui-view="main-search-by-category"></div>
   <div ui-view="info"></div>
+  <div ui-view></div>
 </div>
 </body>
 </html>

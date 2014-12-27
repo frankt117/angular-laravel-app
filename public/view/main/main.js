@@ -6,7 +6,8 @@ angular.module( 'app.main', [
   ])
 
   .config(function config( $stateProvider ) {
-    $stateProvider.state( 'main', {
+    $stateProvider
+     .state( 'main', {
       url: '/app',
       views: {
         "landing-main": {
@@ -14,11 +15,9 @@ angular.module( 'app.main', [
           templateUrl: 'view/main/main.html'
         }
       }
-    });
-  })
+    })
 
-  .config(function config( $stateProvider ) {
-    $stateProvider.state( 'main-search-by-category', {
+    .state( 'main-search-by-category', {
       url: '/app/search/:category',
       views: {
         "landing-main": {
@@ -26,11 +25,10 @@ angular.module( 'app.main', [
           templateUrl: 'view/main/main.html'
         }
       }
-    });
-  })
+    })
 
-  .config(function config( $stateProvider ) {
-    $stateProvider.state( 'info', {
+
+    .state( 'info', {
       url: '/app/info/:category',
       views: {
         "landing-main": {
@@ -38,8 +36,110 @@ angular.module( 'app.main', [
           templateUrl: 'view/info/main.html'
         }
       }
-    });
+    })
+
+    .state('contacts', {
+      abstract: true,
+      url: '/app/contacts',
+      resolve: {
+        greeting: function(){
+          return "MAIN";
+        }
+      },
+      controller: function($scope, greeting) {
+        this.greeting = greeting;
+        //this.greeting = 'Main';
+      },
+      controllerAs: 'contactsCtrl',
+      templateUrl: 'view/main/test.html'
+
+    })
+
+      .state('contacts.view', {
+        url: '/view/:id',
+        resolve: {
+          id: function($stateParams){
+            return $stateParams['id'];
+          }
+        },
+        controller: function($scope, id) {
+          this.id = id;
+          //this.greeting = 'Main';
+        },
+        controllerAs: 'contactsViewCtrl',
+        template: '<h1>View {{contactsViewCtrl.id}}</h1>'
+
+      })
+
+    .state('contacts.list', {
+      url: '/list',
+
+      template: '<h1>List</h1>'
+
+    })
+
+    .state('contacts.details', {
+      url: '/details',
+      controller: function($scope) {
+        $scope.contactsCtrl.greeting = 'Details';
+      },
+      controllerAs: 'contactsDetailCtrl',
+
+      template: '<h1>Details</h1>'
+
+    })
+
+
+
+    //********NEW APP ROUTES*********//
+    .state( 'app', {
+      abstract: true,
+      url: '/app2',
+      resolve: {
+
+      },
+      controller: function($scope) {
+        //this.greeting = 'Main';
+      },
+      controllerAs: 'appCtrl',
+      templateUrl: 'view/main/main_new.html'
+    })
+
+    .state('app.packages', {
+      url: '/packages',
+
+      template: '<h1>List</h1>'
+
+    })
+
+
+
+
   })
+
+//  .config(function config( $stateProvider ) {
+//    $stateProvider.state( 'main-search-by-category', {
+//      url: '/app/search/:category',
+//      views: {
+//        "landing-main": {
+//          controller: 'MainSearchByCategoryCtrl',
+//          templateUrl: 'view/main/main.html'
+//        }
+//      }
+//    });
+//  })
+//
+//  .config(function config( $stateProvider ) {
+//    $stateProvider.state( 'info', {
+//      url: '/app/info/:category',
+//      views: {
+//        "landing-main": {
+//          controller: 'InfoCtrl',
+//          templateUrl: 'view/info/main.html'
+//        }
+//      }
+//    });
+//  })
 
 
 
