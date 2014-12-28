@@ -81,14 +81,9 @@ login.factory('PackagesService',function($http, CategoriesService, ImagesService
   }
 
   service.getAllPackages = function() {
-    $http({method:'GET',url:'index.php/api/v1/packages'})
-      .success(function(data, status, header, config) {
-        console.log(data);
-        return data;
-      })
-      .error(function(data, status, header, config) {
-        return false;
-      });
+    var promise = $http({method:'GET',url:'index.php/api/v1/packages'});
+
+    return promise;
   };
 
   service.getPackagesByCategory = function(category) {
@@ -96,6 +91,16 @@ login.factory('PackagesService',function($http, CategoriesService, ImagesService
                                   {"category_id" : category}
                              ]
                   };
+    var promise = $http({method:'GET',url:'index.php/api/v1/packages', params:options});
+
+    return promise;
+  };
+
+  service.getPackagesByCode = function(code) {
+    var options = {"where" : [
+      {"code" : code}
+    ]
+    };
     var promise = $http({method:'GET',url:'index.php/api/v1/packages', params:options});
 
     return promise;

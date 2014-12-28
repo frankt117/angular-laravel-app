@@ -55,21 +55,21 @@ angular.module( 'app.main', [
 
     })
 
-      .state('contacts.view', {
-        url: '/view/:id',
-        resolve: {
-          id: function($stateParams){
-            return $stateParams['id'];
-          }
-        },
-        controller: function($scope, id) {
-          this.id = id;
-          //this.greeting = 'Main';
-        },
-        controllerAs: 'contactsViewCtrl',
-        template: '<h1>View {{contactsViewCtrl.id}}</h1>'
+    .state('contacts.view', {
+      url: '/view/:id',
+      resolve: {
+        id: function($stateParams){
+          return $stateParams['id'];
+        }
+      },
+      controller: function($scope, id) {
+        this.id = id;
+        //this.greeting = 'Main';
+      },
+      controllerAs: 'contactsViewCtrl',
+      template: '<h1>View {{contactsViewCtrl.id}}</h1>'
 
-      })
+    })
 
     .state('contacts.list', {
       url: '/list',
@@ -80,7 +80,7 @@ angular.module( 'app.main', [
 
     .state('contacts.details', {
       url: '/details',
-      controller: function($scope) {
+      controller: function($scope, PackagesService) {
         $scope.contactsCtrl.greeting = 'Details';
       },
       controllerAs: 'contactsDetailCtrl',
@@ -107,10 +107,55 @@ angular.module( 'app.main', [
 
     .state('app.packages', {
       url: '/packages',
+      resolve: {
 
-      template: '<h1>List</h1>'
-
+      },
+      controller: function($scope) {
+        //this.greeting = 'Main';
+      },
+      controllerAs: 'packagesCtrl',
+      templateUrl: 'view/main/packages.html'
     })
+
+    .state('app.packages.all', {
+      url: '/all',
+      resolve: {
+
+      },
+      controller: function($scope, PackagesService) {
+        PackagesService.getAllPackages()
+          .success(function (data,status) {
+            PackagesService.setPackageList(data);
+            $scope.packagesListCtrl.packages = data;
+          });
+      },
+      controllerAs: 'packagesAllCtrl',
+      template: '<div class="row"><div class="col-md-10"><packages-list></packages-list></div></div>'
+    })
+
+
+    .state('app.packages.category', {
+      url: '/category/:code',
+      resolve: {
+
+      },
+      controller: function($scope, PackagesService, CategoriesService, $stateParams) {
+        CategoriesService.getByCode($stateParams['code'])
+          .success(function(data, status) {
+            CategoriesService.setSelectedCategory(data.name);
+            $scope.serviceCategoriesDropDownRouteCtrl.selected = data.name;
+          });
+
+        PackagesService.getPackagesByCode($stateParams['code'])
+          .success(function (data,status) {
+            PackagesService.setPackageList(data);
+            $scope.packagesListCtrl.packages = data;
+          });
+      },
+      controllerAs: 'packagesAllCtrl',
+      template: '<div class="row"><div class="col-md-10"><packages-list></packages-list></div></div>'
+    })
+
 
 
 

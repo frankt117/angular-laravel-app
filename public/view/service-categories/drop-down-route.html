@@ -1,0 +1,10 @@
+<div class="btn-group" dropdown is-open="serviceCategoriesDropDownRouteCtrl.status.isopen">
+  <button type="button" class="btn btn-success dropdown-toggle" ng-disabled="disabled">
+    {{serviceCategoriesDropDownRouteCtrl.selected}} <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li ng-repeat="category in serviceCategoriesDropDownRouteCtrl.categories">
+      <a ui-sref="app.packages.category({ code: category.code })">{{category.name}}</a>
+    </li>
+  </ul>
+</div>

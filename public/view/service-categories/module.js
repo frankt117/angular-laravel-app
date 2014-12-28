@@ -29,6 +29,36 @@ angular.module( 'app.service-categories', ['app.service-categories-services'])
     }
   })
 
+  .directive('serviceCategoriesDropDownRoute', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/service-categories/drop-down-route.html',
+      controller: function($scope, CategoriesService) {
+
+        this.selected = CategoriesService.getSelctedCategory();
+        this.categories = {};
+
+        CategoriesService.get()
+          .then(function($response) {
+            $scope.serviceCategoriesDropDownRouteCtrl.categories = $response.data;
+            console.log($scope.serviceCategoriesDropDownRouteCtrl.categories);
+          });
+
+        this.status = {
+          isopen: false
+        };
+
+        this.changeSelected = function(selectedNew) {
+          this.selected = selectedNew;
+          CategoriesService.setSelectedCategory(selectedNew);
+        };
+
+
+      },
+      controllerAs: 'serviceCategoriesDropDownRouteCtrl'
+    }
+  })
+
   .directive('serviceCategoriesDropDownForInsert', function() {
     return {
       restrict: 'E',
