@@ -2,7 +2,9 @@ angular.module( 'app.main', [
     'ui.router',
     'app.checkout',
     'app.service-categories-services',
-    'app.packages-service'
+    'app.packages-service',
+    'app.images-service',
+    'app.trims-service'
   ])
 
   .config(function config( $stateProvider ) {
@@ -114,7 +116,7 @@ angular.module( 'app.main', [
         //this.greeting = 'Main';
       },
       controllerAs: 'packagesCtrl',
-      templateUrl: 'view/main/packages.html'
+      templateUrl: 'view/packages/controllers/packages.html'
     })
 
     .state('app.packages.all', {
@@ -127,6 +129,8 @@ angular.module( 'app.main', [
           .success(function (data,status) {
             PackagesService.setPackageList(data);
             $scope.packagesListCtrl.packages = data;
+            PackagesService.setPackageListImages();
+            PackagesService.setPackageListTrims();
           });
       },
       controllerAs: 'packagesAllCtrl',
@@ -150,10 +154,68 @@ angular.module( 'app.main', [
           .success(function (data,status) {
             PackagesService.setPackageList(data);
             $scope.packagesListCtrl.packages = data;
+            PackagesService.setPackageListImages();
+            PackagesService.setPackageListTrims();
           });
       },
       controllerAs: 'packagesAllCtrl',
-      template: '<div class="row"><div class="col-md-10"><packages-list></packages-list></div></div>'
+      template: '<div class="row"><div class="col-md-12"><packages-list></packages-list></div></div>'
+    })
+
+    .state('app.package', {
+      abstract: true,
+      url: '/package/:code',
+      resolve: {
+
+      },
+      controller: function($scope, $stateParams, PackagesService, CategoriesService) {
+        console.log('PACKAGE DEFAULT CTRL');
+        console.log($stateParams['code']);
+        //List Logic
+        CategoriesService.getByCode($stateParams['code'])
+          .success(function(data, status) {
+            CategoriesService.setSelectedCategory(data.name);
+            $scope.serviceCategoriesDropDownRouteCtrl.selected = data.name;
+          });
+
+        PackagesService.getPackagesByCode($stateParams['code'])
+          .success(function (data,status) {
+            PackagesService.setPackageList(data);
+            $scope.packagesListSideCtrl.packages = data;
+            PackagesService.setPackageListImages();
+            PackagesService.setPackageListTrims();
+          });
+      },
+      controllerAs: 'packageCtrl',
+      template: '<div class="row"><div ui-view></div> <div class="col-md-2"><service-categories-drop-down-route></service-categories-drop-down-route> <div class="row"><br></div>  <packages-list-side></packages-list-side></div>'
+    })
+
+    .state('app.package.detail', {
+      url: '/:id',
+      resolve: {
+
+      },
+      controller: function($scope, PackagesService, CategoriesService, ImagesService, TrimsService, $stateParams) {
+        PackagesService.getPackageById($stateParams['id'])
+          .success(function(data, status) {
+            console.log('PACKAGE DETAIL');
+            console.log($stateParams['id']);
+            console.log($stateParams['code']);
+            console.log(data);
+
+
+
+
+            //Detail Logic
+            ImagesService.updateImageList($stateParams['id']);
+            $scope.packageDetailsCtrl.package = data;
+            //$scope.packageListAndDetailsCtrl._currentView = "PACKAGE";
+            TrimsService.updateTrimTable(data.id);
+            $scope.selectedPackage = data;
+          });
+      },
+      controllerAs: 'packageDetailCtrl',
+      templateUrl: 'view/packages/controllers/package-detail.html'
     })
 
 

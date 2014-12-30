@@ -117,7 +117,7 @@ login.factory('PackagesService',function($http, CategoriesService, ImagesService
   };
 
   service.getPackageById = function(packageId) {
-    var promise = $http({method:'GET',url:'index.php/api/v1/packages/show'});
+    var promise = $http({method:'GET',url:'index.php/api/v1/packages/'+packageId});
 
     return promise;
   };

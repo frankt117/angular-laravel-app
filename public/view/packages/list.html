@@ -1,9 +1,12 @@
-<div class="panel panel-primary" ng-repeat="package in packagesListCtrl.packages">
+
+<div ng-repeat="package in packagesListCtrl.packages">
+
+<div class="panel panel-primary">
 
   <div class="panel-heading">
     <div class="row">
       <div class="col-sm-6">
-        <h3 class="panel-title"><a href="" ng-click="packagesListCtrl.clicked(package)">{{package.name}}</a></h3>
+        <h3 class="panel-title"><a ui-sref="app.package.detail({code: package.code, id: package.id})">{{package.name}}</a></h3>
       </div>
 
 
@@ -13,8 +16,8 @@
         <h4 class="panel-title text-right"><em>{{package.headTrim.price | currency }}</em></h4>
       </div>
     </div>
-
   </div>
+
   <div class="panel-body">
     <div class="row">
       <div class="col-md-2" ng-if="package.headImage">
@@ -27,7 +30,7 @@
         <div class="row"><br></div>
         <div class="row">
           <div class="col-md-10">
-            <a href="" ng-click="packagesListCtrl.clicked(package)">
+            <a ui-sref="app.package.detail({id: package.id})">
               <button type="button" class="btn btn-default btn-small" ng-click="packagesListCtrl.clicked(package)">
                 Details
               </button>
@@ -37,6 +40,9 @@
         </div>
       </div>
     </div>
-
   </div>
+
+
+</div>
+
 </div>
