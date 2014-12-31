@@ -16,6 +16,22 @@ angular.module( 'app.nav-bar', [])
     }
   })
 
+  .directive('navBarManageCustomer', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/manage/navigation/nav-bar-manage-customer.html',
+      controller: function($scope) {
+
+        $scope.logOff = function() {
+          console.log('LOGGING OFF');
+          sessionStorage.clear();
+          location.reload();
+        };
+      },
+      controllerAs: 'navBarCtrl'
+    }
+  })
+
   .directive('navBarServiceProvider', function() {
     return {
       restrict: 'E',

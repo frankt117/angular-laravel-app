@@ -4,19 +4,47 @@ angular.module( 'app.manage-customer', [
   ])
 
   .config(function config( $stateProvider ) {
-    $stateProvider.state( 'customer', {
-      url: '/manage/customer',
-      views: {
-        "manage-main": {
-          controller: 'MainCustomerCtrl',
-          templateUrl: 'view/manage/customer/main.html'
-        },
-        "manage-login": {
-          controller: 'LoginCtrl',
-          templateUrl: 'view/manage/login/main.html'
+    $stateProvider
+      .state( 'customer', {
+        url: '/manage/customer',
+        views: {
+          "manage-main": {
+            controller: 'MainCustomerCtrl',
+            templateUrl: 'view/manage/customer/main.html'
+          },
+          "manage-login": {
+            controller: 'LoginCtrl',
+            templateUrl: 'view/manage/login/main.html'
+          }
         }
-      }
-    });
+      })
+
+      .state('customer.packages', {
+        url: '/packages',
+        resolve: {
+
+        },
+        controller: function($scope, PackagesService) {
+
+        },
+        controllerAs: 'customerPackagesCtrl',
+        template: '<h1>PACKAGES</h1>'
+      })
+
+      .state('customer.negotiations', {
+        url: '/negotiations',
+        resolve: {
+
+        },
+        controller: function($scope, PackagesService) {
+          console.log('CUSTOMER NEGOTIATION CTRL');
+          console.log(sessionStorage);
+
+        },
+        controllerAs: 'customerPackagesCtrl',
+        template: '<h1>Negotiations</h1>'
+      })
+
   })
 
   .controller( 'MainCustomerCtrl', function MainCustomerCtrl( $scope ) {

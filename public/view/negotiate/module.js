@@ -64,6 +64,20 @@ angular.module( 'app.negotiation', ['app.negotiations-service'])
   })
 
 
+  .directive('negotiationList', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/negotiate/list.html',
+      controller: function($scope, NegotiationsService) {
+        this.negotiations = [];
+
+
+      },
+      controllerAs: 'negotiationListCtrl'
+    }
+  })
+
+
 
 
 
