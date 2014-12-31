@@ -159,7 +159,7 @@ angular.module( 'app.main', [
           });
       },
       controllerAs: 'packagesAllCtrl',
-      template: '<div class="row"><div class="col-md-12"><packages-list></packages-list></div></div>'
+      template: '<div class="row"><div class="col-md-10"><packages-list></packages-list></div></div>'
     })
 
     .state('app.package', {
@@ -196,13 +196,14 @@ angular.module( 'app.main', [
 
       },
       controller: function($scope, PackagesService, CategoriesService, ImagesService, TrimsService, $stateParams) {
+        this.show = true;
+
         PackagesService.getPackageById($stateParams['id'])
           .success(function(data, status) {
             console.log('PACKAGE DETAIL');
             console.log($stateParams['id']);
             console.log($stateParams['code']);
             console.log(data);
-
 
 
 
@@ -216,6 +217,24 @@ angular.module( 'app.main', [
       },
       controllerAs: 'packageDetailCtrl',
       templateUrl: 'view/packages/controllers/package-detail.html'
+    })
+
+    .state('app.package.detail.negotiate', {
+      url: '/negotiate',
+      resolve: {
+
+      },
+      controller: function($scope, PackagesService, CategoriesService, ImagesService, TrimsService, $stateParams) {
+        $scope.packageDetailCtrl.show = false;
+
+        $scope.$on('$destroy', function() {
+          $scope.packageDetailCtrl.show = true;
+        });
+
+      },
+      controllerAs: 'packageNegotiateCtrl',
+
+      template: '<initiate-negotiation></initiate-negotiation>'
     })
 
 

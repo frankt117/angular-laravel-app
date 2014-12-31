@@ -25,6 +25,18 @@ angular.module( 'app.trims', ['app.trims-service'])
           }
         };
 
+        this.getSelectedTrims = function() {
+          var trimsArray = [];
+
+          for(var i = 0; i < $scope.trimTableCtrl.trims.length; i++) {
+            if($scope.trimTableCtrl.trims[i].selected) {
+              trimsArray.push($scope.trimTableCtrl.trims[i]);
+            }
+          }
+
+          return trimsArray;
+        };
+
 
         TrimsService.updateTrimTable = function($packageId) {
           TrimsService.getAllByPackageId($packageId)
