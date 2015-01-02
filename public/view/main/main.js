@@ -211,8 +211,15 @@ angular.module( 'app.main', [
             ImagesService.updateImageList($stateParams['id']);
             $scope.packageDetailsCtrl.package = data;
             //$scope.packageListAndDetailsCtrl._currentView = "PACKAGE";
-            TrimsService.updateTrimTable(data.id);
+            TrimsService.updateTrimTable(data.id)
+              .then(function(data) {
+                console.log(data);
+                console.log('TRIMS IN SERVICE =');
+                console.log(TrimsService.getTableTrims());
+                $scope.trimTableCtrl.trims = TrimsService.getTableTrims();
+              });
             $scope.selectedPackage = data;
+
           });
       },
       controllerAs: 'packageDetailCtrl',

@@ -1,8 +1,9 @@
-var login = angular.module('app.trims-service',[]);
+var login = angular.module('app.trims-service',['app.companies-service']);
 
-login.factory('TrimsService',function($http){
+login.factory('TrimsService',function($http, $q, CompaniesService){
 
   var service = {};
+  service.tableTrims = [];
 
 
   service.getAllTrims = function() {
@@ -34,7 +35,49 @@ login.factory('TrimsService',function($http){
   };
 
 
-  service.updateTrimTable = function(packageId) {/*overridable action*/};
+  //service.updateTrimTable = function(packageId) {/*overridable action*/};
+  service.getTableTrims = function() {
+    return service.tableTrims;
+  };
+
+  service.updateTrimServiceProvider = function(userId, serviceProvider) {
+    for(var i = 0; i < service.tableTrims.length; i++) {
+      if(service.tableTrims[i].user_id == userId) {
+        service.tableTrims[i].service_provider = serviceProvider.name;
+        service.tableTrims[i].company_id = serviceProvider.id;
+      }
+    }
+  };
+
+  service.updateTrimTable = function($packageId) {
+    var deferred = $q.defer();
+
+    console.log('UPDATING TRIM TABLE');
+    service.getAllByPackageId($packageId)
+      .success(function(data) {
+        service.tableTrims = data;
+
+        var trimsData = data;
+
+        for(var i = 0; i < trimsData.length; i++) {
+          CompaniesService.getAllByPrimaryUserId(trimsData[i].user_id)
+            .success(function(data) {
+              service.updateTrimServiceProvider(data[0].primary_user_id, data[0]);
+            });
+        }
+
+        if(service.getTableTrims()) {
+          deferred.resolve('TRIMS UPDATED');
+        } else {
+          deferred.reject('TRIMS FAILED');
+        }
+      });
+
+    return deferred.promise;
+  };
+
+
+
 
   return service;
 });

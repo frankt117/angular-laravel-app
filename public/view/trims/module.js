@@ -5,16 +5,7 @@ angular.module( 'app.trims', ['app.trims-service'])
       restrict: 'E',
       templateUrl: 'view/trims/table.html',
       controller: function($scope, TrimsService, CompaniesService) {
-        this.trims = {};
-
-        this.updateTrimServiceProvider = function(userId, serviceProvider) {
-          for(var i = 0; i < $scope.trimTableCtrl.trims.length; i++) {
-            if($scope.trimTableCtrl.trims[i].user_id == userId) {
-              $scope.trimTableCtrl.trims[i].service_provider = serviceProvider.name;
-              $scope.trimTableCtrl.trims[i].company_id = serviceProvider.id;
-            }
-          }
-        };
+        this.trims = TrimsService.getTableTrims();
 
 
         this.getSelectedTrim = function() {
@@ -38,21 +29,7 @@ angular.module( 'app.trims', ['app.trims-service'])
         };
 
 
-        TrimsService.updateTrimTable = function($packageId) {
-          TrimsService.getAllByPackageId($packageId)
-            .success(function(data) {
-              $scope.trimTableCtrl.trims = data;
 
-              var trimsData = data;
-
-              for(var i = 0; i < trimsData.length; i++) {
-                CompaniesService.getAllByPrimaryUserId(trimsData[i].user_id)
-                  .success(function(data) {
-                    $scope.trimTableCtrl.updateTrimServiceProvider(data[0].primary_user_id, data[0]);
-                  });
-              }
-            });
-        };
 
 
 
