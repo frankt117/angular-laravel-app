@@ -208,7 +208,17 @@ angular.module( 'app.main', [
 
 
             //Detail Logic
-            ImagesService.updateImageList($stateParams['id']);
+            ImagesService.updateImageList($stateParams['id'])
+              .then(function(data) {
+                var images = ImagesService.getImageList();
+
+                $scope.imageCarouselCtrl.slides = images;
+
+                if(images.length > 0) {
+                  $scope.imageCarouselCtrl.show = true;
+                }
+
+              });
             $scope.packageDetailsCtrl.package = data;
             //$scope.packageListAndDetailsCtrl._currentView = "PACKAGE";
             TrimsService.updateTrimTable(data.id)
