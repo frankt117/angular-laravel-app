@@ -30,7 +30,7 @@
         <div class="row"><br></div>
         <div class="row">
           <div class="col-md-10">
-            <a ui-sref="app.package.detail({id: package.id})">
+            <a ui-sref="app.package.detail({code: package.code, id: package.id})">
               <button type="button" class="btn btn-default btn-small" ng-click="packagesListCtrl.clicked(package)">
                 Details
               </button>
