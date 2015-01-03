@@ -175,7 +175,8 @@ angular.module( 'app.main', [
         CategoriesService.getByCode($stateParams['code'])
           .success(function(data, status) {
             CategoriesService.setSelectedCategory(data.name);
-            $scope.serviceCategoriesDropDownRouteCtrl.selected = data.name;
+            $scope.serviceCategoriesDropDownSideCtrl.selected = data.name;
+            $scope.serviceCategoriesDropDownSideCtrl.categoryCode = $stateParams['code'];
           });
 
         PackagesService.getPackagesByCode($stateParams['code'])
@@ -185,9 +186,10 @@ angular.module( 'app.main', [
             PackagesService.setPackageListImages();
             PackagesService.setPackageListTrims();
           });
+
       },
       controllerAs: 'packageCtrl',
-      template: '<div class="row"><div ui-view></div> <div class="col-md-2"><service-categories-drop-down-route></service-categories-drop-down-route> <div class="row"><br></div>  <packages-list-side></packages-list-side></div>'
+      template: '<div class="row"><div ui-view></div> <div class="col-md-2"><service-categories-drop-down-side></service-categories-drop-down-side> <div class="row"><br></div>  <packages-list-side></packages-list-side></div>'
     })
 
     .state('app.package.detail', {
