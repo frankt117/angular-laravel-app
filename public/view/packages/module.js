@@ -98,7 +98,28 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
     return {
       restrict: 'E',
       templateUrl: 'view/packages/details.html',
-      controller: function($scope, PackagesService, ImagesService) {
+      controller: function($scope, PackagesService, ImagesService, $state, $timeout) {
+
+        this.negotiatePopover = '';
+
+        this.negotiateClicked = function () {
+          console.log('NEGOTIATE CLICKED');
+
+          if($scope.trimTableCtrl.getSelectedTrims().length > 0) {
+            this.negotiatePopover = '';
+            $state.go('app.package.detail.negotiate');
+
+          } else {
+            console.log('TRIM NOT SELECTED');
+            this.negotiatePopover = 'Please Select Trim Above';
+
+            $timeout(function () {
+              $scope.packageDetailsCtrl.negotiatePopover = '';
+            }, 4000);
+          }
+
+
+        }
 
       },
       controllerAs: 'packageDetailsCtrl'
