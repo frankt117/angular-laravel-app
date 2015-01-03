@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('installationexchange.com@gmail.com' => null, 'GetMePro' => null),
+  'from' => array('address' => 'installationexchange@gmail.com', 'name' => 'GETMEPRO'),
 
 	/*
 	|--------------------------------------------------------------------------

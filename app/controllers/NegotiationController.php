@@ -101,8 +101,8 @@ class NegotiationController extends \BaseController {
 //
 //      mail($to,$subject,$txt,$headers);
 
-      Mail::send('emails.test', array('msg'=> "<a href='http://getmepro.com/#/app/negotiate/sp_response/$negotiation->id'>View Message From Customer.</a>"), function($message){
-        $message->to('frankjtorresjr@gmail.com', 'Frank Torres')->cc('installationexchange.com@gmail.com')->subject('GETMEPRO.com TEST');
+      Mail::send('emails.test', array('msg'=> $negotiation->id), function($message){
+        $message->to('frankjtorresjr@gmail.com', 'Frank Torres')->subject('GetMePro Customer Negotiation');
       });
 
 //      Mail::send(array('text' => 'view'), array('body' => "<a href='http://getmepro.com/#/app/negotiate/sp_response/$negotiation->id'>View Message From Customer.</a>"), function($message){
