@@ -50,7 +50,7 @@ class NegotiationController extends \BaseController {
       $old_negotiation = Negotiation::where('id', $data['initial_id'])->first();
       $count = count(Negotiation::where('initial_id', $data['initial_id'])->get()->toArray());
 
-      if(!empty($data['from_sp'])) {
+      if($data['from_sp'] == 'true') {
         $newDataOriginal = $old_negotiation->toArray();
         $newData = $newDataOriginal;
 
@@ -72,6 +72,35 @@ class NegotiationController extends \BaseController {
 
 
         $negotiation = Negotiation::create($newData);
+
+        Mail::send('emails.sp-reply', array('msg'=> $negotiation->initial_id), function($message){
+          $message->to('frankjtorresjr@gmail.com', 'Frank Torres')->subject('GetMePro Service Provider Response');
+        });
+      } else {
+
+        $newDataOriginal = $old_negotiation->toArray();
+        $newData = $newDataOriginal;
+
+        unset($newData['id']);
+        unset($newData['created_at']);
+        unset($newData['created_by']);
+        unset($newData['updated_at']);
+        unset($newData['updated_by']);
+        $newData['respond_to_email_id'] = $newDataOriginal['respond_to_email_id'];
+        $newData['target_to_email_id'] = $newDataOriginal['target_to_email_id'];
+        $newData['sequence'] = $count+1;
+        $newData['mail_text'] = $data['mail_text'];
+        $newData['mail_subject'] = 'GETMPRO.COM - CUSTOMER RESPONSE';
+        $newData['type'] = 'C';
+        $newData['code'] = 'C_RESP';
+
+
+        $negotiation = Negotiation::create($newData);
+
+        Mail::send('emails.customer-reply', array('msg'=> $negotiation->initial_id), function($message){
+          $message->to('frankjtorresjr@gmail.com', 'Frank Torres')->subject('GetMePro Customer Response');
+        });
+
       }
 
     } else {
