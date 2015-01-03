@@ -47,6 +47,53 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
     }
   })
 
+  .directive('packagesListAdmin', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/packages/list-admin.html',
+      controller: function($scope, PackagesService, CategoriesService, ImagesService) {
+
+        this.packages = PackagesService.getPackageList();
+
+        console.log(this.packages);
+
+        PackagesService.updatePackageList = function(category, userId) {
+          if(userId) {
+            CategoriesService.getByCategoryName_Promise(category)
+              .success(function(data) {
+                PackagesService.getPackagesByCategoryAndUserId(data.id, userId)
+                  .success(function(data) {
+                    $scope.packagesListAdminCtrl.packages = data;
+                    PackagesService.setPackageList(data);
+
+                  })
+              });
+          } else {
+            CategoriesService.getByCategoryName_Promise(category)
+              .success(function(data) {
+                PackagesService.getPackagesByCategory(data.id)
+                  .success(function(data) {
+                    $scope.packagesListAdminCtrl.packages = data;
+                    PackagesService.setPackageList(data);
+                    PackagesService.setPackageListImages();
+                    PackagesService.setPackageListTrims();
+                  })
+              });
+          }
+
+        };
+
+        this.clicked = function(packageObj) {
+          console.log("PACKAGE CLICKED!!!");
+          console.log(packageObj);
+          PackagesService.packageClicked(packageObj);
+        }
+
+      },
+      controllerAs: 'packagesListAdminCtrl'
+    }
+  })
+
   .directive('packagesListSide', function() {
     return {
       restrict: 'E',
