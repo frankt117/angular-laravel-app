@@ -93,13 +93,21 @@ class NegotiationController extends \BaseController {
       $negotiation->initial_id = $negotiation->id;
       $negotiation->save();
 
-      $to = "frankjtorresjr@gmail.com";
-      $subject = $data['mail_subject'];
-      $txt = "<a href='http://getmepro.com/#/app/negotiate/sp_response/$negotiation->id'>View Message From Customer.</a>";
-      $headers = "From: webmaster@getmepro.com" . "\r\n" .
-        "CC: installationexchange.com@gmail.com";
+//      $to = "frankjtorresjr@gmail.com";
+//      $subject = $data['mail_subject'];
+//      $txt = "<a href='http://getmepro.com/#/app/negotiate/sp_response/$negotiation->id'>View Message From Customer.</a>";
+//      $headers = "From: webmaster@getmepro.com" . "\r\n" .
+//        "CC: installationexchange.com@gmail.com";
+//
+//      mail($to,$subject,$txt,$headers);
 
-      mail($to,$subject,$txt,$headers);
+      Mail::send('emails.test', array('msg'=> "<a href='http://getmepro.com/#/app/negotiate/sp_response/$negotiation->id'>View Message From Customer.</a>"), function($message){
+        $message->to('frankjtorresjr@gmail.com', 'Frank Torres')->cc('installationexchange.com@gmail.com')->subject('GETMEPRO.com TEST');
+      });
+
+//      Mail::send(array('text' => 'view'), array('body' => "<a href='http://getmepro.com/#/app/negotiate/sp_response/$negotiation->id'>View Message From Customer.</a>"), function($message){
+//        $message->to('frankjtorresjr@gmail.com', 'Frank Torres')->cc('installationexchange.com@gmail.com')->subject('GETMEPRO.com TEST');
+//      });
     }
 
 
