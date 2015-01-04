@@ -13,7 +13,17 @@ class NegotiationController extends \BaseController {
 
     if ($wheres) {
 
-      $negotiations = Negotiation::where('initial_id', $wheres->initial_id)->get();
+      if(!empty($wheres->initial_id)) {
+        $negotiations = Negotiation::where('initial_id', $wheres->initial_id)->get();
+      }
+
+      if(!empty($wheres->respond_to_email_id)) {
+        $negotiations = Negotiation::where('respond_to_email_id', $wheres->respond_to_email_id)->get();
+      }
+
+      if(!empty($wheres->target_to_email_id)) {
+        $negotiations = Negotiation::where('target_to_email_id', $wheres->target_to_email_id)->get();
+      }
 
       $response = $negotiations;
     } else {
