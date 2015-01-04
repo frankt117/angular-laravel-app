@@ -606,7 +606,14 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
           $scope.imageEditTableCtrl.slidesEdit = [];
           //$scope.imageListAndUploaderCtrl.listEmpty = true;
 
-          TrimsService.updateTrimTable(packageObj.id);
+          TrimsService.updateTrimTable(packageObj.id)
+            .then(function(data) {
+              console.log(data);
+              console.log('TRIMS IN SERVICE =');
+              console.log(TrimsService.getTableTrims());
+              $scope.trimTableCtrl.trims = TrimsService.getTableTrims();
+            });
+
           //$scope.packageDetailsAdminCtrl.package = packageObj;
           $scope.packageDetailsAdminCtrl.hydratePackage(packageObj);
           ImagesService.updateImageList(packageObj.id);
