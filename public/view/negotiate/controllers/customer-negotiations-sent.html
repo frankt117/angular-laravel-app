@@ -1,0 +1,12 @@
+<div class="panel panel-primary" ng-repeat="negotiate in customerNegotiationsSentCtrl.negotiations">
+
+  <div class="panel-heading">
+    <a ui-sref="customer.negotiations.respond({initial_id : negotiate.initial_id})">{{negotiate.mail_subject}} - {{negotiate.created_at}}</a>
+
+  </div>
+  <div class="panel-body">
+    <p ng-bind-html="negotiate.mail_text"></p>
+
+  </div>
+</div>
+

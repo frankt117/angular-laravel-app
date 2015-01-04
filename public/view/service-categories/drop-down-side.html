@@ -1,0 +1,13 @@
+<div class="btn-group" dropdown is-open="serviceCategoriesDropDownSideCtrl.status.isopen">
+  <button type="button" class="btn btn-success dropdown-toggle" ng-disabled="disabled">
+    {{serviceCategoriesDropDownSideCtrl.selected}} <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li ng-repeat="category in serviceCategoriesDropDownSideCtrl.categories">
+      <a ng-click="serviceCategoriesDropDownSideCtrl.changeSelected(category.name, category.code)">{{category.name}}</a>
+    </li>
+  </ul>
+</div>
+<button type="button" class="btn btn-warning" aria-label="Left Align" ui-sref="app.packages.category({ code: serviceCategoriesDropDownSideCtrl.categoryCode })">
+  <span class="glyphicon glyphicon-expand" aria-hidden="true"></span>
+</button>

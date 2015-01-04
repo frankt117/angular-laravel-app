@@ -2,11 +2,14 @@ angular.module( 'app.main', [
     'ui.router',
     'app.checkout',
     'app.service-categories-services',
-    'app.packages-service'
+    'app.packages-service',
+    'app.images-service',
+    'app.trims-service'
   ])
 
   .config(function config( $stateProvider ) {
-    $stateProvider.state( 'main', {
+    $stateProvider
+     .state( 'main', {
       url: '/app',
       views: {
         "landing-main": {
@@ -14,11 +17,9 @@ angular.module( 'app.main', [
           templateUrl: 'view/main/main.html'
         }
       }
-    });
-  })
+    })
 
-  .config(function config( $stateProvider ) {
-    $stateProvider.state( 'main-search-by-category', {
+    .state( 'main-search-by-category', {
       url: '/app/search/:category',
       views: {
         "landing-main": {
@@ -26,11 +27,10 @@ angular.module( 'app.main', [
           templateUrl: 'view/main/main.html'
         }
       }
-    });
-  })
+    })
 
-  .config(function config( $stateProvider ) {
-    $stateProvider.state( 'info', {
+
+    .state( 'info', {
       url: '/app/info/:category',
       views: {
         "landing-main": {
@@ -38,8 +38,253 @@ angular.module( 'app.main', [
           templateUrl: 'view/info/main.html'
         }
       }
-    });
+    })
+
+    .state('contacts', {
+      abstract: true,
+      url: '/app/contacts',
+      resolve: {
+        greeting: function(){
+          return "MAIN";
+        }
+      },
+      controller: function($scope, greeting) {
+        this.greeting = greeting;
+        //this.greeting = 'Main';
+      },
+      controllerAs: 'contactsCtrl',
+      templateUrl: 'view/main/test.html'
+
+    })
+
+    .state('contacts.view', {
+      url: '/view/:id',
+      resolve: {
+        id: function($stateParams){
+          return $stateParams['id'];
+        }
+      },
+      controller: function($scope, id) {
+        this.id = id;
+        //this.greeting = 'Main';
+      },
+      controllerAs: 'contactsViewCtrl',
+      template: '<h1>View {{contactsViewCtrl.id}}</h1>'
+
+    })
+
+    .state('contacts.list', {
+      url: '/list',
+
+      template: '<h1>List</h1>'
+
+    })
+
+    .state('contacts.details', {
+      url: '/details',
+      controller: function($scope, PackagesService) {
+        $scope.contactsCtrl.greeting = 'Details';
+      },
+      controllerAs: 'contactsDetailCtrl',
+
+      template: '<h1>Details</h1>'
+
+    })
+
+
+
+    //********NEW APP ROUTES*********//
+    .state( 'app', {
+      abstract: true,
+      url: '/app2',
+      resolve: {
+
+      },
+      controller: function($scope) {
+        //this.greeting = 'Main';
+      },
+      controllerAs: 'appCtrl',
+      templateUrl: 'view/main/main_new.html'
+    })
+
+    .state('app.packages', {
+      url: '/packages',
+      resolve: {
+
+      },
+      controller: function($scope) {
+        //this.greeting = 'Main';
+      },
+      controllerAs: 'packagesCtrl',
+      templateUrl: 'view/packages/controllers/packages.html'
+    })
+
+    .state('app.packages.all', {
+      url: '/all',
+      resolve: {
+
+      },
+      controller: function($scope, PackagesService) {
+        PackagesService.getAllPackages()
+          .success(function (data,status) {
+            PackagesService.setPackageList(data);
+            $scope.packagesListCtrl.packages = data;
+            PackagesService.setPackageListImages();
+            PackagesService.setPackageListTrims();
+          });
+      },
+      controllerAs: 'packagesAllCtrl',
+      template: '<div class="row"><div class="col-md-10"><packages-list></packages-list></div></div>'
+    })
+
+
+    .state('app.packages.category', {
+      url: '/category/:code',
+      resolve: {
+
+      },
+      controller: function($scope, PackagesService, CategoriesService, $stateParams) {
+        CategoriesService.getByCode($stateParams['code'])
+          .success(function(data, status) {
+            CategoriesService.setSelectedCategory(data.name);
+            $scope.serviceCategoriesDropDownRouteCtrl.selected = data.name;
+          });
+
+        PackagesService.getPackagesByCode($stateParams['code'])
+          .success(function (data,status) {
+            PackagesService.setPackageList(data);
+            $scope.packagesListCtrl.packages = data;
+            PackagesService.setPackageListImages();
+            PackagesService.setPackageListTrims();
+          });
+      },
+      controllerAs: 'packagesAllCtrl',
+      template: '<div class="row"><div class="col-md-10"><packages-list></packages-list></div></div>'
+    })
+
+    .state('app.package', {
+      abstract: true,
+      url: '/package/:code',
+      resolve: {
+
+      },
+      controller: function($scope, $stateParams, PackagesService, CategoriesService) {
+        console.log('PACKAGE DEFAULT CTRL');
+        console.log($stateParams['code']);
+        //List Logic
+        CategoriesService.getByCode($stateParams['code'])
+          .success(function(data, status) {
+            CategoriesService.setSelectedCategory(data.name);
+            $scope.serviceCategoriesDropDownSideCtrl.selected = data.name;
+            $scope.serviceCategoriesDropDownSideCtrl.categoryCode = $stateParams['code'];
+          });
+
+        PackagesService.getPackagesByCode($stateParams['code'])
+          .success(function (data,status) {
+            PackagesService.setPackageList(data);
+            $scope.packagesListSideCtrl.packages = data;
+            PackagesService.setPackageListImages();
+            PackagesService.setPackageListTrims();
+          });
+
+      },
+      controllerAs: 'packageCtrl',
+      template: '<div class="row"><div ui-view></div> <div class="col-md-2"><service-categories-drop-down-side></service-categories-drop-down-side> <div class="row"><br></div>  <packages-list-side></packages-list-side></div>'
+    })
+
+    .state('app.package.detail', {
+      url: '/:id',
+      resolve: {
+
+      },
+      controller: function($scope, PackagesService, CategoriesService, ImagesService, TrimsService, $stateParams) {
+        this.show = true;
+
+        PackagesService.getPackageById($stateParams['id'])
+          .success(function(data, status) {
+            console.log('PACKAGE DETAIL');
+            console.log($stateParams['id']);
+            console.log($stateParams['code']);
+            console.log(data);
+
+
+
+            //Detail Logic
+            ImagesService.updateImageList($stateParams['id'])
+              .then(function(data) {
+                var images = ImagesService.getImageList();
+
+                $scope.imageCarouselCtrl.slides = images;
+
+                if(images.length > 0) {
+                  $scope.imageCarouselCtrl.show = true;
+                }
+
+              });
+            $scope.packageDetailsCtrl.package = data;
+            //$scope.packageListAndDetailsCtrl._currentView = "PACKAGE";
+            TrimsService.updateTrimTable(data.id)
+              .then(function(data) {
+                console.log(data);
+                console.log('TRIMS IN SERVICE =');
+                console.log(TrimsService.getTableTrims());
+                $scope.trimTableCtrl.trims = TrimsService.getTableTrims();
+              });
+            $scope.selectedPackage = data;
+
+          });
+      },
+      controllerAs: 'packageDetailCtrl',
+      templateUrl: 'view/packages/controllers/package-detail.html'
+    })
+
+    .state('app.package.detail.negotiate', {
+      url: '/negotiate',
+      resolve: {
+
+      },
+      controller: function($scope, PackagesService, CategoriesService, ImagesService, TrimsService, $stateParams) {
+        $scope.packageDetailCtrl.show = false;
+
+        $scope.$on('$destroy', function() {
+          $scope.packageDetailCtrl.show = true;
+        });
+
+      },
+      controllerAs: 'packageNegotiateCtrl',
+
+      template: '<initiate-negotiation></initiate-negotiation>'
+    })
+
+
+
+
+
   })
+
+//  .config(function config( $stateProvider ) {
+//    $stateProvider.state( 'main-search-by-category', {
+//      url: '/app/search/:category',
+//      views: {
+//        "landing-main": {
+//          controller: 'MainSearchByCategoryCtrl',
+//          templateUrl: 'view/main/main.html'
+//        }
+//      }
+//    });
+//  })
+//
+//  .config(function config( $stateProvider ) {
+//    $stateProvider.state( 'info', {
+//      url: '/app/info/:category',
+//      views: {
+//        "landing-main": {
+//          controller: 'InfoCtrl',
+//          templateUrl: 'view/info/main.html'
+//        }
+//      }
+//    });
+//  })
 
 
 

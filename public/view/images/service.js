@@ -1,6 +1,6 @@
 var login = angular.module('app.images-service',[]);
 
-login.factory('ImagesService',function($http){
+login.factory('ImagesService',function($http, $q){
 
   var service = {};
   service._imageList = {'length' : 0};
@@ -11,7 +11,7 @@ login.factory('ImagesService',function($http){
   };
 
   service.getImageList = function() {
-    return _imageList;
+    return service._imageList;
   };
 
 
@@ -45,10 +45,23 @@ login.factory('ImagesService',function($http){
   };
 
 
+  service.updateImageList = function(packageId) {
+    var deferred = $q.defer();
+
+    service.getImagesByPackageId(packageId)
+      .success(function(data) {
+        service._imageList = data;
+
+        if(service.getImageList()) {
+          deferred.resolve(true);
+        }
+      });
+
+    return deferred.promise;
+  };
 
 
 
-  service.updateImageList = function(packageId) {/* overridable action*/};
   service.imageUploaded = function(image) {/* overridable action*/};
   service.isImageListPopulated = function() {/* overridable action*/ return false;};
   service.deleteImageFromUpdateList = function(packageId) {/* overridable action*/};

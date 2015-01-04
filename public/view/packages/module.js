@@ -47,11 +47,126 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
     }
   })
 
+  .directive('packagesListAdmin', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/packages/list-admin.html',
+      controller: function($scope, PackagesService, CategoriesService, ImagesService) {
+
+        this.packages = PackagesService.getPackageList();
+
+        console.log(this.packages);
+
+        PackagesService.updatePackageList = function(category, userId) {
+          if(userId) {
+            CategoriesService.getByCategoryName_Promise(category)
+              .success(function(data) {
+                PackagesService.getPackagesByCategoryAndUserId(data.id, userId)
+                  .success(function(data) {
+                    $scope.packagesListAdminCtrl.packages = data;
+                    PackagesService.setPackageList(data);
+
+                  })
+              });
+          } else {
+            CategoriesService.getByCategoryName_Promise(category)
+              .success(function(data) {
+                PackagesService.getPackagesByCategory(data.id)
+                  .success(function(data) {
+                    $scope.packagesListAdminCtrl.packages = data;
+                    PackagesService.setPackageList(data);
+                    PackagesService.setPackageListImages();
+                    PackagesService.setPackageListTrims();
+                  })
+              });
+          }
+
+        };
+
+        this.clicked = function(packageObj) {
+          console.log("PACKAGE CLICKED!!!");
+          console.log(packageObj);
+          PackagesService.packageClicked(packageObj);
+        }
+
+      },
+      controllerAs: 'packagesListAdminCtrl'
+    }
+  })
+
+  .directive('packagesListSide', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/packages/directives/list-side.html',
+      controller: function($scope, PackagesService, CategoriesService, ImagesService) {
+//
+        this.packages = PackagesService.getPackageList();
+//
+//        console.log(this.packages);
+//
+//        PackagesService.updatePackageList = function(category, userId) {
+//          if(userId) {
+//            CategoriesService.getByCategoryName_Promise(category)
+//              .success(function(data) {
+//                PackagesService.getPackagesByCategoryAndUserId(data.id, userId)
+//                  .success(function(data) {
+//                    $scope.packagesListCtrl.packages = data;
+//                    PackagesService.setPackageList(data);
+//
+//                  })
+//              });
+//          } else {
+//            CategoriesService.getByCategoryName_Promise(category)
+//              .success(function(data) {
+//                PackagesService.getPackagesByCategory(data.id)
+//                  .success(function(data) {
+//                    $scope.packagesListCtrl.packages = data;
+//                    PackagesService.setPackageList(data);
+//                    PackagesService.setPackageListImages();
+//                    PackagesService.setPackageListTrims();
+//                  })
+//              });
+//          }
+//
+//        };
+//
+//        this.clicked = function(packageObj) {
+//          console.log("PACKAGE CLICKED!!!");
+//          console.log(packageObj);
+//          PackagesService.packageClicked(packageObj);
+//        }
+
+      },
+      controllerAs: 'packagesListSideCtrl'
+    }
+  })
+
   .directive('packageDetails', function() {
     return {
       restrict: 'E',
       templateUrl: 'view/packages/details.html',
-      controller: function($scope, PackagesService, ImagesService) {
+      controller: function($scope, PackagesService, ImagesService, $state, $timeout) {
+
+        this.negotiatePopover = '';
+
+        this.negotiateClicked = function () {
+          console.log('NEGOTIATE CLICKED');
+
+          if($scope.trimTableCtrl.getSelectedTrims().length > 0) {
+            this.negotiatePopover = '';
+            $state.go('app.package.detail.negotiate');
+
+          } else {
+            console.log('TRIM NOT SELECTED');
+            this.negotiatePopover = 'Please Select Trim Above';
+
+            $timeout(function () {
+              $scope.packageDetailsCtrl.negotiatePopover = '';
+            }, 4000);
+          }
+
+
+        }
 
       },
       controllerAs: 'packageDetailsCtrl'
@@ -491,7 +606,14 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
           $scope.imageEditTableCtrl.slidesEdit = [];
           //$scope.imageListAndUploaderCtrl.listEmpty = true;
 
-          TrimsService.updateTrimTable(packageObj.id);
+          TrimsService.updateTrimTable(packageObj.id)
+            .then(function(data) {
+              console.log(data);
+              console.log('TRIMS IN SERVICE =');
+              console.log(TrimsService.getTableTrims());
+              $scope.trimTableCtrl.trims = TrimsService.getTableTrims();
+            });
+
           //$scope.packageDetailsAdminCtrl.package = packageObj;
           $scope.packageDetailsAdminCtrl.hydratePackage(packageObj);
           ImagesService.updateImageList(packageObj.id);

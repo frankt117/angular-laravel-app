@@ -1,0 +1,30 @@
+
+  <div class="panel panel-primary" ng-repeat="package in packagesListSideCtrl.packages">
+
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-sm-12">
+          <h3 class="panel-title"><a popover-placement="left" popover="{{package.summary}}" Popover-animation="true" popover-popup-delay="200" popover-trigger="mouseenter" ui-sref="app.package.detail({id: package.id})">{{package.name}}</a></h3>
+        </div>
+
+
+
+        <!--<div class="col-sm-6">-->
+          <!--<h6 class="panel-title text-right">Starting at </h6>-->
+          <!--<h4 class="panel-title text-right"><em>{{package.headTrim.price | currency }}</em></h4>-->
+        <!--</div>-->
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <!--<div class="row">-->
+        <!--<div class="col-md-10">-->
+          <!--{{package.summary | limitTo : 252}}-->
+        <!--</div>-->
+      <!--</div>-->
+      <h6 class="panel-title">Starting at  <em>{{package.headTrim.price | currency }}</em></h6>
+      <!--<h4 class="panel-title"><em>{{package.headTrim.price | currency }}</em></h4>-->
+    </div>
+
+
+  </div>

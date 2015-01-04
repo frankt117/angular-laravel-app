@@ -8,7 +8,7 @@
     <!--<button type="button" class="btn btn-success btn-medium" ng-click="updateMainCurrentView('CHECKOUT')">-->
       <!--Purchase-->
     <!--</button>-->
-    <button type="button" class="btn btn-warning btn-medium" ng-click="updateMainCurrentView('NEGOTIATE')">
+    <button type="button" popover-placement="right" popover="{{packageDetailsCtrl.negotiatePopover}}" popover-trigger="click" class="btn btn-warning btn-medium" ng-click="packageDetailsCtrl.negotiateClicked()">
       Negotiate
     </button>
     <!--<button type="button" class="btn btn-default btn-medium">-->

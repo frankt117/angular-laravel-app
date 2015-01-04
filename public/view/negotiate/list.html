@@ -1,0 +1,17 @@
+
+<div ng-repeat="negotiation in negotiationList.negotiations">
+
+  <div class="panel panel-primary">
+
+    <div class="panel-heading">
+      <h3 class="panel-title"><a href>{{negotiation.mail_subject}}</a></h3>
+    </div>
+
+    <div class="panel-body">
+      <p ng-bind-html="negotiate.mail_text"></p>
+    </div>
+
+
+  </div>
+
+</div>

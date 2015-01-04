@@ -33,6 +33,26 @@ login.factory('NegotiationsService',function($http){
     return promise;
   };
 
+  service.getNegotiationsByRespondEmail = function(emailId) {
+    var options = {"where" : [
+      {"respond_to_email_id" : emailId}
+    ]
+    };
+    var promise = $http({method:'GET',url:'index.php/api/v1/negotiations', params:options});
+
+    return promise;
+  };
+
+  service.getNegotiationsByTargetEmail = function(emailId) {
+    var options = {"where" : [
+      {"target_to_email_id" : emailId}
+    ]
+    };
+    var promise = $http({method:'GET',url:'index.php/api/v1/negotiations', params:options});
+
+    return promise;
+  };
+
 
   return service;
 });

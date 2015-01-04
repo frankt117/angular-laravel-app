@@ -29,6 +29,80 @@ angular.module( 'app.service-categories', ['app.service-categories-services'])
     }
   })
 
+  .directive('serviceCategoriesDropDownRoute', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/service-categories/drop-down-route.html',
+      controller: function($scope, CategoriesService) {
+
+        this.selected = CategoriesService.getSelctedCategory();
+        this.categories = {};
+
+        CategoriesService.get()
+          .then(function($response) {
+            $scope.serviceCategoriesDropDownRouteCtrl.categories = $response.data;
+            console.log($scope.serviceCategoriesDropDownRouteCtrl.categories);
+          });
+
+        this.status = {
+          isopen: false
+        };
+
+        this.changeSelected = function(selectedNew) {
+          this.selected = selectedNew;
+          CategoriesService.setSelectedCategory(selectedNew);
+        };
+
+
+      },
+      controllerAs: 'serviceCategoriesDropDownRouteCtrl'
+    }
+  })
+
+  .directive('serviceCategoriesDropDownSide', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'view/service-categories/drop-down-side.html',
+      controller: function($scope, CategoriesService, PackagesService) {
+
+        this.selected = CategoriesService.getSelctedCategory();
+        this.categories = {};
+        this.categoryCode = {};
+
+        CategoriesService.get()
+          .then(function($response) {
+            $scope.serviceCategoriesDropDownSideCtrl.categories = $response.data;
+            console.log($scope.serviceCategoriesDropDownSideCtrl.categories);
+          });
+
+        this.status = {
+          isopen: false
+        };
+
+        this.changeSelected = function(selectedNew, code) {
+          console.log(code);
+          this.selected = selectedNew;
+          CategoriesService.setSelectedCategory(selectedNew);
+
+          this.categoryCode = code;
+          PackagesService.getPackagesByCode(this.categoryCode)
+            .success(function (data,status) {
+              PackagesService.setPackageList(data);
+              $scope.packagesListSideCtrl.packages = data;
+              PackagesService.setPackageListImages();
+              PackagesService.setPackageListTrims();
+            });
+        };
+
+
+
+
+
+      },
+      controllerAs: 'serviceCategoriesDropDownSideCtrl'
+    }
+  })
+
   .directive('serviceCategoriesDropDownForInsert', function() {
     return {
       restrict: 'E',
