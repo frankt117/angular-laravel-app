@@ -20,7 +20,39 @@
 
   <script type="text/javascript" src="http://cdn.jsdelivr.net/restangular/latest/restangular.js"></script>
   <script type="text/javascript" src="//cdn.jsdelivr.net/lodash/2.1.0/lodash.compat.min.js"></script>
-  <script type="text/javascript" src="dist/all.js"></script>
+  <script type="text/javascript" src="view/app.js"></script>
+  <script type="text/javascript" src="view/privileges/privileges-2.js"></script>
+  <script type="text/javascript" src="view/landing/main.js"></script>
+  <script type="text/javascript" src="view/main/main.js"></script>
+  <script type="text/javascript" src="view/negotiate/main.js"></script>
+  <script type="text/javascript" src="view/manage/admin/main.js"></script>
+  <script type="text/javascript" src="view/manage/service-provider/main.js"></script>
+  <script type="text/javascript" src="view/manage/customer/main.js"></script>
+  <script type="text/javascript" src="view/manage/login/main.js"></script>
+  <script type="text/javascript" src="view/manage/login/authService.js"></script>
+  <script type="text/javascript" src="view/manage/new-user/main.js"></script>
+  <script type="text/javascript" src="view/manage/new-user/service-provider.js"></script>
+  <script type="text/javascript" src="view/manage/new-user/customer.js"></script>
+  <script type="text/javascript" src="view/manage/navigation/nav-bar.js"></script>
+  <script type="text/javascript" src="view/service-categories/module.js"></script>
+  <script type="text/javascript" src="view/service-categories/service.js"></script>
+  <script type="text/javascript" src="view/markets/module.js"></script>
+  <script type="text/javascript" src="view/markets/service.js"></script>
+  <script type="text/javascript" src="view/packages/module.js"></script>
+  <script type="text/javascript" src="view/packages/service.js"></script>
+  <script type="text/javascript" src="view/images/module.js"></script>
+  <script type="text/javascript" src="view/images/service.js"></script>
+  <script type="text/javascript" src="view/trims/module.js"></script>
+  <script type="text/javascript" src="view/trims/service.js"></script>
+  <script type="text/javascript" src="view/companies/module.js"></script>
+  <script type="text/javascript" src="view/companies/service.js"></script>
+  <script type="text/javascript" src="view/negotiate/module.js"></script>
+  <script type="text/javascript" src="view/negotiate/service.js"></script>
+  <script type="text/javascript" src="view/users/users.js"></script>
+  <script type="text/javascript" src="view/users/service.js"></script>
+  <script type="text/javascript" src="view/oauth/service.js"></script>
+  <script type="text/javascript" src="view/checkout/module.js"></script>
+  <script type="text/javascript" src="view/info/main.js"></script>
 
 
   <!--Bootstrap-->

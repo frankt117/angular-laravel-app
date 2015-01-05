@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var ngAnnotate = require('gulp-ng-annotate');
 var uglify = require('gulp-uglify');
+var concat = require('gulp-concat');
 
 
 gulp.task('annotate', function () {
@@ -11,7 +12,14 @@ gulp.task('annotate', function () {
 
 
 gulp.task('compress', function() {
-  return gulp.src('public/view/**/*.js')
+  return gulp.src('dist/**/*.js')
     .pipe(uglify())
-    .pipe(gulp.dest('public/view'))
+    .pipe(gulp.dest('dist'))
+});
+
+
+gulp.task('concat', function() {
+  return gulp.src('dist/**/*.js')
+    .pipe(concat('all.js'))
+    .pipe(gulp.dest('public/dist'))
 });
