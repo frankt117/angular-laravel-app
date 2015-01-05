@@ -4,7 +4,7 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
     return {
       restrict: 'E',
       templateUrl: 'view/packages/list.html',
-      controller: function($scope, PackagesService, CategoriesService, ImagesService) {
+      controller: ["$scope", "PackagesService", "CategoriesService", "ImagesService", function($scope, PackagesService, CategoriesService, ImagesService) {
 
         this.packages = PackagesService.getPackageList();
 
@@ -42,7 +42,7 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
           PackagesService.packageClicked(packageObj);
         }
 
-      },
+      }],
       controllerAs: 'packagesListCtrl'
     }
   })
@@ -51,7 +51,7 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
     return {
       restrict: 'E',
       templateUrl: 'view/packages/list-admin.html',
-      controller: function($scope, PackagesService, CategoriesService, ImagesService) {
+      controller: ["$scope", "PackagesService", "CategoriesService", "ImagesService", function($scope, PackagesService, CategoriesService, ImagesService) {
 
         this.packages = PackagesService.getPackageList();
 
@@ -89,7 +89,7 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
           PackagesService.packageClicked(packageObj);
         }
 
-      },
+      }],
       controllerAs: 'packagesListAdminCtrl'
     }
   })
@@ -98,7 +98,7 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
     return {
       restrict: 'E',
       templateUrl: 'view/packages/directives/list-side.html',
-      controller: function($scope, PackagesService, CategoriesService, ImagesService) {
+      controller: ["$scope", "PackagesService", "CategoriesService", "ImagesService", function($scope, PackagesService, CategoriesService, ImagesService) {
 //
         this.packages = PackagesService.getPackageList();
 //
@@ -136,7 +136,7 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
 //          PackagesService.packageClicked(packageObj);
 //        }
 
-      },
+      }],
       controllerAs: 'packagesListSideCtrl'
     }
   })
@@ -145,7 +145,7 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
     return {
       restrict: 'E',
       templateUrl: 'view/packages/details.html',
-      controller: function($scope, PackagesService, ImagesService, $state, $timeout) {
+      controller: ["$scope", "PackagesService", "ImagesService", "$state", "$timeout", function($scope, PackagesService, ImagesService, $state, $timeout) {
 
         this.negotiatePopover = '';
 
@@ -168,7 +168,7 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
 
         }
 
-      },
+      }],
       controllerAs: 'packageDetailsCtrl'
     }
   })
@@ -177,7 +177,7 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
     return {
       restrict: 'E',
       templateUrl: 'view/packages/details-admin.html',
-      controller: function($scope, PackagesService, ImagesService) {
+      controller: ["$scope", "PackagesService", "ImagesService", function($scope, PackagesService, ImagesService) {
         this.package = {};
 
 
@@ -269,7 +269,7 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
           $scope.packageDetailsAdminCtrl.alerts.splice(index, 1);
         };
 
-      },
+      }],
       controllerAs: 'packageDetailsAdminCtrl'
     }
   })
@@ -278,7 +278,7 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
     return {
       restrict: 'E',
       templateUrl: 'view/packages/list-and-details.html',
-      controller: function($scope, PackagesService, ImagesService, TrimsService) {
+      controller: ["$scope", "PackagesService", "ImagesService", "TrimsService", function($scope, PackagesService, ImagesService, TrimsService) {
         this._currentView = "LIST";
 
         PackagesService.packageClicked = function(packageObj) {
@@ -298,7 +298,7 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
           return this._currentView == view;
         };
 
-      },
+      }],
       controllerAs: 'packageListAndDetailsCtrl'
     }
   })
@@ -307,7 +307,7 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
     return {
       restrict: 'E',
       templateUrl: 'view/packages/list-and-details-admin.html',
-      controller: function($scope, PackagesService, ImagesService, TrimsService) {
+      controller: ["$scope", "PackagesService", "ImagesService", "TrimsService", function($scope, PackagesService, ImagesService, TrimsService) {
         this._currentView = "LIST";
 
         PackagesService.packageClicked = function(packageObj) {
@@ -345,7 +345,7 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
           $scope.trimTableCtrl.trims = newTrims;
         };
 
-      },
+      }],
       controllerAs: 'packageListAndDetailsAdminCtrl'
     }
   })
@@ -354,7 +354,7 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
     return {
       restrict: 'E',
       templateUrl: 'view/packages/crud-admin.html',
-      controller: function($scope, PackagesService, CategoriesService, MarketsService, UsersService) {
+      controller: ["$scope", "PackagesService", "CategoriesService", "MarketsService", "UsersService", function($scope, PackagesService, CategoriesService, MarketsService, UsersService) {
 
         this._selectedMarket = {};
         this._selectedCategory = {};
@@ -387,7 +387,7 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
         };
 
 
-      },
+      }],
       controllerAs: 'packageCrudAdminCtrl'
     }
   })
@@ -403,7 +403,7 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
     return {
       restrict: 'E',
       templateUrl: 'view/packages/crud-admin-package-edit-tile.html',
-      controller: function($scope, PackagesService, CategoriesService, MarketsService, ImagesService) {
+      controller: ["$scope", "PackagesService", "CategoriesService", "MarketsService", "ImagesService", function($scope, PackagesService, CategoriesService, MarketsService, ImagesService) {
         this.categoryId = '';
         this.code = '';
         this.name = '';
@@ -489,7 +489,7 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
 
         };
 
-      },
+      }],
       controllerAs: 'crudAdminPackageEdit'
     }
   })
@@ -501,7 +501,7 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
     return {
       restrict: 'E',
       templateUrl: 'view/packages/crud-customer-package-edit.html',
-      controller: function($scope, PackagesService, CategoriesService, MarketsService, ImagesService) {
+      controller: ["$scope", "PackagesService", "CategoriesService", "MarketsService", "ImagesService", function($scope, PackagesService, CategoriesService, MarketsService, ImagesService) {
         this.userId = 9999;
         this.categoryId = 9999;
         this.name = "";
@@ -578,7 +578,7 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
 
         };
 
-      },
+      }],
       controllerAs: 'crudCustomerPackageEditCtrl'
     }
   })
@@ -589,7 +589,7 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
     return {
       restrict: 'E',
       templateUrl: 'view/packages/update-admin.html',
-      controller: function($scope, PackagesService, CategoriesService, MarketsService, TrimsService, ImagesService) {
+      controller: ["$scope", "PackagesService", "CategoriesService", "MarketsService", "TrimsService", "ImagesService", function($scope, PackagesService, CategoriesService, MarketsService, TrimsService, ImagesService) {
         this._currentUpdatePackageView = 'DETAILS';
 
 
@@ -652,7 +652,7 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
         }
 
 
-      },
+      }],
       controllerAs: 'updatePackageAdminCtrl'
     }
   })
@@ -661,11 +661,11 @@ angular.module( 'app.packages', ['app.packages-service', 'app.users-service', 'u
     return {
       restrict: 'E',
       templateUrl: 'view/packages/update-trims-admin.html',
-      controller: function($scope,TrimsService, ImagesService) {
+      controller: ["$scope", "TrimsService", "ImagesService", function($scope,TrimsService, ImagesService) {
 
 
 
-      },
+      }],
       controllerAs: 'updateTrimsAdminCtrl'
     }
   })

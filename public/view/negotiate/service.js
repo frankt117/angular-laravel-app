@@ -1,6 +1,6 @@
 var login = angular.module('app.negotiations-service',[]);
 
-login.factory('NegotiationsService',function($http){
+login.factory('NegotiationsService',["$http", function($http){
 
   var service = {};
 
@@ -55,4 +55,4 @@ login.factory('NegotiationsService',function($http){
 
 
   return service;
-});
+}]);

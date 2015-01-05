@@ -4,10 +4,10 @@ angular.module( 'app.new-user-service-provider', [])
     return {
       restrict: 'E',
       templateUrl: 'view/manage/new-user/service-provider.html',
-      controller: function($scope) {
+      controller: ["$scope", function($scope) {
         $scope.alert2 = false;
 
-      },
+      }],
       controllerAs: 'newUserServiceProviderCtrl'
     }
   })

@@ -3,7 +3,7 @@ angular.module( 'app.manage-admin', [
     'app.login'
   ])
 
-  .config(function config( $stateProvider ) {
+  .config(["$stateProvider", function config( $stateProvider ) {
     $stateProvider.state( 'admin', {
       url: '/manage/admin',
       views: {
@@ -17,9 +17,9 @@ angular.module( 'app.manage-admin', [
         }
       }
     });
-  })
+  }])
 
-  .controller( 'MainAdminCtrl', function MainAdminCtrl( $scope, $http ) {
+  .controller( 'MainAdminCtrl', ["$scope", "$http", function MainAdminCtrl( $scope, $http ) {
 
     $http({method:'GET',url:'index.php/api/v1/login/get-logged-in'})
       .success(function(data, header) {
@@ -56,6 +56,6 @@ angular.module( 'app.manage-admin', [
     this.currentView = 'Main';
 
     //sessionStorage.userCategory = 'ADMIN';
-  })
+  }])
 
 ;

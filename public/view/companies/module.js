@@ -4,7 +4,7 @@ angular.module( 'app.companies', ['app.companies-service'])
     return {
       restrict: 'E',
       templateUrl: 'view/companies/negotiate-table.html',
-      controller: function($scope, CompaniesService) {
+      controller: ["$scope", "CompaniesService", function($scope, CompaniesService) {
         this.companies = [];
 
         for (var i = 0; i < $scope.trimTableCtrl.trims.length; i++) {
@@ -13,7 +13,7 @@ angular.module( 'app.companies', ['app.companies-service'])
           }
         }
 
-      },
+      }],
       controllerAs: 'companiesNegotiateTableCtrl'
     }
   })

@@ -4,7 +4,7 @@ angular.module( 'app.manage-service-provider', [
     'app.oauth-service'
   ])
 
-  .config(function config( $stateProvider ) {
+  .config(["$stateProvider", function config( $stateProvider ) {
     $stateProvider.state( 'service-provider', {
       url: '/manage/service-provider',
       views: {
@@ -28,9 +28,9 @@ angular.module( 'app.manage-service-provider', [
         }
       }
     });
-  })
+  }])
 
-  .controller( 'MainSPCtrl', function MainSPCtrl( $scope, $http ) {
+  .controller( 'MainSPCtrl', ["$scope", "$http", function MainSPCtrl( $scope, $http ) {
     sessionStorage.newUserCategory = 'service_provider';
 
     if(sessionStorage.loggedIn == "true" && sessionStorage.userCategory != 'service_provider') {
@@ -65,9 +65,9 @@ angular.module( 'app.manage-service-provider', [
       return $scope._currentManageView == view;
     };
 
-  })
+  }])
 
-  .controller( 'OauthCtrl', function OauthCtrl( $scope, OauthService, $http, $stateParams ) {
+  .controller( 'OauthCtrl', ["$scope", "OauthService", "$http", "$stateParams", function OauthCtrl( $scope, OauthService, $http, $stateParams ) {
 
     console.log("POST");
     console.log($stateParams['token']);
@@ -82,6 +82,6 @@ angular.module( 'app.manage-service-provider', [
         console.log("TOKEN ERROR");
         console.log(data);
       });
-  })
+  }])
 
 ;

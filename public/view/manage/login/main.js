@@ -1,7 +1,7 @@
 angular.module( 'app.login', ['app.new-user'])
 
 
-  .controller( 'LoginCtrl', function LoginCtrl( $scope, $http, Login) {
+  .controller( 'LoginCtrl', ["$scope", "$http", "Login", function LoginCtrl( $scope, $http, Login) {
     $scope.email = '';
     $scope.password = '';
     $scope.panelSelected = 1;
@@ -101,15 +101,15 @@ angular.module( 'app.login', ['app.new-user'])
     }
 
     $scope.selectPanel = function selectPanel(panel) {
-     $scope.panelSelected = panel;
-     $scope.loginAlerts = [];
+      $scope.panelSelected = panel;
+      $scope.loginAlerts = [];
     }
 
     if ( sessionStorage.userCategory === 'ADMIN') {
       $scope.showNewUserPanel = false;
     }
 
-  })
+  }])
 
 
 

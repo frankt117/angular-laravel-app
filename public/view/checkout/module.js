@@ -4,7 +4,7 @@ angular.module( 'app.checkout', ['angularLoad', 'angularPayments', 'app.oauth-se
     return {
       restrict: 'E',
       templateUrl: 'view/checkout/payment-form.html',
-      controller: function($scope, angularLoad, OauthService, $window, $http) {
+      controller: ["$scope", "angularLoad", "OauthService", "$window", "$http", function($scope, angularLoad, OauthService, $window, $http) {
         this.loaded = false;
         this.trim = $scope.trimTableCtrl.getSelectedTrim();
         this.price = this.trim.price;
@@ -19,17 +19,17 @@ angular.module( 'app.checkout', ['angularLoad', 'angularPayments', 'app.oauth-se
 //            $scope.paymentFormCtrl.token = data;
 //            console.log(data);
 
-            angularLoad.loadScript('https://js.stripe.com/v2/').then(function() {
-              console.log("STRIPE LOADED!!");
-              //console.log("KEY = "+$scope.paymentFormCtrl.token.publishable_key);
-              //$window.Stripe.setPublishableKey($scope.paymentFormCtrl.token.publishable_key);
-              //$window.Stripe.setPublishableKey('pk_test_zXpmfHRz4nWxDRwGhS0G9mRr');
-              $window.Stripe.setPublishableKey('pk_test_p129Weylj3u3q3OW6BHO7YH1');
-              console.log("KEY SET");
-              $scope.paymentFormCtrl.loaded = true;
-            }).catch(function() {
-                console.log("STRIPE FAILED");
-            });
+        angularLoad.loadScript('https://js.stripe.com/v2/').then(function() {
+          console.log("STRIPE LOADED!!");
+          //console.log("KEY = "+$scope.paymentFormCtrl.token.publishable_key);
+          //$window.Stripe.setPublishableKey($scope.paymentFormCtrl.token.publishable_key);
+          //$window.Stripe.setPublishableKey('pk_test_zXpmfHRz4nWxDRwGhS0G9mRr');
+          $window.Stripe.setPublishableKey('pk_test_p129Weylj3u3q3OW6BHO7YH1');
+          console.log("KEY SET");
+          $scope.paymentFormCtrl.loaded = true;
+        }).catch(function() {
+            console.log("STRIPE FAILED");
+        });
 
 
 //          })
@@ -58,7 +58,7 @@ angular.module( 'app.checkout', ['angularLoad', 'angularPayments', 'app.oauth-se
           }
         };
 
-      },
+      }],
       controllerAs: 'paymentFormCtrl'
     }
   })

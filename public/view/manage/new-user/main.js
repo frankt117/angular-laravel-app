@@ -4,7 +4,7 @@ angular.module( 'app.new-user', ['app.new-user-service-provider', 'app.new-user-
     return {
       restrict: 'E',
       templateUrl: 'view/manage/new-user/main.html',
-      controller: function($scope) {
+      controller: ["$scope", function($scope) {
         $scope.category = sessionStorage.newUserCategory;
 
 
@@ -16,7 +16,7 @@ angular.module( 'app.new-user', ['app.new-user-service-provider', 'app.new-user-
           $scope.alert2 = true;
         }
 
-      },
+      }],
       controllerAs: 'newUserMainCtrl'
     }
   })

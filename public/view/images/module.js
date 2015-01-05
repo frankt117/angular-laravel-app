@@ -4,11 +4,11 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
     return {
       restrict: 'E',
       templateUrl: 'view/images/carousel.html',
-      controller: function($scope, PackagesService, ImagesService) {
+      controller: ["$scope", "PackagesService", "ImagesService", function($scope, PackagesService, ImagesService) {
         this.slides = ImagesService.getImageList();
         this.show = false;
 
-      },
+      }],
       controllerAs: 'imageCarouselCtrl'
     }
   })
@@ -17,7 +17,7 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
     return {
       restrict: 'E',
       templateUrl: 'view/images/carousel-upload.html',
-      controller: function($scope, PackagesService, ImagesService) {
+      controller: ["$scope", "PackagesService", "ImagesService", function($scope, PackagesService, ImagesService) {
         this.slidesUploaded = [];
 
         this.apply = function(newslides) {
@@ -25,7 +25,7 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
           $scope.apply();
         };
 
-      },
+      }],
       controllerAs: 'imageCarouselUploadCtrl'
     }
   })
@@ -34,7 +34,7 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
     return {
       restrict: 'E',
       templateUrl: 'view/images/table.html',
-      controller: function($scope, PackagesService, ImagesService) {
+      controller: ["$scope", "PackagesService", "ImagesService", function($scope, PackagesService, ImagesService) {
         this.slidesEdit = [];
 
         this.moveUp = function(sequence) {
@@ -155,7 +155,7 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
           $scope.imageEditTableCtrl.slidesEdit = tempList;
         }
 
-      },
+      }],
       controllerAs: 'imageEditTableCtrl'
     }
   })
@@ -164,7 +164,7 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
     return {
       restrict: 'E',
       templateUrl: 'view/images/list-and-uploader.html',
-      controller: function($scope, PackagesService, ImagesService) {
+      controller: ["$scope", "PackagesService", "ImagesService", function($scope, PackagesService, ImagesService) {
         this.list = {};
         this.listEmpty = true;
         this._currentView = 'LIST';
@@ -205,7 +205,7 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
 
 
 
-      },
+      }],
       controllerAs: 'imageListAndUploaderCtrl'
     }
   })
@@ -215,7 +215,7 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
     return {
       restrict: 'E',
       templateUrl: 'view/images/list-and-uploader-update.html',
-      controller: function($scope, PackagesService, ImagesService) {
+      controller: ["$scope", "PackagesService", "ImagesService", function($scope, PackagesService, ImagesService) {
         this.list = {};
         this.listEmpty = true;
 
@@ -284,7 +284,7 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
         }
 
 
-      },
+      }],
       controllerAs: 'imageListAndUploaderUpdateCtrl'
     }
   })
@@ -295,7 +295,7 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
     return {
       restrict: 'E',
       templateUrl: 'view/images/uploader.html',
-      controller: function($scope, PackagesService, FileUploader, ImagesService) {
+      controller: ["$scope", "PackagesService", "FileUploader", "ImagesService", function($scope, PackagesService, FileUploader, ImagesService) {
 
         $scope.uploader = new FileUploader({
           url: 'index.php/api/v1/image-upload'
@@ -311,18 +311,18 @@ angular.module( 'app.images', ['app.images-service', 'users', 'angularFileUpload
         console.info('uploader', $scope.uploader);
 
 
-      },
+      }],
       controllerAs: 'imageUploaderCtrl'
     }
   })
 
 
 
-  /**
-   * The ng-thumb directive
-   * @author: nerv
-   * @version: 0.1.2, 2014-01-09
-   */
+/**
+ * The ng-thumb directive
+ * @author: nerv
+ * @version: 0.1.2, 2014-01-09
+ */
   .directive('ngThumb', ['$window', function($window) {
     var helper = {
       support: !!($window.FileReader && $window.CanvasRenderingContext2D),

@@ -6,7 +6,7 @@
     return {
       restrict: 'E',
       templateUrl: 'view/users/users-drop-down-tile.html',
-      controller: function($scope, Restangular, UsersService) {
+      controller: ["$scope", "Restangular", "UsersService", function($scope, Restangular, UsersService) {
         var users = this;
 
         users.user_name = "Select User";
@@ -31,7 +31,7 @@
           UsersService.userDropDownClickedAction(userId);
         };
 
-      },
+      }],
       controllerAs: 'userDropDownCtrl'
     }
   });
@@ -40,7 +40,7 @@
     return {
       restrict: 'E',
       templateUrl: 'view/users/users-drop-down-input.html',
-      controller: function($scope, Restangular) {
+      controller: ["$scope", "Restangular", function($scope, Restangular) {
         var users = this;
 
         users.user_name = "Select User";
@@ -77,7 +77,7 @@
           }
         }
 
-      },
+      }],
       controllerAs: 'userDD'
     }
   });

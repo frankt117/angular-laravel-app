@@ -4,7 +4,7 @@ angular.module( 'app.service-categories', ['app.service-categories-services'])
     return {
       restrict: 'E',
       templateUrl: 'view/service-categories/drop-down.html',
-      controller: function($scope, CategoriesService) {
+      controller: ["$scope", "CategoriesService", function($scope, CategoriesService) {
 
         this.selected = CategoriesService.getSelctedCategory();
         this.categories = {};
@@ -24,7 +24,7 @@ angular.module( 'app.service-categories', ['app.service-categories-services'])
         };
 
 
-      },
+      }],
       controllerAs: 'serviceCategoriesDropDownCtrl'
     }
   })
@@ -33,7 +33,7 @@ angular.module( 'app.service-categories', ['app.service-categories-services'])
     return {
       restrict: 'E',
       templateUrl: 'view/service-categories/drop-down-route.html',
-      controller: function($scope, CategoriesService) {
+      controller: ["$scope", "CategoriesService", function($scope, CategoriesService) {
 
         this.selected = CategoriesService.getSelctedCategory();
         this.categories = {};
@@ -54,7 +54,7 @@ angular.module( 'app.service-categories', ['app.service-categories-services'])
         };
 
 
-      },
+      }],
       controllerAs: 'serviceCategoriesDropDownRouteCtrl'
     }
   })
@@ -63,7 +63,7 @@ angular.module( 'app.service-categories', ['app.service-categories-services'])
     return {
       restrict: 'E',
       templateUrl: 'view/service-categories/drop-down-side.html',
-      controller: function($scope, CategoriesService, PackagesService) {
+      controller: ["$scope", "CategoriesService", "PackagesService", function($scope, CategoriesService, PackagesService) {
 
         this.selected = CategoriesService.getSelctedCategory();
         this.categories = {};
@@ -98,7 +98,7 @@ angular.module( 'app.service-categories', ['app.service-categories-services'])
 
 
 
-      },
+      }],
       controllerAs: 'serviceCategoriesDropDownSideCtrl'
     }
   })
@@ -107,7 +107,7 @@ angular.module( 'app.service-categories', ['app.service-categories-services'])
     return {
       restrict: 'E',
       templateUrl: 'view/service-categories/drop-down-insert.html',
-      controller: function($scope, CategoriesService) {
+      controller: ["$scope", "CategoriesService", function($scope, CategoriesService) {
 
         this.selectedName = "Select";
         this.selectedId = "";
@@ -132,7 +132,7 @@ angular.module( 'app.service-categories', ['app.service-categories-services'])
         };
 
 
-      },
+      }],
       controllerAs: 'serviceCategoriesDropDownForInsertCtrl'
     }
   })
@@ -141,7 +141,7 @@ angular.module( 'app.service-categories', ['app.service-categories-services'])
     return {
       restrict: 'E',
       templateUrl: 'view/service-categories/drop-down-update.html',
-      controller: function($scope, CategoriesService) {
+      controller: ["$scope", "CategoriesService", function($scope, CategoriesService) {
 
         this.selectedName = "Select";
         this.selectedId = "";
@@ -176,7 +176,7 @@ angular.module( 'app.service-categories', ['app.service-categories-services'])
         }
 
 
-      },
+      }],
       controllerAs: 'serviceCategoriesDropDownForUpdateCtrl'
     }
   })

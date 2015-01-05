@@ -1,6 +1,6 @@
 var login = angular.module('app.trims-service',['app.companies-service']);
 
-login.factory('TrimsService',function($http, $q, CompaniesService){
+login.factory('TrimsService',["$http", "$q", "CompaniesService", function($http, $q, CompaniesService){
 
   var service = {};
   service.tableTrims = [];
@@ -80,4 +80,4 @@ login.factory('TrimsService',function($http, $q, CompaniesService){
 
 
   return service;
-});
+}]);

@@ -4,7 +4,7 @@ angular.module( 'app.manage-customer', [
     'app.negotiations-service'
   ])
 
-  .config(function config( $stateProvider ) {
+  .config(["$stateProvider", function config( $stateProvider ) {
     $stateProvider
       .state( 'customer', {
         url: '/manage/customer',
@@ -25,9 +25,9 @@ angular.module( 'app.manage-customer', [
         resolve: {
 
         },
-        controller: function($scope, PackagesService) {
+        controller: ["$scope", "PackagesService", function($scope, PackagesService) {
 
-        },
+        }],
         controllerAs: 'customerPackagesCtrl',
         template: '<h1>PACKAGES</h1>'
       })
@@ -37,10 +37,10 @@ angular.module( 'app.manage-customer', [
         resolve: {
 
         },
-        controller: function($scope, NegotiationsService) {
+        controller: ["$scope", "NegotiationsService", function($scope, NegotiationsService) {
           console.log('CUSTOMER NEGOTIATION CTRL');
 
-        },
+        }],
         controllerAs: 'customerNegotiationsCtrl',
         templateUrl: 'view/negotiate/controllers/customer-negotiations.html'
       })
@@ -50,7 +50,7 @@ angular.module( 'app.manage-customer', [
         resolve: {
 
         },
-        controller: function($scope, NegotiationsService) {
+        controller: ["$scope", "NegotiationsService", function($scope, NegotiationsService) {
           console.log('CUSTOMER NEGOTIATION RECEIVED CTRL');
           console.log(sessionStorage['userId']);
           this.negotiations = [];
@@ -65,7 +65,7 @@ angular.module( 'app.manage-customer', [
               console.log(data);
             });
 
-        },
+        }],
         controllerAs: 'customerNegotiationsSentCtrl',
         templateUrl: 'view/negotiate/controllers/customer-negotiations-sent.html'
       })
@@ -75,7 +75,7 @@ angular.module( 'app.manage-customer', [
         resolve: {
 
         },
-        controller: function($scope, NegotiationsService) {
+        controller: ["$scope", "NegotiationsService", function($scope, NegotiationsService) {
           console.log('CUSTOMER NEGOTIATION SENT CTRL');
           console.log(sessionStorage['userId']);
           this.negotiations = [];
@@ -90,7 +90,7 @@ angular.module( 'app.manage-customer', [
               console.log(data);
             });
 
-        },
+        }],
         controllerAs: 'customerNegotiationsSentCtrl',
         templateUrl: 'view/negotiate/controllers/customer-negotiations-sent.html'
       })
@@ -100,7 +100,7 @@ angular.module( 'app.manage-customer', [
         resolve: {
 
         },
-        controller: function($scope, NegotiationsService, $stateParams) {
+        controller: ["$scope", "NegotiationsService", "$stateParams", function($scope, NegotiationsService, $stateParams) {
           this.negotiations = [];
           this.spResponse = '';
           this.spPrice = '';
@@ -133,7 +133,7 @@ angular.module( 'app.manage-customer', [
                 console.log("FAIL");
               });
           }
-        },
+        }],
         controllerAs: 'customerResponseCtrl',
         templateUrl: 'view/negotiate/controllers/customer-response-admin.html'
       })
@@ -146,9 +146,9 @@ angular.module( 'app.manage-customer', [
 //      })
 
 
-  })
+  }])
 
-  .controller( 'MainCustomerCtrl', function MainCustomerCtrl( $scope ) {
+  .controller( 'MainCustomerCtrl', ["$scope", function MainCustomerCtrl( $scope ) {
     sessionStorage.newUserCategory = 'customer';
 
     if(sessionStorage.loggedIn == "true" && (sessionStorage.userCategory != 'customer' || sessionStorage.userCategory != 'CUSTOMER')) {
@@ -171,6 +171,6 @@ angular.module( 'app.manage-customer', [
       }
 
     }
-  })
+  }])
 
 ;

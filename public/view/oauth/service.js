@@ -1,6 +1,6 @@
 var login = angular.module('app.oauth-service',[]);
 
-login.factory('OauthService',function($http){
+login.factory('OauthService',["$http", function($http){
 
   var service = {};
 
@@ -21,4 +21,4 @@ login.factory('OauthService',function($http){
 
 
   return service;
-});
+}]);

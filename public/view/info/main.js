@@ -5,9 +5,9 @@ angular.module( 'app.info', [])
     return {
       restrict: 'E',
       templateUrl: 'view/info/about-us.html',
-      controller: function($scope) {
+      controller: ["$scope", function($scope) {
 
-      },
+      }],
       controllerAs: 'aboutUsCtrl'
     }
   })
@@ -16,9 +16,9 @@ angular.module( 'app.info', [])
     return {
       restrict: 'E',
       templateUrl: 'view/info/faq.html',
-      controller: function($scope) {
+      controller: ["$scope", function($scope) {
 
-      },
+      }],
       controllerAs: 'faqCtrl'
     }
   })
@@ -27,9 +27,9 @@ angular.module( 'app.info', [])
     return {
       restrict: 'E',
       templateUrl: 'view/info/privacy-policy.html',
-      controller: function($scope) {
+      controller: ["$scope", function($scope) {
 
-      },
+      }],
       controllerAs: 'privacyPolicyCtrl'
     }
   })
@@ -38,9 +38,9 @@ angular.module( 'app.info', [])
     return {
       restrict: 'E',
       templateUrl: 'view/info/terms-of-service.html',
-      controller: function($scope) {
+      controller: ["$scope", function($scope) {
 
-      },
+      }],
       controllerAs: 'termsOfServiceCtrl'
     }
   })
@@ -49,9 +49,9 @@ angular.module( 'app.info', [])
     return {
       restrict: 'E',
       templateUrl: 'view/info/contact-us.html',
-      controller: function($scope) {
+      controller: ["$scope", function($scope) {
 
-      },
+      }],
       controllerAs: 'contactUsCtrl'
     }
   })

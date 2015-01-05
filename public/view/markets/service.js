@@ -1,6 +1,6 @@
 var login = angular.module('app.markets-service',[]);
 
-login.factory('MarketsService',function($http){
+login.factory('MarketsService',["$http", function($http){
 
   var service = {};
   var _selectedMarket = 'Dallas/Fort Worth Area';
@@ -34,4 +34,4 @@ login.factory('MarketsService',function($http){
   };
 
   return service;
-});
+}]);
