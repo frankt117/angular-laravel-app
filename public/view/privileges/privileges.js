@@ -5,7 +5,7 @@
     return {
       restrict: 'E',
       templateUrl: 'view/privileges/module.html',
-      controller: function($scope, Restangular, $http) {
+      controller: ["$scope", "Restangular", "$http", function($scope, Restangular, $http) {
 
         var main = this;
 //        main.parameters = [];
@@ -178,13 +178,13 @@
 
         this.addPrivilege = function(moduleId, typeId) {
           $http({
-                method: "PUT",
-                url: "index.php/api/v1/users/"+main.userId+"/modules/"+moduleId+"/privileges/"+typeId,
-                headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
-                data: { }
+            method: "PUT",
+            url: "index.php/api/v1/users/"+main.userId+"/modules/"+moduleId+"/privileges/"+typeId,
+            headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
+            data: { }
           }).then(function($response) {
-            main.updatePrivileges(main.userId);
-          });
+              main.updatePrivileges(main.userId);
+            });
         };
 
         this.removePrivilege = function(moduleId, typeId) {
@@ -197,8 +197,8 @@
             },
             data: { }
           }).then(function($response) {
-            main.updatePrivileges(main.userId);
-          });
+              main.updatePrivileges(main.userId);
+            });
         };
 
         this.checkPrivilege2 = function(moduleId, typeId) {
@@ -224,7 +224,7 @@
             return false;
           }
         };
-      },
+      }],
       controllerAs: 'main'
     }
   });
@@ -233,7 +233,7 @@
     return {
       restrict: 'E',
       templateUrl: 'view/users/users-drop-down-tile.html',
-      controller: function($scope, Restangular) {
+      controller: ["$scope", "Restangular", function($scope, Restangular) {
         var users = this;
         users.user_name = "Select a User";
 
@@ -253,7 +253,7 @@
           $scope.main.updatePrivileges(userId);
           users.user_name = userName;
         };
-      },
+      }],
       controllerAs: 'userDD'
     }
   });

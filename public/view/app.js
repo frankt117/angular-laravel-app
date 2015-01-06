@@ -22,18 +22,18 @@ angular.module( 'app', [
 
   ])
 
-  .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
+  .config( ["$stateProvider", "$urlRouterProvider", function myAppConfig ( $stateProvider, $urlRouterProvider ) {
     $urlRouterProvider.otherwise( '/index' );
 
-  })
+  }])
 
   .run( function run () {
   })
 
-  .controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
+  .controller( 'AppCtrl', ["$scope", "$location", function AppCtrl ( $scope, $location ) {
     $scope.loggedIn = sessionStorage.loggedIn;
 
-  })
+  }])
 
 
 

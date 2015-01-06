@@ -4,7 +4,7 @@ angular.module( 'app.new-user-customer', ['app.users-service'])
     return {
       restrict: 'E',
       templateUrl: 'view/manage/new-user/customer.html',
-      controller: function($scope, UsersService) {
+      controller: ["$scope", "UsersService", function($scope, UsersService) {
         this.email = '';
         this.password = '';
         this.zipCode = '';
@@ -25,7 +25,7 @@ angular.module( 'app.new-user-customer', ['app.users-service'])
 
         }
 
-      },
+      }],
       controllerAs: 'newUserCustomerCtrl'
     }
   })

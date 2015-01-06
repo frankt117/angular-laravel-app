@@ -4,7 +4,7 @@ angular.module( 'app.negotiation', ['app.negotiations-service'])
     return {
       restrict: 'E',
       templateUrl: 'view/negotiate/initiate.html',
-      controller: function($scope, NegotiationsService) {
+      controller: ["$scope", "NegotiationsService", function($scope, NegotiationsService) {
         this.package = $scope.packageDetailsCtrl.package;
         this.comment = '';
         this.customerEmailAddress = '';
@@ -29,7 +29,7 @@ angular.module( 'app.negotiation', ['app.negotiations-service'])
         };
 
 
-      },
+      }],
       controllerAs: 'initiateNegotiationCtrl'
     }
   })
@@ -38,7 +38,7 @@ angular.module( 'app.negotiation', ['app.negotiations-service'])
     return {
       restrict: 'E',
       templateUrl: 'view/negotiate/trim-drop-down.html',
-      controller: function($scope) {
+      controller: ["$scope", function($scope) {
         this.selectedTrim = 'Select Package';
         this.selectedTrimPrice = '';
         this.showPrice = false;
@@ -58,7 +58,7 @@ angular.module( 'app.negotiation', ['app.negotiations-service'])
 
 
 
-      },
+      }],
       controllerAs: 'negotiateTrimDropDownCtrl'
     }
   })
@@ -68,11 +68,11 @@ angular.module( 'app.negotiation', ['app.negotiations-service'])
     return {
       restrict: 'E',
       templateUrl: 'view/negotiate/list.html',
-      controller: function($scope, NegotiationsService) {
+      controller: ["$scope", "NegotiationsService", function($scope, NegotiationsService) {
         this.negotiations = [];
 
 
-      },
+      }],
       controllerAs: 'negotiationListCtrl'
     }
   })

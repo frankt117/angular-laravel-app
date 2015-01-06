@@ -4,7 +4,7 @@ angular.module( 'app.trims', ['app.trims-service'])
     return {
       restrict: 'E',
       templateUrl: 'view/trims/table.html',
-      controller: function($scope, TrimsService, CompaniesService) {
+      controller: ["$scope", "TrimsService", "CompaniesService", function($scope, TrimsService, CompaniesService) {
         this.trims = TrimsService.getTableTrims();
 
 
@@ -33,7 +33,7 @@ angular.module( 'app.trims', ['app.trims-service'])
 
 
 
-      },
+      }],
       controllerAs: 'trimTableCtrl'
     }
   })
@@ -44,7 +44,7 @@ angular.module( 'app.trims', ['app.trims-service'])
     return {
       restrict: 'E',
       templateUrl: 'view/trims/add-trim-admin.html',
-      controller: function($scope, TrimsService, CompaniesService) {
+      controller: ["$scope", "TrimsService", "CompaniesService", function($scope, TrimsService, CompaniesService) {
         this.marketId = 1;
         this.name = '';
         this.price = '';
@@ -123,7 +123,7 @@ angular.module( 'app.trims', ['app.trims-service'])
         }
 
 
-        },
+      }],
       controllerAs: 'addTrimAdminCtrl'
     }
   })

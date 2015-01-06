@@ -4,14 +4,14 @@ angular.module( 'app.nav-bar', [])
     return {
       restrict: 'E',
       templateUrl: 'view/manage/navigation/nav-bar-manage.html',
-      controller: function($scope) {
+      controller: ["$scope", function($scope) {
 
-         $scope.logOff = function() {
+        $scope.logOff = function() {
           console.log('LOGGING OFF');
-           sessionStorage.clear();
-           location.reload();
+          sessionStorage.clear();
+          location.reload();
         };
-      },
+      }],
       controllerAs: 'navBarCtrl'
     }
   })
@@ -20,14 +20,14 @@ angular.module( 'app.nav-bar', [])
     return {
       restrict: 'E',
       templateUrl: 'view/manage/navigation/nav-bar-manage-customer.html',
-      controller: function($scope) {
+      controller: ["$scope", function($scope) {
 
         $scope.logOff = function() {
           console.log('LOGGING OFF');
           sessionStorage.clear();
           location.reload();
         };
-      },
+      }],
       controllerAs: 'navBarCtrl'
     }
   })
@@ -36,14 +36,14 @@ angular.module( 'app.nav-bar', [])
     return {
       restrict: 'E',
       templateUrl: 'view/manage/navigation/nav-bar-service-provider.html',
-      controller: function($scope) {
+      controller: ["$scope", function($scope) {
 
         $scope.logOff = function() {
           console.log('LOGGING OFF');
           sessionStorage.clear();
           location.reload();
         };
-      },
+      }],
       controllerAs: 'navBarCtrl'
     }
   })
@@ -52,9 +52,9 @@ angular.module( 'app.nav-bar', [])
     return {
       restrict: 'E',
       templateUrl: 'view/manage/navigation/nav-bar-login.html',
-      controller: function($scope) {
+      controller: ["$scope", function($scope) {
 
-      },
+      }],
       controllerAs: 'navBarCtrl'
     }
   })
@@ -64,9 +64,9 @@ angular.module( 'app.nav-bar', [])
     return {
       restrict: 'E',
       templateUrl: 'view/manage/navigation/nav-bar.html',
-      controller: function($scope) {
+      controller: ["$scope", function($scope) {
 
-      },
+      }],
       controllerAs: 'navBarCtrl'
     }
   })
@@ -75,9 +75,9 @@ angular.module( 'app.nav-bar', [])
     return {
       restrict: 'E',
       templateUrl: 'view/manage/navigation/nav-bar-2.html',
-      controller: function($scope) {
+      controller: ["$scope", function($scope) {
 
-      },
+      }],
       controllerAs: 'navBar2Ctrl'
     }
   })
@@ -87,9 +87,9 @@ angular.module( 'app.nav-bar', [])
     return {
       restrict: 'E',
       templateUrl: 'view/manage/navigation/top-nav.html',
-      controller: function($scope) {
+      controller: ["$scope", function($scope) {
 
-      },
+      }],
       controllerAs: 'topNavCtrl'
     }
   })

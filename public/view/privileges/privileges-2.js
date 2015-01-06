@@ -5,7 +5,7 @@
     return {
       restrict: 'E',
       templateUrl: 'view/privileges/module-3.html',
-      controller: function($scope, Restangular, $http) {
+      controller: ["$scope", "Restangular", "$http", function($scope, Restangular, $http) {
         var privilegesController = this;
 
         privilegesController.privileges = {};
@@ -18,9 +18,9 @@
           headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
           data: { }
         }).then(function($response) {
-          privilegesController.privilegeModules = $response.data;
-          console.log($scope);
-        });
+            privilegesController.privilegeModules = $response.data;
+            console.log($scope);
+          });
 
         privilegesController.onTabSelected = function(module) {
           console.log('SELECTED');
@@ -31,7 +31,7 @@
           console.log(userId);
         };
 
-      },
+      }],
       controllerAs: 'privilegesController'
     }
   });
@@ -40,7 +40,7 @@
     return {
       restrict: 'E',
       templateUrl: 'view/users/users-drop-down-tile.html',
-      controller: function($scope, Restangular) {
+      controller: ["$scope", "Restangular", function($scope, Restangular) {
         var users = this;
         users.user_name = "Select a User";
 
@@ -60,7 +60,7 @@
           $scope.privilegesController.updatePrivileges(userId);
           users.user_name = userName;
         };
-      },
+      }],
       controllerAs: 'userDD'
     }
   });

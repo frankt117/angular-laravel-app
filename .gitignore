@@ -9,3 +9,4 @@ Thumbs.db
 /public/packages/bower_components
 /public/packages/npm-debug.log
 /public/images/upload
+/node_modules

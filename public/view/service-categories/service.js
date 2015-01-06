@@ -1,6 +1,6 @@
 var login = angular.module('app.service-categories-services',[]);
 
-login.factory('CategoriesService',function($http){
+login.factory('CategoriesService',["$http", function($http){
 
   var service = {};
   var _selectedCategory = "Select Category";
@@ -49,4 +49,4 @@ login.factory('CategoriesService',function($http){
   service.newCategorySelected = function(){/*overridable action*/}
 
   return service;
-});
+}]);

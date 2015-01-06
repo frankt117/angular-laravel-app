@@ -4,7 +4,7 @@ angular.module( 'app.markets', ['app.markets-service'])
     return {
       restrict: 'E',
       templateUrl: 'view/markets/drop-down.html',
-      controller: function($scope, MarketsService) {
+      controller: ["$scope", "MarketsService", function($scope, MarketsService) {
 
         this.selected = MarketsService.getSelectedMarket();
         this.markets = {};
@@ -23,7 +23,7 @@ angular.module( 'app.markets', ['app.markets-service'])
           MarketsService.setSelectedMarket(selectedNew);
         };
 
-      },
+      }],
       controllerAs: 'marketsDropDownCtrl'
     }
   })

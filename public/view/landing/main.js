@@ -2,7 +2,7 @@ angular.module( 'app.landing-page', [
     'ui.router'
   ])
 
-  .config(function config( $stateProvider ) {
+  .config(["$stateProvider", function config( $stateProvider ) {
     $stateProvider.state( 'landing-page', {
       url: '/index',
       views: {
@@ -12,12 +12,12 @@ angular.module( 'app.landing-page', [
         }
       }
     });
-  })
+  }])
 
-  .controller( 'LandingPageCtrl', function LandingPageCtrl( $scope ) {
+  .controller( 'LandingPageCtrl', ["$scope", function LandingPageCtrl( $scope ) {
 
 
 
-  })
+  }])
 
 ;

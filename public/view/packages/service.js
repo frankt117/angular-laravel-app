@@ -1,6 +1,6 @@
 var login = angular.module('app.packages-service',['app.images-service', 'app.trims-service']);
 
-login.factory('PackagesService',function($http, CategoriesService, ImagesService, TrimsService){
+login.factory('PackagesService',["$http", "CategoriesService", "ImagesService", "TrimsService", function($http, CategoriesService, ImagesService, TrimsService){
 
   var service = {};
   var _packageList = {};
@@ -136,4 +136,4 @@ login.factory('PackagesService',function($http, CategoriesService, ImagesService
   service.packageClicked = function(packageObj) {/*overridable action*/};
 
   return service;
-});
+}]);
