@@ -2026,7 +2026,7 @@ body {
   background-color: #f26101;
   font-size: 32px;
   margin-top: 0px;
-  height: 42px;
+  height: 52px;
   width: 190px;
   padding-top: 4px;
 }
@@ -2038,7 +2038,7 @@ body {
 }
 .topSection {
     height: 600px;
-    background-image: url('images/app/GetMePro_servicer_main_2x.jpg');
+    background-image: url('../../images/app/GetMePro_servicer_main_2x.jpg');
 }
 .topSection .headerPadding {
   height: 161px;
@@ -2559,13 +2559,14 @@ body {
   background: #f26101;
 }
 .numberCircle {
-  border-radius: 50%;
+  border-radius: 75%;
   /*behavior: url(PIE.htc); remove if you don't care about IE8 */
-  width: 25px;
-  height: 25px;
+  width: 35px;
+  height: 35px;
   padding: 8px;
   background: #003354;
   color: #ffffff;
   text-align: center;
-  font-size: 22px;
+  font-size: 18px;
+
 }
