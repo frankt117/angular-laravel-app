@@ -34,9 +34,10 @@
 </head>
 
 <style>
-  body{
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
     background-color: #f8f8f8;
-
   }
   .logo-bold {
     font-family: 'Lato', sans-serif;
