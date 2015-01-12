@@ -104,6 +104,51 @@
     }
   }
 
+
+  /*icon Fonts*/
+  @font-face {
+    font-family: 'icomoon';
+    src:url('../../css/fonts/icomoon.eot');
+    src:url('../../css/fonts/icomoon.eot') format('embedded-opentype'),
+    url('../../css/fonts/icomoon.woff') format('woff'),
+    url('../../css/fonts/icomoon.ttf') format('truetype'),
+    url('../../css/fonts/icomoon.svg#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  [class^="icon-"], [class*=" icon-"] {
+    font-family: 'icomoon';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .icon-tdmn_logo:before {
+    content: "\e604";
+  }
+  .icon-GetMePro_Tablet:before {
+    content: "\e600";
+  }
+  .icon-GetMePro_Smartphone:before {
+    content: "\e601";
+  }
+  .icon-GetMePro_HomeTheater:before {
+    content: "\e602";
+  }
+  .icon-GetMePro_HomeAutomation:before {
+    content: "\e603";
+  }
+
+
+
   .header2{
     background-color: #f06223;
     height: 85px;
@@ -133,19 +178,83 @@
   }
 
   .service_block .whatService .lg {
-    font-size: 36px;
+    font-size: 46px;
   }
 
   .service_block .whatService .md {
-    font-size: 30px;
+    font-size: 36px;
   }
 
   .service_block .whatService .sm {
-    font-size: 26px;
+    font-size: 30px;
   }
 
   .service_block .whatService .xs {
-    font-size: 20px;
+    font-size: 22px;
+  }
+
+  .service_block_2 {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .services {
+    height: 280px;
+    font-size: 16px;
+    color: #003354;
+    background-color: #e9f2f8;
+    border-radius: 12px;
+    top: 103px;
+    text-align: center;
+    width: 140px;
+
+  }
+
+  .services-right {
+    height: 280px;
+    font-size: 16px;
+    color: #003354;
+    background-color: #e9f2f8;
+    border-radius: 12px;
+    top: 103px;
+    text-align: center;
+    width: 140px;
+    margin-left: 10px;
+  }
+
+  .services-xs {
+    height: 280px;
+    font-size: 16px;
+    color: #003354;
+    background-color: #e9f2f8;
+    border-radius: 12px;
+    top: 103px;
+    text-align: center;
+
+  }
+
+  .icon-lg {
+    margin-top: 13px;
+    font-size: 100px;
+  }
+
+  .icon-md {
+    margin-top: 13px;
+    font-size: 80px;
+  }
+
+  .icon-sm {
+    margin-top: 13px;
+    font-size: 60px;
+  }
+
+  .selectButton {
+    border: 2px;
+    border-style: solid;
+    border-radius: 4px;
+    padding: 6px;
+    cursor: pointer;
+    margin-top: 30px;
   }
 </style>
 
@@ -162,7 +271,10 @@
         <div class="col-md-4 col-lg-4">
           <div class="row visible-lg">
             <div class="col-lg-3"><br></div>
-            <div class="col-lg-6 navGMP">
+            <div class="col-lg-6 visible-lg navGMP">
+              <a href="#/index"><h1 class="logo-bold">Get<test class="logo-medium">Me</test>Pro</h1></a>
+            </div>
+            <div class="col-md-6 visible-md navGMP">
               <a href="#/index"><h2 class="logo-bold">Get<test class="logo-medium">Me</test>Pro</h2></a>
             </div>
             <div class="col-lg-3"><br></div>
@@ -217,9 +329,120 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 service_block">
       <div class="row">
         <div class="col-lg-12 visible-lg whatService lg text-center">
-            What service are you looking for in <u>DFW</u>?
+            <div class="lg">What service are you looking for in <u>DFW</u>?</div>
+        </div>
+        <div class="col-md-12 visible-md whatService md text-center">
+          <div class="md">What service are you looking for in <u>DFW</u>?</div>
+        </div>
+        <div class="col-sm-12 visible-sm whatService sm text-center">
+          <div class="sm">What service are you looking for in <u>DFW</u>?</div>
+        </div>
+        <div class="col-xs-12 visible-xs whatService xs text-center">
+          <div class="xs">What service are you looking for in <u>DFW</u>?</div>
         </div>
       </div>
+
+      <div class="row">
+        <!--<div class="center-block services">-->
+        <!--</div>-->
+        <!--<div class="center-block services col-md-offset-1 ">-->
+        <!--</div>-->
+
+        <div class="col-lg-2 col-lg-offset-3 visible-lg services-xs">
+          <div class="center-block icon-lg">
+            <span class="icon-GetMePro_HomeTheater"></span>
+          </div>
+          <div class="center-block">
+            <h3>Home Theater Installation</h3>
+          </div>
+          <div class="col-lg-8 col-lg-offset-2">
+            <div class="selectButton">Select</div>
+          </div>
+
+        </div>
+        <div class="col-lg-2 col-lg-offset-2 visible-lg services-xs">
+          <div class="center-block icon-lg">
+            <span class="icon-GetMePro_HomeAutomation"></span>
+          </div>
+          <div class="center-block">
+            <h3>Home Automation</h3>
+          </div>
+          <div class="col-lg-8 col-lg-offset-2">
+            <div class="selectButton">Select</div>
+          </div>
+        </div>
+
+        <div class="col-md-2 col-md-offset-3 visible-md services-xs">
+          <div class="center-block icon-md">
+            <span class="icon-GetMePro_HomeTheater"></span>
+          </div>
+          <div class="center-block">
+            <h3>Home Theater Installation</h3>
+          </div>
+          <div class="col-lg-8 col-lg-offset-2">
+            <div class="selectButton">Select</div>
+          </div>
+        </div>
+        <div class="col-md-2 col-md-offset-2 visible-md services-xs">
+          <div class="center-block icon-md">
+            <span class="icon-GetMePro_HomeAutomation"></span>
+          </div>
+          <div class="center-block">
+            <h3>Home Automation</h3>
+          </div>
+          <div class="col-lg-8 col-lg-offset-2">
+            <div class="selectButton">Select</div>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col-sm-offset-4 visible-sm services">
+          <div class="center-block icon-sm">
+            <span class="icon-GetMePro_HomeTheater"></span>
+          </div>
+          <div class="center-block">
+            <h4>Home Theater Installation</h4>
+          </div>
+          <div class="col-lg-8 col-lg-offset-2">
+            <div class="selectButton">Select</div>
+          </div>
+        </div>
+        <div class="col-sm-1 visible-sm services-right">
+          <div class="center-block icon-sm">
+            <span class="icon-GetMePro_HomeAutomation"></span>
+          </div>
+          <div class="center-block">
+            <h4>Home Automation</h4>
+          </div>
+          <div class="col-lg-8 col-lg-offset-2">
+            <div class="selectButton">Select</div>
+          </div>
+        </div>
+
+        <div class="col-xs-5 visible-xs services-xs">
+          <div class="center-block icon-md">
+            <span class="icon-GetMePro_HomeTheater"></span>
+          </div>
+          <div class="center-block">
+            <h3>Home Theater Installation</h3>
+          </div>
+          <div class="col-lg-8 col-lg-offset-2">
+            <div class="selectButton">Select</div>
+          </div>
+        </div>
+        <div class="col-xs-5 col-xs-offset-2 visible-xs services-xs">
+          <div class="center-block icon-md">
+            <span class="icon-GetMePro_HomeAutomation"></span>
+          </div>
+          <div class="center-block">
+            <h3>Home Automation</h3>
+          </div>
+          <div class="col-lg-8 col-lg-offset-2">
+            <div class="selectButton">Select</div>
+          </div>
+        </div>
+
+      </div>
+
     </div>
   </div>
 
