@@ -189,7 +189,7 @@ angular.module( 'app.main', [
 
         }],
         controllerAs: 'packageCtrl',
-        template: '<div class="row"><div ui-view></div> <div class="col-md-2"><service-categories-drop-down-side></service-categories-drop-down-side> <div class="row"><br></div>  <packages-list-side></packages-list-side></div>'
+        template: '<div class="row"><div class="col-lg-9" ui-view></div> <div class="col-md-3"><service-categories-drop-down-side></service-categories-drop-down-side> <div class="row"><br></div>  <packages-list-side></packages-list-side></div>'
       })
 
       .state('app.package.detail', {

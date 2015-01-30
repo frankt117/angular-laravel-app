@@ -83,8 +83,8 @@ class NegotiationController extends \BaseController {
 
         $negotiation = Negotiation::create($newData);
 
-        Mail::send('emails.sp-reply', array('msg'=> $negotiation->initial_id), function($message){
-          $message->to('frankjtorresjr@gmail.com', 'Frank Torres')->subject('GetMePro Service Provider Response');
+        Mail::send('emails.sp-reply', array('msg'=> $negotiation->initial_id), function($message) use ($negotiation) {
+          $message->to($negotiation->target_to_email_id, 'Frank Torres')->subject('GetMePro Service Provider Response');
         });
       } else {
 
@@ -107,8 +107,8 @@ class NegotiationController extends \BaseController {
 
         $negotiation = Negotiation::create($newData);
 
-        Mail::send('emails.customer-reply', array('msg'=> $negotiation->initial_id), function($message){
-          $message->to('frankjtorresjr@gmail.com', 'Frank Torres')->subject('GetMePro Customer Response');
+        Mail::send('emails.customer-reply', array('msg'=> $negotiation->initial_id), function($message) use ($negotiation) {
+          $message->to($negotiation->target_to_email_id, 'Frank Torres')->subject('GetMePro Customer Response');
         });
 
       }
@@ -140,8 +140,8 @@ class NegotiationController extends \BaseController {
 //
 //      mail($to,$subject,$txt,$headers);
 
-      Mail::send('emails.test', array('msg'=> $negotiation->id), function($message){
-        $message->to('frankjtorresjr@gmail.com', 'Frank Torres')->subject('GetMePro Customer Negotiation');
+      Mail::send('emails.test', array('msg'=> $negotiation->id), function($message) use ($negotiation) {
+        $message->to($negotiation->target_to_email_id, 'Service Provider')->subject('GetMePro Customer Negotiation');
       });
 
 //      Mail::send(array('text' => 'view'), array('body' => "<a href='http://getmepro.com/#/app/negotiate/sp_response/$negotiation->id'>View Message From Customer.</a>"), function($message){
