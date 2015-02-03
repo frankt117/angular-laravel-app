@@ -381,12 +381,19 @@
 
   .testimonial_block {
     background-color: #f8f8f8;
-    height: 820px;
     color: #f26101;
   }
 
   .testimonial_block .header {
     font-size: 72px;
+    font-family: 'Lato Black', sans-serif;
+    font-weight: bolder;
+    position: relative;
+    top: 50px;
+  }
+
+  .testimonial_block .header-xs {
+    font-size: 52px;
     font-family: 'Lato Black', sans-serif;
     font-weight: bolder;
     position: relative;
@@ -491,6 +498,13 @@
     text-align: center;
     position: relative;
   }
+  .midSection5 .featuredHeader-xs {
+    font-size: 52px;
+    font-weight: bolder;
+    letter-spacing: -2px;
+    text-align: center;
+    position: relative;
+  }
   .midSection5 .columnHeaders {
     font-size: 30px;
   }
@@ -566,6 +580,14 @@
 
   .marginBottom {
     margin-bottom: 100px;
+  }
+
+  .marginBottom-md {
+    margin-bottom: 60px;
+  }
+
+  .marginBottom-sm {
+    margin-bottom: 40px;
   }
 
   .marginBottom-xs {
@@ -1033,7 +1055,7 @@
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 testimonial_block">
       <div class="row">
-        <div class="text-center header">
+        <div class="text-center header-xs">
           Why us?
         </div>
       </div>
@@ -1061,6 +1083,8 @@
         <div class="names text-center"><b>John</b></div>
         <div class="cityCompany text-center">Unlimited Satellite Installations</div>
         <div class="reviews text-center">"GetMePro connects my business to more customers that ever before; reducing advertising costs and increasing my bottom line."</div>
+
+        <div class="marginBottom-md"></div>
       </div>
 
       <div class="col-md-3 col-md-offset-3 visible-md testimonial">
@@ -1077,6 +1101,8 @@
         <div class="names md-name text-center"><b>John</b></div>
         <div class="cityCompany md-cc text-center">Unlimited Satellite Installations</div>
         <div class="reviews md-review text-center">"GetMePro connects my business to more customers that ever before; reducing advertising costs and increasing my bottom line."</div>
+
+        <div class="marginBottom-md"></div>
       </div>
 
       <div class="col-sm-3 col-sm-offset-2 visible-sm testimonial">
@@ -1093,10 +1119,12 @@
         <div class="names sm-name text-center"><b>John</b></div>
         <div class="cityCompany sm-cc text-center">Unlimited Satellite Installations</div>
         <div class="reviews sm-review text-center">"GetMePro connects my business to more customers that ever before; reducing advertising costs and increasing my bottom line."</div>
+
+        <div class="marginBottom-sm"></div>
       </div>
 
       <div class="col-xs-5 visible-xs testimonial">
-        <img src="images/app/GetMePro_customer_2x.png" width="152px" height="152px"/>
+        <img src="images/app/GetMePro_customer_2x.png" width="120px" height="120px"/>
 
         <div class="names xs-name text-center"><b>Susan</b></div>
         <div class="cityCompany xs-cc text-center">Irving, TX</div>
@@ -1104,11 +1132,13 @@
 
       </div>
       <div class="col-xs-5 col-xs-offset-2 visible-xs testimonial">
-        <img src="images/app/GetMePro_servicer_2x.png" width="152px" height="152px"/>
+        <img src="images/app/GetMePro_servicer_2x.png" width="120px" height="120px"/>
 
         <div class="names xs-name text-center"><b>John</b></div>
         <div class="cityCompany xs-cc text-center">Unlimited Satellite Installations</div>
         <div class="reviews xs-review text-center">"GetMePro connects my business to more customers that ever before; reducing advertising costs and increasing my bottom line."</div>
+
+        <div class="marginBottom-sm"></div>
       </div>
     </div>
   </div>
@@ -1164,9 +1194,15 @@
 
       <div class="row"><br><br><br></div>
 
-      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="row visible-lg visible-md visble-sm">
+        <div class="col-sm-12 col-md-12 col-lg-12">
           <div class="featuredHeader">Featured Providers</div>
+        </div>
+      </div>
+
+      <div class="row visible-xs">
+        <div class="col-xs-12">
+          <div class="featuredHeader-xs">Featured Providers</div>
         </div>
       </div>
 
