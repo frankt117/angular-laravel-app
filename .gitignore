@@ -10,3 +10,4 @@ Thumbs.db
 /public/packages/npm-debug.log
 /public/images/upload
 /node_modules
+/app/config/database.php
